@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/__ImportedAssets": true,
+			"**/_Scenes": true,
+			"**/*.code-workspace": true,
+			"**/*.meta": true
+		}
+	}
+}

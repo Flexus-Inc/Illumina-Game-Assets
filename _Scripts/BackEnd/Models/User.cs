@@ -5,7 +5,7 @@ namespace Illumina.Models {
         public string email;
         public string password;
         public string name;
-        public int profile;
+        public int profile = 1;
         public bool logged_in = false;
     }
 
