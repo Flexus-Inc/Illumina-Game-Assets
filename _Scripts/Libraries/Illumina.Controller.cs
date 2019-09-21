@@ -1,10 +1,24 @@
+using System;
+using Illumina.Models;
 using Illumina.Networking;
+using UnityEngine;
 
 namespace Illumina.Controller {
 
-    class Controller {
-        // public virtual bool store(Request request) {
+    public class Controller {
+        public static void Store<T>(Request request) {
+            IlluminaWebRequest.Post<T>(request);
+        }
+        public static void Update<T>(Request request) {
+            IlluminaWebRequest.Put<T>(request);
+        }
+        public static void Delete(Request request) {
+            IlluminaWebRequest.Delete(request);
+        }
 
-        // }
+        public static void LogError(Exception err) {
+            Debug.Log(err);
+        }
+
     }
 }
