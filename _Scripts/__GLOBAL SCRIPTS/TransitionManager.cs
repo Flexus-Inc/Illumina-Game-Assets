@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransitionManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class TransitionManager : MonoBehaviour {
+    public static TransitionManager instance = null;
+
+    void Awake() {
+        if (instance != null) {
+            Destroy(gameObject);
+        } else {
+            instance = this;
+            GameObject.DontDestroyOnLoad(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 }
