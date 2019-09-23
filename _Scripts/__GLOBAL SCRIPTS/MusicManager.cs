@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,15 +8,37 @@ public class MusicManager : MonoBehaviour {
     //TODO: set default volume and looping if not set.
     public AudioClip[] MusicSources;
     public float[] MusicSourcesDefaultVolume;
-    public bool[] MusicSourcesLoop;
+    public bool[] MusicSourcesIsLooping;
+    public AudioClip DefaultMusic;
     public int SplashMusicIndex = 0;
     AudioSource source;
 
     void Start() {
         source = GetComponent<AudioSource>();
+        source.loop = false;
+        source.playOnAwake = false;
+        if (MusicSources.Length != MusicSourcesDefaultVolume.Length) {
+            throw new ArgumentException("Length", "MusicSourcesDefaultVolume.Length doesn't match the length of MusicSources array");
+        }
+        if (MusicSources.Length != MusicSourcesIsLooping.Length) {
+            throw new ArgumentException("Length", "MusicSourcesIsLooping.Length doesn't match the length of MusicSources array");
+        }
     }
-    public void Music(int index, bool hasTransition = true, float volume = 1, bool looping = false) {
-        StartCoroutine(SwitchMusic(index, hasTransition, volume, looping));
+
+    public void Music(int index, bool hasTransition = true, float volume = 2, int looping = -1) {
+        var islooping = false;
+
+        if (looping < 0) {
+            if (index < MusicSources.Length) {
+                islooping = MusicSourcesIsLooping[index];
+            }
+        } else if (looping == 1) {
+            islooping = true;
+        }
+        if (index < MusicSources.Length) {
+            volume = volume > 1 ? MusicSourcesDefaultVolume[index] : volume;
+        }
+        StartCoroutine(SwitchMusic(index, hasTransition, volume, islooping));
     }
 
     public void ChangeMusic(int index) {
@@ -43,24 +66,29 @@ public class MusicManager : MonoBehaviour {
         GameObject.Find("__MusicManager").GetComponent<MusicManager>().StopMusic(true);
     }
 
-    public static void ChangeMusic(int index, bool hasTransition = false, float volume = 1, bool looping = false) {
+    public static void ChangeMusic(int index, bool hasTransition = false, float volume = 1, int looping = -1) {
         GameObject.Find("__MusicManager").GetComponent<MusicManager>().Music(index, hasTransition, volume, looping);
     }
 
     IEnumerator SwitchMusic(int index, bool hasTransition = false, float volume = 1, bool looping = false) {
+
         if (hasTransition) {
             while (source.volume > 0) {
                 source.volume -= 0.05f;
                 yield return new WaitForSeconds(0.025f);
             }
+        }
+        source.clip = DefaultMusic;
+        if (index < MusicSources.Length) {
             source.clip = MusicSources[index];
-            source.loop = looping;
-            source.Play();
+        }
+        source.loop = looping;
+        source.Play();
+        if (hasTransition) {
             while (source.volume < volume) {
                 source.volume += 0.05f;
                 yield return new WaitForSeconds(0.025f);
             }
-
         }
     }
 

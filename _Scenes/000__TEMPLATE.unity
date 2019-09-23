@@ -945,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e873d6f92f11b43a64e4ae89c451ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundFXSources: []
 --- !u!1 &1091142761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1135,7 @@ MonoBehaviour:
   MusicSourcesDefaultVolume:
   - 1
   - 1
-  MusicSourcesLoop: 00
+  MusicSourcesIsLooping: 0000
   SplashMusicIndex: 0
 --- !u!1 &1134169091
 GameObject:
