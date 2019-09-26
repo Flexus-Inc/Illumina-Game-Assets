@@ -1,3 +1,10 @@
+/*
+    Author:Edrian Jose D.G. Ferrer
+    Collaborators: None yet
+    Version: 1.0
+    Owned by: Flexus Group of Companies
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

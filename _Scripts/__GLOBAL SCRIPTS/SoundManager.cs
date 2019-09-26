@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour {
 
     public AudioClip[] SoundFXSources;
     public AudioClip DefaultSoundFX;
-    AudioSource source;
+    public static AudioSource source;
     // Start is called before the first frame update
     void Start() {
         source = GetComponent<AudioSource>();
@@ -26,6 +26,18 @@ public class SoundManager : MonoBehaviour {
 
     public static void PlaySoundFX(int soundIndex) {
         GameObject.Find("__SoundManager").GetComponent<SoundManager>().PlaySound(soundIndex);
+    }
+
+    public static void ChangeVolume(float intensity, float delay = 0) {
+        GameObject.Find("__SoundManager").GetComponent<SoundManager>().ChangeSoundFXVolume(intensity, delay);
+    }
+
+    public void ChangeSoundFXVolume(float intensity, float delay = 0) {
+        StartCoroutine(ChangeSoundVolume(intensity, delay));
+    }
+    IEnumerator ChangeSoundVolume(float intensity, float delay) {
+        yield return new WaitForSeconds(delay);
+        source.volume = intensity;
     }
 
 }

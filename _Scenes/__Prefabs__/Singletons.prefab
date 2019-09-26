@@ -125,11 +125,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MusicSources:
+  - {fileID: 8300000, guid: d8a633892c3165a45a09e1d653cb39b0, type: 3}
   - {fileID: 8300000, guid: f13db1aa1921edf498efe14f91b03e14, type: 3}
+  - {fileID: 8300000, guid: 59cf410ede243eb499987584fba63773, type: 3}
   MusicSourcesDefaultVolume:
   - 1
-  MusicSourcesIsLooping: 01
-  DefaultMusic: {fileID: 8300000, guid: eb6789c1c12e84647bbbc7bb2be8d8dc, type: 3}
+  - 1
+  - 1
+  MusicSourcesIsLooping: 010001
+  DefaultMusic: {fileID: 8300000, guid: f13db1aa1921edf498efe14f91b03e14, type: 3}
   SplashMusicIndex: 0
 --- !u!82 &2419026506989358476
 AudioSource:
@@ -672,8 +676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e873d6f92f11b43a64e4ae89c451ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundFXSources: []
-  DefaultSoundFX: {fileID: 8300000, guid: 236f07290ab4c5e4181a019c47e225c1, type: 3}
+  SoundFXSources:
+  - {fileID: 8300000, guid: 8ebd22f05e254f04285575791e3ddc83, type: 3}
+  DefaultSoundFX: {fileID: 8300000, guid: 8ebd22f05e254f04285575791e3ddc83, type: 3}
 --- !u!82 &2419026507685046516
 AudioSource:
   m_ObjectHideFlags: 0
@@ -685,7 +690,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

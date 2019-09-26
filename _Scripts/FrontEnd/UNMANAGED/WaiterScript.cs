@@ -7,7 +7,7 @@ public class WaiterScript : MonoBehaviour {
     // Start is called before the first frame update
     public float delay = 0;
     Button WaiterButton;
-    void Start() {
+    void Awake() {
         WaiterButton = GetComponent<Button>();
         StartCoroutine(ExecuteWaitingEvents());
     }

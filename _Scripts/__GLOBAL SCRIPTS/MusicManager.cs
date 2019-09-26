@@ -11,7 +11,7 @@ public class MusicManager : MonoBehaviour {
     public bool[] MusicSourcesIsLooping;
     public AudioClip DefaultMusic;
     public int SplashMusicIndex = 0;
-    AudioSource source;
+    public static AudioSource source;
 
     void Start() {
         source = GetComponent<AudioSource>();
@@ -44,7 +44,7 @@ public class MusicManager : MonoBehaviour {
     public void ChangeMusic(int index) {
         Music(index);
     }
-    public void ChangeMusicVolume(int intensity, bool transitioned = false) {
+    public void ChangeMusicVolume(float intensity, bool transitioned = false) {
         if (transitioned) {
             StartCoroutine(TransitionVolume(intensity));
         } else {
@@ -52,7 +52,7 @@ public class MusicManager : MonoBehaviour {
         }
     }
 
-    public static void ChangeVolume(int intensity, bool transitioned = false) {
+    public static void ChangeVolume(float intensity, bool transitioned = false) {
         GameObject.Find("__MusicManager").GetComponent<MusicManager>().ChangeMusicVolume(intensity, true);
     }
     public void StopMusic(bool transitioned = true) {
@@ -92,7 +92,7 @@ public class MusicManager : MonoBehaviour {
         }
     }
 
-    IEnumerator TransitionVolume(int intensity, bool stop = false) {
+    IEnumerator TransitionVolume(float intensity, bool stop = false) {
 
         if (source.volume > intensity) {
             while (source.volume > intensity) {
