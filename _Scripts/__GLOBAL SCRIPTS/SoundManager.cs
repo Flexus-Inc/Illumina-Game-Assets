@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Illumina.Controller;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
     public AudioClip[] SoundFXSources;
     public AudioClip DefaultSoundFX;
-    public static AudioSource source;
+    public AudioSource source;
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         source = GetComponent<AudioSource>();
         source.clip = DefaultSoundFX;
         source.loop = false;
@@ -29,6 +30,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     public static void ChangeVolume(float intensity, float delay = 0) {
+
         GameObject.Find("__SoundManager").GetComponent<SoundManager>().ChangeSoundFXVolume(intensity, delay);
     }
 
@@ -36,6 +38,7 @@ public class SoundManager : MonoBehaviour {
         StartCoroutine(ChangeSoundVolume(intensity, delay));
     }
     IEnumerator ChangeSoundVolume(float intensity, float delay) {
+        intensity *= SettingsController.GetSoundFXVolume();
         yield return new WaitForSeconds(delay);
         source.volume = intensity;
     }

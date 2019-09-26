@@ -10,41 +10,33 @@ public class SettingsView : MonoBehaviour {
     public Slider SoundFXSlider;
     public Slider MasterSlider;
     private int VolumeType;
-    SettingsData Data;
     void Start() {
-        Data = new SettingsData();
-        Data = SettingsController.LoadSettingsData();
+        SettingsController.LoadSettingsData();
         UpdateSliderValues();
-        UpdateVolume();
-        MusicManager.ChangeMusic(2, true, Data.MasterVolume * Data.MusicVolume, 1);
+        SettingsController.UpdateVolume();
+        MusicManager.ChangeMusic(2, true, 1, 1);
     }
 
     public void UpdateSettings(int type) {
         switch (type) {
             case 1:
-                Data.MusicVolume = MusicSlider.value;
+                SettingsController.Data.MusicVolume = MusicSlider.value;
                 break;
             case 2:
-                Data.SoundFXVolume = SoundFXSlider.value;
+                SettingsController.Data.SoundFXVolume = SoundFXSlider.value;
                 break;
             default:
-                Data.MasterVolume = MasterSlider.value;
+                SettingsController.Data.MasterVolume = MasterSlider.value;
                 break;
         }
-        UpdateVolume();
-        SettingsController.SaveSettingsData(Data);
+        SettingsController.UpdateVolume();
+        SettingsController.SaveSettingsData();
     }
 
-    public void UpdateSliderValues(bool updateData = false) {
-        Data = updateData ? SettingsController.LoadSettingsData() : Data;
-        MusicSlider.normalizedValue = Data.MusicVolume;
-        SoundFXSlider.normalizedValue = Data.SoundFXVolume;
-        MasterSlider.normalizedValue = Data.MasterVolume;
-    }
-
-    public void UpdateVolume() {
-        MusicManager.source.volume = Data.MusicVolume * Data.MasterVolume;
-        SoundManager.source.volume = Data.SoundFXVolume * Data.MasterVolume;
+    public void UpdateSliderValues() {
+        MusicSlider.normalizedValue = SettingsController.Data.MusicVolume;
+        SoundFXSlider.normalizedValue = SettingsController.Data.SoundFXVolume;
+        MasterSlider.normalizedValue = SettingsController.Data.MasterVolume;
     }
 
 }

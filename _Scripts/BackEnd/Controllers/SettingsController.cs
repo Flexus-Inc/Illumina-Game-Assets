@@ -1,5 +1,6 @@
 using Illumina.Models;
 using Illumina.Serialization;
+using UnityEngine;
 
 namespace Illumina.Controller {
     public class SettingsController {
@@ -14,9 +15,8 @@ namespace Illumina.Controller {
             };
         }
 
-        public static void SaveSettingsData(SettingsData data) {
+        public static void SaveSettingsData() {
             settingsSerializer.Initialize();
-            Data = data;
             settingsSerializer.SaveData(Data);
         }
 
@@ -24,6 +24,18 @@ namespace Illumina.Controller {
             settingsSerializer.Initialize();
             Data = (SettingsData) settingsSerializer.LoadData(Data);
             return Data;
+        }
+
+        public static void UpdateVolume() {
+            GameObject.Find("__MusicManager").GetComponent<MusicManager>().source.volume = Data.MusicVolume * Data.MasterVolume;
+            GameObject.Find("__SoundManager").GetComponent<SoundManager>().source.volume = Data.SoundFXVolume * Data.MasterVolume;
+        }
+
+        public static float GetMusicVolume() {
+            return Data.MusicVolume * Data.MasterVolume;
+        }
+        public static float GetSoundFXVolume() {
+            return Data.SoundFXVolume * Data.MasterVolume;
         }
     }
 }

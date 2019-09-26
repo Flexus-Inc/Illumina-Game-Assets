@@ -6,9 +6,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-
     void Awake() {
         CreateSerializers();
+        SettingsController.LoadSettingsData();
+    }
+
+    void Start() {
+        SettingsController.UpdateVolume();
+        Debug.Log("Volume : " + SettingsController.GetMusicVolume());
     }
 
     void CreateSerializers() {

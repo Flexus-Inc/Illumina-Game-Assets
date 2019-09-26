@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Illumina.Controller;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
@@ -11,9 +12,9 @@ public class MusicManager : MonoBehaviour {
     public bool[] MusicSourcesIsLooping;
     public AudioClip DefaultMusic;
     public int SplashMusicIndex = 0;
-    public static AudioSource source;
+    public AudioSource source;
 
-    void Start() {
+    void Awake() {
         source = GetComponent<AudioSource>();
         source.loop = false;
         source.playOnAwake = false;
@@ -48,7 +49,7 @@ public class MusicManager : MonoBehaviour {
         if (transitioned) {
             StartCoroutine(TransitionVolume(intensity));
         } else {
-            source.volume = intensity;
+            source.volume = intensity * SettingsController.GetMusicVolume();
         }
     }
 
@@ -71,10 +72,10 @@ public class MusicManager : MonoBehaviour {
     }
 
     IEnumerator SwitchMusic(int index, bool hasTransition = false, float volume = 1, bool looping = false) {
-
+        volume *= SettingsController.GetMusicVolume();
         if (hasTransition) {
             while (source.volume > 0) {
-                source.volume -= 0.05f;
+                source.volume -= 0.025f;
                 yield return new WaitForSeconds(0.025f);
             }
         }
@@ -86,14 +87,14 @@ public class MusicManager : MonoBehaviour {
         source.Play();
         if (hasTransition) {
             while (source.volume < volume) {
-                source.volume += 0.05f;
+                source.volume += 0.025f;
                 yield return new WaitForSeconds(0.025f);
             }
         }
     }
 
     IEnumerator TransitionVolume(float intensity, bool stop = false) {
-
+        intensity *= SettingsController.GetMusicVolume();
         if (source.volume > intensity) {
             while (source.volume > intensity) {
                 source.volume -= 0.05f;

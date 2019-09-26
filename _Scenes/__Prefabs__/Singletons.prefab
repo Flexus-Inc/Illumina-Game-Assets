@@ -131,7 +131,7 @@ MonoBehaviour:
   MusicSourcesDefaultVolume:
   - 1
   - 1
-  - 1
+  - 0
   MusicSourcesIsLooping: 010001
   DefaultMusic: {fileID: 8300000, guid: f13db1aa1921edf498efe14f91b03e14, type: 3}
   SplashMusicIndex: 0
