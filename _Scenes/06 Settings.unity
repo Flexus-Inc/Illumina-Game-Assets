@@ -2697,8 +2697,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_MethodName: PlaySound
+        - m_Target: {fileID: 520952711}
+          m_MethodName: SoundManager_PlaySoundFX
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

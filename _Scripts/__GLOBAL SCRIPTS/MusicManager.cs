@@ -28,7 +28,6 @@ public class MusicManager : MonoBehaviour {
 
     void Start() {
         SettingsController.UpdateVolume();
-        Debug.Log("Volume : " + SettingsController.GetMusicVolume());
     }
 
     public void Music(int index, bool hasTransition = true, float volume = 2, int looping = -1) {
