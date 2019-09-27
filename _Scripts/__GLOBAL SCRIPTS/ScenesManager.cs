@@ -17,19 +17,22 @@ public class ScenesManager : MonoBehaviour {
     public Animator[] LoadingTransitions;
     public float[] SceneTransitionsTime;
     public float[] LoadingTransitionsTime;
-
-    public Animator SceneTransition;
-    public Animator LoadingTransition;
-    public int ActiveTransitionIndex = 0;
-    public int ActiveLoadingTransitionIndex = 0;
+    public static Animator SceneTransition;
+    public static Animator LoadingTransition;
+    public static int ActiveTransitionIndex = 0;
+    public static int ActiveLoadingTransitionIndex = 0;
 
     //Status variables are shared to TransitionManagers
-    public int transition_status = 0;
-    public int loading_status = 0;
+    public static int transition_status = 0;
+    public static int loading_status = 0;
 
     void Start() {
-        SceneTransition = SceneTransitions[ActiveTransitionIndex];
-        LoadingTransition = LoadingTransitions[ActiveLoadingTransitionIndex];
+        if (SceneTransition == null) {
+            SceneTransition = SceneTransitions[ScenesManager.ActiveTransitionIndex];
+        }
+        if (LoadingTransition == null) {
+            LoadingTransition = LoadingTransitions[ScenesManager.ActiveLoadingTransitionIndex];
+        }
     }
 
     public void Activate(bool activated = true) {
@@ -67,9 +70,10 @@ public class ScenesManager : MonoBehaviour {
         var waitTime = SceneTransitionsTime[ActiveTransitionIndex] / 2;
         waitTime += LoadingTransitionsTime[ActiveLoadingTransitionIndex];
         yield return new WaitForSeconds(waitTime);
-
         Activate(false);
+
     }
+
     IEnumerator ShowLoading() {
         yield return new WaitForSeconds(SceneTransitionsTime[ActiveTransitionIndex]);
         loading_status = 1;

@@ -132,9 +132,10 @@ MonoBehaviour:
   - 1
   - 1
   - 0
-  MusicSourcesIsLooping: 010001
+  MusicSourcesIsLooping: 000101
   DefaultMusic: {fileID: 8300000, guid: f13db1aa1921edf498efe14f91b03e14, type: 3}
   SplashMusicIndex: 0
+  source: {fileID: 0}
 --- !u!82 &2419026506989358476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -679,6 +680,7 @@ MonoBehaviour:
   SoundFXSources:
   - {fileID: 8300000, guid: 8ebd22f05e254f04285575791e3ddc83, type: 3}
   DefaultSoundFX: {fileID: 8300000, guid: 8ebd22f05e254f04285575791e3ddc83, type: 3}
+  source: {fileID: 0}
 --- !u!82 &2419026507685046516
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1061,12 +1063,6 @@ MonoBehaviour:
   LoadingTransitionsTime:
   - 0.5
   - 0.5
-  SceneTransition: {fileID: 0}
-  LoadingTransition: {fileID: 0}
-  ActiveTransitionIndex: 0
-  ActiveLoadingTransitionIndex: 1
-  transition_status: 0
-  loading_status: 0
 --- !u!1 &2419026508266990695
 GameObject:
   m_ObjectHideFlags: 0

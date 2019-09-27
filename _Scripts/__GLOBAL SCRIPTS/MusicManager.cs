@@ -15,7 +15,6 @@ public class MusicManager : MonoBehaviour {
     public AudioSource source;
 
     void Awake() {
-        SettingsController.LoadSettingsData();
         source = GetComponent<AudioSource>();
         source.loop = false;
         source.playOnAwake = false;
@@ -27,7 +26,7 @@ public class MusicManager : MonoBehaviour {
         }
     }
 
-    void Start(){
+    void Start() {
         SettingsController.UpdateVolume();
         Debug.Log("Volume : " + SettingsController.GetMusicVolume());
     }
@@ -78,10 +77,11 @@ public class MusicManager : MonoBehaviour {
     }
 
     IEnumerator SwitchMusic(int index, bool hasTransition = false, float volume = 1, bool looping = false) {
+        var dist = source.volume / 20;
         volume *= SettingsController.GetMusicVolume();
         if (hasTransition) {
             while (source.volume > 0) {
-                source.volume -= 0.025f;
+                source.volume -= dist;
                 yield return new WaitForSeconds(0.025f);
             }
         }
@@ -91,27 +91,31 @@ public class MusicManager : MonoBehaviour {
         }
         source.loop = looping;
         source.Play();
+        dist = volume / 20;
         if (hasTransition) {
             while (source.volume < volume) {
-                source.volume += 0.025f;
+                source.volume += dist;
                 yield return new WaitForSeconds(0.025f);
             }
         }
     }
 
     IEnumerator TransitionVolume(float intensity, bool stop = false) {
+
         intensity *= SettingsController.GetMusicVolume();
         if (source.volume > intensity) {
+            var dist = (source.volume - intensity) / 20;
             while (source.volume > intensity) {
-                source.volume -= 0.05f;
+                source.volume -= dist;
                 yield return new WaitForSeconds(0.025f);
             }
 
         }
 
         if (source.volume < intensity) {
+            var dist = (intensity - source.volume) / 20;
             while (source.volume < intensity) {
-                source.volume += 0.05f;
+                source.volume += dist;
                 yield return new WaitForSeconds(0.025f);
             }
         }

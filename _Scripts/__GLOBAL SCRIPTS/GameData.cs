@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Illumina.Controller;
+using Illumina.Serialization;
 using UnityEngine;
 
 public class GameData : MonoBehaviour {
 
     void Awake() {
         CreateSerializers();
+        SettingsController.LoadSettingsData();
     }
 
     void CreateSerializers() {
