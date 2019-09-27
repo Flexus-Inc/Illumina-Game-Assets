@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour {
 
-    public static int state = 0;
-    // Start is called before the first frame update
-    void Start() {
+    void Awake() {
+        CreateSerializers();
+    }
 
+    void CreateSerializers() {
+        Serializer.SavePathDirectory = Application.persistentDataPath + "/saves/";
+        SettingsController.CreateSerializers();
     }
 
     // Update is called once per frame

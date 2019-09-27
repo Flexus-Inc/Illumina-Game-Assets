@@ -15,6 +15,7 @@ public class MusicManager : MonoBehaviour {
     public AudioSource source;
 
     void Awake() {
+        SettingsController.LoadSettingsData();
         source = GetComponent<AudioSource>();
         source.loop = false;
         source.playOnAwake = false;
@@ -24,6 +25,11 @@ public class MusicManager : MonoBehaviour {
         if (MusicSources.Length != MusicSourcesIsLooping.Length) {
             throw new ArgumentException("Length", "MusicSourcesIsLooping.Length doesn't match the length of MusicSources array");
         }
+    }
+
+    void Start(){
+        SettingsController.UpdateVolume();
+        Debug.Log("Volume : " + SettingsController.GetMusicVolume());
     }
 
     public void Music(int index, bool hasTransition = true, float volume = 2, int looping = -1) {
