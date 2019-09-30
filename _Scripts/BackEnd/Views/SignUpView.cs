@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Illumina.Controller;
 using Illumina.Models;
 using Illumina.Networking;
@@ -35,43 +36,55 @@ public class SignUpView : MonoBehaviour {
 
     public void OnEndEditUsername() {
         UserNameExistText.text = "Verifying...";
-        UserController.UserExists("username", UserName.text, UsernameExistsResult);
+        UserController.UserExists("username", UserName.text, UsernameExistsResult, UsernameCheckError);
     }
     void UsernameExistsResult(object source) {
         UserNameExistText.text = (string) source;
-        if (UserNameExistText.text == "Username already exists") {
+        if (UserNameExistText.text == "Username already exist") {
             errors["username"] = true;
         } else {
             errors["username"] = false;
         }
+        ConfirmTerms();
     }
+    void UsernameCheckError(Exception err) {
+        UserNameExistText.text = "Cannot verify";
+    }
+
     public void OnEndEditPassword() {
         if (Password.text != ConfirmPassword.text && ConfirmPassword.text != "") {
             ConfirmPasswordNotMatchText.text = "Confirm password does not match";
             errors["password"] = true;
         } else {
+            ConfirmPasswordNotMatchText.text = "";
             errors["password"] = false;
         }
+        ConfirmTerms();
     }
 
     public void OnEndEditEmail() {
         EmailExistText.text = "Verifying...";
-        UserController.UserExists("email", Email.text, EmailExistsResult);
+        UserController.UserExists("email", Email.text, EmailExistsResult, EmailCheckError);
     }
     void EmailExistsResult(object source) {
         EmailExistText.text = (string) source;
-        if (EmailExistText.text == "Email already exists") {
+        if (EmailExistText.text == "Email already exist") {
             errors["email"] = true;
         } else {
             errors["email"] = false;
         }
+        ConfirmTerms();
+    }
+
+    void EmailCheckError(Exception err) {
+        EmailExistText.text = "Cannot verify";
     }
     public void ChangeProfile(int index) {
         newUser.profile = index;
     }
 
     public void ConfirmTerms() {
-        if (TermsAndConditions.isOn) {
+        if (TermsAndConditions.isOn && !errors.ContainsValue(true)) {
             SubmitButton.interactable = true;
         } else {
             SubmitButton.interactable = false;

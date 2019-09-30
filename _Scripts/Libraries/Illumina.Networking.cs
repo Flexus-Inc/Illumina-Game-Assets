@@ -57,11 +57,21 @@ namespace Illumina.Networking {
                 uri = uri,
             };
             csrfRequest.RequestSuccessEvents += SetCsrfToken;
+            csrfRequest.RequestFailedEvents += DisplayAlert;
             Get(csrfRequest);
         }
 
         private static void SetCsrfToken(object source) {
             csrf_token = (string) source;
+        }
+
+        private static void DisplayAlert(Exception err) {
+            if (Application.internetReachability == NetworkReachability.NotReachable) {
+                UIManager.Alert("No internet connection");
+            } else {
+                UIManager.Alert("CONNECTION ERROR : " + err.Message);
+            }
+
         }
 
         public static void Post(Request request) {

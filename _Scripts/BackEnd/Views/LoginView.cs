@@ -1,3 +1,4 @@
+using System;
 using Illumina.Controller;
 using Illumina.Models;
 using Illumina.Networking;
@@ -15,21 +16,30 @@ public class LoginView : MonoBehaviour {
         if (IlluminaWebRequest.CsrfToken == null) {
             IlluminaWebRequest.GetCsrfToken();
         }
+
+    }
+
+    void Start() {
+
     }
 
     public void OnEndEditUsername() {
         UserNameExistText.text = "Verifying...";
-        UserController.UserExists("username", UserName.text, UsernameExistsResult);
+        UserController.UserExists("username", UserName.text, UsernameExistsResult, UsernameCheckError);
     }
 
     void UsernameExistsResult(object source) {
-        if ((string) source != "Username already exists") {
+        if ((string) source != "Username already exist") {
             UserNameExistText.text = "Username not registered";
             LoginButton.interactable = false;
         } else {
             UserNameExistText.text = "";
             LoginButton.interactable = true;
         }
+    }
+    void UsernameCheckError(Exception err) {
+        UserNameExistText.text = "Cannot verify";
+        LoginButton.interactable = false;
     }
     public void Login() {
         User user = new User {
@@ -38,5 +48,6 @@ public class LoginView : MonoBehaviour {
             logged_in = true
         };
         UserController.Login(user);
+        UIManager.DisplayLoading();
     }
 }

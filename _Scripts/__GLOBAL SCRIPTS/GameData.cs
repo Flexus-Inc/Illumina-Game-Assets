@@ -1,23 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Illumina.Controller;
+using Illumina.Models;
 using Illumina.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameData : MonoBehaviour {
+public static class GameData {
 
-    void Awake() {
-        CreateSerializers();
-        SettingsController.LoadSettingsData();
-    }
+    static User user = new User();
 
-    void CreateSerializers() {
-        Serializer.SavePathDirectory = Application.persistentDataPath + "/saves/";
-        SettingsController.CreateSerializers();
-    }
+    public static User User { get => user; set => user = value; }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
 }
