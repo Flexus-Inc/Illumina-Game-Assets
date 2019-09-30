@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Illumina.Controller;
+using Illumina.Models;
+using Illumina.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameData : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public static class GameData {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    static User user = new User();
+
+    public static User User { get => user; set => user = value; }
+
 }

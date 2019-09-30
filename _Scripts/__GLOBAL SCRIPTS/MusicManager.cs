@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Illumina.Controller;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
@@ -11,9 +12,9 @@ public class MusicManager : MonoBehaviour {
     public bool[] MusicSourcesIsLooping;
     public AudioClip DefaultMusic;
     public int SplashMusicIndex = 0;
-    AudioSource source;
+    public AudioSource source;
 
-    void Start() {
+    void Awake() {
         source = GetComponent<AudioSource>();
         source.loop = false;
         source.playOnAwake = false;
@@ -23,6 +24,10 @@ public class MusicManager : MonoBehaviour {
         if (MusicSources.Length != MusicSourcesIsLooping.Length) {
             throw new ArgumentException("Length", "MusicSourcesIsLooping.Length doesn't match the length of MusicSources array");
         }
+    }
+
+    void Start() {
+        SettingsController.UpdateVolume();
     }
 
     public void Music(int index, bool hasTransition = true, float volume = 2, int looping = -1) {
@@ -44,15 +49,15 @@ public class MusicManager : MonoBehaviour {
     public void ChangeMusic(int index) {
         Music(index);
     }
-    public void ChangeMusicVolume(int intensity, bool transitioned = false) {
+    public void ChangeMusicVolume(float intensity, bool transitioned = false) {
         if (transitioned) {
             StartCoroutine(TransitionVolume(intensity));
         } else {
-            source.volume = intensity;
+            source.volume = intensity * SettingsController.GetMusicVolume();
         }
     }
 
-    public static void ChangeVolume(int intensity, bool transitioned = false) {
+    public static void ChangeVolume(float intensity, bool transitioned = false) {
         GameObject.Find("__MusicManager").GetComponent<MusicManager>().ChangeMusicVolume(intensity, true);
     }
     public void StopMusic(bool transitioned = true) {
@@ -71,10 +76,11 @@ public class MusicManager : MonoBehaviour {
     }
 
     IEnumerator SwitchMusic(int index, bool hasTransition = false, float volume = 1, bool looping = false) {
-
+        var dist = source.volume / 20;
+        volume *= SettingsController.GetMusicVolume();
         if (hasTransition) {
             while (source.volume > 0) {
-                source.volume -= 0.05f;
+                source.volume -= dist;
                 yield return new WaitForSeconds(0.025f);
             }
         }
@@ -84,27 +90,31 @@ public class MusicManager : MonoBehaviour {
         }
         source.loop = looping;
         source.Play();
+        dist = volume / 20;
         if (hasTransition) {
             while (source.volume < volume) {
-                source.volume += 0.05f;
+                source.volume += dist;
                 yield return new WaitForSeconds(0.025f);
             }
         }
     }
 
-    IEnumerator TransitionVolume(int intensity, bool stop = false) {
+    IEnumerator TransitionVolume(float intensity, bool stop = false) {
 
+        intensity *= SettingsController.GetMusicVolume();
         if (source.volume > intensity) {
+            var dist = (source.volume - intensity) / 20;
             while (source.volume > intensity) {
-                source.volume -= 0.05f;
+                source.volume -= dist;
                 yield return new WaitForSeconds(0.025f);
             }
 
         }
 
         if (source.volume < intensity) {
+            var dist = (intensity - source.volume) / 20;
             while (source.volume < intensity) {
-                source.volume += 0.05f;
+                source.volume += dist;
                 yield return new WaitForSeconds(0.025f);
             }
         }

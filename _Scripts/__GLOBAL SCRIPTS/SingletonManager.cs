@@ -6,12 +6,13 @@ public class SingletonManager : MonoBehaviour {
     public static SingletonManager instance = null;
     // Start is called before the first frame update
     void Awake() {
-        if (instance != null) {
-            Destroy(gameObject);
-        } else {
+        if (instance == null) {
             instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
+            GameObject.DontDestroyOnLoad(this);
+        } else {
+            Destroy(gameObject);
         }
+
     }
 
     // Update is called once per frame
