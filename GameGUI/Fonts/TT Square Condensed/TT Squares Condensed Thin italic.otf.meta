@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: 8fe1063966c97e44c84e8c4c7fd1c654
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: TT Squares Condensed
+  fontNames:
+  - TT Squares Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f257c211c64d11f4b82055bc3aa6f0df, type: 3}
+  - {fileID: 12800000, guid: 7d561f15216f7da4aaf7b483b8d32380, type: 3}
+  - {fileID: 12800000, guid: 595b492609bd1dc4fbff3d32e5b05677, type: 3}
+  - {fileID: 12800000, guid: 097c9266fe1011b45aa31923c825fd5a, type: 3}
+  - {fileID: 12800000, guid: 1bba8fd66fed15a4aac5208724ae9fa4, type: 3}
+  - {fileID: 12800000, guid: 32602d28991dc38438c76f3b8d24534e, type: 3}
+  - {fileID: 12800000, guid: fca9c648336f5c442a02ca2c86a65020, type: 3}
+  - {fileID: 12800000, guid: 27ca8f9a0ead92d4fbe4b07dcf833425, type: 3}
+  - {fileID: 12800000, guid: 2bc63d2dee4bf944f89debcfec5ef722, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
