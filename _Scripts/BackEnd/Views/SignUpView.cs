@@ -1,5 +1,9 @@
-﻿using Illumina.Model;
+using System;
+using System.Collections.Generic;
+using Illumina.Controller;
+using Illumina.Models;
 using Illumina.Networking;
+using Illumina.Security;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,16 +14,97 @@ public class SignUpView : MonoBehaviour {
     public InputField Email;
     public InputField DisplayName;
     public Toggle TermsAndConditions;
+    public Button SubmitButton;
 
-    public string csrfToken = "a3Z0CCiml6OrmxfeN4r4nu6Z9yTebBP4CfjYmqRG";
+    public Text UserNameExistText;
+    public Text EmailExistText;
+    public Text ConfirmPasswordNotMatchText;
+
+    User newUser;
+    Dictionary<string, bool> errors;
+
+    void Awake() {
+        if (IlluminaWebRequest.CsrfToken == null) {
+            IlluminaWebRequest.GetCsrfToken();
+        }
+        newUser = new User();
+        errors = new Dictionary<string, bool>();
+        errors.Add("username", true);
+        errors.Add("password", true);
+        errors.Add("email", true);
+    }
+
+    public void OnEndEditUsername() {
+        UserNameExistText.text = "Verifying...";
+        UserController.UserExists("username", UserName.text, UsernameExistsResult, UsernameCheckError);
+    }
+    void UsernameExistsResult(object source) {
+        UserNameExistText.text = (string) source;
+        if (UserNameExistText.text == "Username already exist") {
+            errors["username"] = true;
+        } else {
+            errors["username"] = false;
+        }
+        ConfirmTerms();
+    }
+    void UsernameCheckError(Exception err) {
+        UserNameExistText.text = "Cannot verify";
+    }
+
+    public void OnEndEditPassword() {
+        if (Password.text != ConfirmPassword.text && ConfirmPassword.text != "") {
+            ConfirmPasswordNotMatchText.text = "Confirm password does not match";
+            errors["password"] = true;
+        } else {
+            ConfirmPasswordNotMatchText.text = "";
+            errors["password"] = false;
+        }
+        ConfirmTerms();
+    }
+
+    public void OnEndEditEmail() {
+        EmailExistText.text = "Verifying...";
+        UserController.UserExists("email", Email.text, EmailExistsResult, EmailCheckError);
+    }
+    void EmailExistsResult(object source) {
+        EmailExistText.text = (string) source;
+        if (EmailExistText.text == "Email already exist") {
+            errors["email"] = true;
+        } else {
+            errors["email"] = false;
+        }
+        ConfirmTerms();
+    }
+
+    void EmailCheckError(Exception err) {
+        EmailExistText.text = "Cannot verify";
+    }
+    public void ChangeProfile(int index) {
+        newUser.profile = index;
+    }
+
+    public void ConfirmTerms() {
+        if (TermsAndConditions.isOn && !errors.ContainsValue(true)) {
+            SubmitButton.interactable = true;
+        } else {
+            SubmitButton.interactable = false;
+        }
+    }
+
+    // Start is called before the first frame update
     public void Submit() {
-        User newUser = new User();
-        newUser.Username = UserName.text;
-        newUser.Name = DisplayName.text;
-        newUser.Email = Email.text;
-        newUser.Password = Password.text;
-        newUser.Profile = "2";
-        newUser.Create();
+        User newUser = new User {
+            username = UserName.text,
+            password = Password.text,
+            email = Email.text,
+            name = DisplayName.text,
+        };
+        if (!errors.ContainsValue(true)) {
+            UserController.Signup(newUser);
+        } else {
+            Debug.Log("Fix the errors first");
+        }
+
     }
 
 }
