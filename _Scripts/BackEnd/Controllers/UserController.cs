@@ -30,7 +30,6 @@ namespace Illumina.Controller {
             };
             signupRequest.RequestSuccessEvents += OnSignUpRequestSuccess;
             signupRequest.RequestFailedEvents += OnSignUpRequestFailed;
-
             Store<User>(signupRequest);
         }
 
