@@ -19,6 +19,7 @@ namespace Illumina {
 
         public WorldMaps() {
             EntitiesMap = new Dictionary<CoordInt, WorldEntity>();
+            FloorMap = new Dictionary<CoordInt, Floor>();
             BasesMap = new Dictionary<CoordInt, Base>();
             GeneralsMap = new Dictionary<CoordInt, General>();
             NavigatorsMap = new Dictionary<CoordInt, Navigator>();
@@ -71,7 +72,7 @@ namespace Illumina {
 
             return DestinationEntity.Trap;
         }
-        
+
         public Trap RemoveTrap(Vector3Int pos) {
             var trap_pos = IlluminaConverter.ToCoordInt(pos);
             if (Maps.TrapsMap.ContainsKey(trap_pos)) {
