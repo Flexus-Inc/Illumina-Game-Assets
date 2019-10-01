@@ -12,8 +12,6 @@ public class SignUpView : MonoBehaviour {
     public Toggle TermsAndConditions;
 
     public string csrfToken = "a3Z0CCiml6OrmxfeN4r4nu6Z9yTebBP4CfjYmqRG";
-
-    // Start is called before the first frame update
     public void Submit() {
         User newUser = new User();
         newUser.Username = UserName.text;
