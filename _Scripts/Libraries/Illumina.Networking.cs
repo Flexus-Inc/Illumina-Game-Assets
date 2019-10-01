@@ -1,56 +1,147 @@
+/*
+    Author:Edrian Jose D.G. Ferrer
+    Collaborators: None yet
+    Version: 1.0
+    Owned by: Flexus Group of Companies
+ */
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Illumina.Security;
+using Proyecto26;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Illumina.Networking {
 
     public class Request {
-
-        public Dictionary<string, string> requests;
+        public delegate void RequestSuccessEventHandler(object source);
+        public delegate void RequestFailedEventHandler(Exception error);
+        public event RequestSuccessEventHandler RequestSuccessEvents;
+        public event RequestFailedEventHandler RequestFailedEvents;
         public Dictionary<string, string> headers;
-        public string model_method = "CREATE";
-        public string method = "CREATE";
-        public string csrf_token = null;
-        public string this [string key] {
-            set {
-                if (requests.ContainsKey(key)) {
-                    requests[key] = value;
-                } else {
-                    requests.Add(key, value);
-                }
-            }
-            get => requests[key];
-
-        }
+        public string uri = null;
+        public object body = null;
         public void SetHeader(string key, string value) {
             headers.Add(key, value);
         }
         public Request() {
-            requests = new Dictionary<string, string>();
             headers = new Dictionary<string, string>();
+        }
+
+        public void CallSuccessEvents(object source) {
+            RequestSuccessEvents(source);
+        }
+        public void CallFailedEvents(Exception error) {
+            RequestFailedEvents(error);
         }
     }
 
-    public class Response {
-        public Dictionary<string, string> headers;
-        public string text;
-        public long code;
-        public string error;
-        public Response() {
-            headers = new Dictionary<string, string>();
-            text = null;
-            error = null;
-            code = 302;
-        }
-    }
+    class IlluminaWebRequest {
+        private static string csrf_token = null;
 
-    public static class WebRequestManager {
-
-        public static string GetCSRFToken() {
-            return LaravelWebRequestHandler.csrfToken;
+        public static string CsrfToken {
+            get {
+                if (csrf_token == null) {
+                    return null;
+                }
+                return IlluminaHash.GetHash(csrf_token);
+            }
         }
+
+        public static void GetCsrfToken() {
+            var tokenQuery = IlluminaHash.GetUniqueDateTimeHash();
+            var uri = "/" + tokenQuery + "/token";
+            Request csrfRequest = new Request {
+                uri = uri,
+            };
+            csrfRequest.RequestSuccessEvents += SetCsrfToken;
+            csrfRequest.RequestFailedEvents += DisplayAlert;
+            Get(csrfRequest);
+        }
+
+        private static void SetCsrfToken(object source) {
+            csrf_token = (string) source;
+        }
+
+        private static void DisplayAlert(Exception err) {
+            if (Application.internetReachability == NetworkReachability.NotReachable) {
+                UIManager.Alert("No internet connection");
+            } else {
+                UIManager.Alert("CONNECTION ERROR : " + err.Message);
+            }
+
+        }
+
+        public static void Post(Request request) {
+            RequestHelper postRequest = new RequestHelper {
+                Uri = request.uri,
+                Body = request.body,
+                Headers = request.headers
+            };
+            postRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+
+            RestClient.Post(postRequest)
+                .Then(res => request.CallSuccessEvents(res.Text))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+        public static void Post<T>(Request request) {
+            RequestHelper postRequest = new RequestHelper {
+                Uri = request.uri,
+                Body = request.body,
+                Headers = request.headers
+            };
+            postRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+            RestClient.Post<T>(postRequest)
+                .Then(res => request.CallSuccessEvents(res))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+        public static void Put(Request request) {
+            RequestHelper putRequest = new RequestHelper {
+                Uri = request.uri,
+                Body = request.body,
+                Headers = request.headers
+            };
+            putRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+            RestClient.Put(putRequest)
+                .Then(res => request.CallSuccessEvents(res.Text))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+        public static void Put<T>(Request request) {
+            RequestHelper putRequest = new RequestHelper {
+                Uri = request.uri,
+                Body = request.body,
+                Headers = request.headers
+            };
+            putRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+            RestClient.Put<T>(putRequest)
+                .Then(res => request.CallSuccessEvents(res))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+
+        public static void Delete(Request request) {
+            RestClient.Delete(request.uri)
+                .Then(res => request.CallSuccessEvents(res.Text))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+
+        public static void Get(Request request) {
+            RestClient.Get(request.uri)
+                .Then(res => request.CallSuccessEvents(res.Text))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+        public static void Get<T>(Request request) {
+            RestClient.Get<T>(request.uri)
+                .Then(res => request.CallSuccessEvents(res))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+        public static void GetArray<T>(Request request) {
+            RestClient.GetArray<T>(request.uri)
+                .Then(res => request.CallSuccessEvents(res))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+
     }
 
 }
