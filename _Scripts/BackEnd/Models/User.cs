@@ -7,6 +7,7 @@ namespace Illumina.Models {
         public string name;
         public int profile = 0;
         public bool logged_in = false;
+        public string code = "";
     }
 
 }

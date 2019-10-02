@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using Illumina.Controller;
@@ -15,12 +14,16 @@ public class SignUpView : MonoBehaviour {
     public InputField Email;
     public InputField DisplayName;
     public Toggle TermsAndConditions;
+    public Button VerifyButton;
     public Button SubmitButton;
 
     public Text UserNameExistText;
     public Text EmailExistText;
     public Text ConfirmPasswordNotMatchText;
-
+    public Text VerificationEmail;
+    public InputField VerificationCode;
+    public Text VerificationCodeMismatch;
+    string code;
     User newUser;
     Dictionary<string, bool> errors;
 
@@ -67,6 +70,15 @@ public class SignUpView : MonoBehaviour {
         EmailExistText.text = "Verifying...";
         UserController.UserExists("email", Email.text, EmailExistsResult, EmailCheckError);
     }
+    public void OnEditCode() {
+        if (VerificationCode.text != code) {
+            VerificationCodeMismatch.text = "Invalid Code";
+            VerifyButton.interactable = false;
+        } else {
+            VerificationCodeMismatch.text = "";
+            VerifyButton.interactable = true;
+        }
+    }
     void EmailExistsResult(object source) {
         EmailExistText.text = (string) source;
         if (EmailExistText.text == "Email already exist") {
@@ -92,16 +104,30 @@ public class SignUpView : MonoBehaviour {
         }
     }
 
-    // Start is called before the first frame update
-    public void Submit() {
-        User newUser = new User {
+    public void Verify() {
+        this.code = Keys.RandomKey(6);
+
+        newUser = new User {
             username = UserName.text,
             password = Password.text,
             email = Email.text,
             name = DisplayName.text,
+            code = this.code
         };
+
+        if (!errors.ContainsValue(true)) {
+            VerificationEmail.text = newUser.email;
+            UserController.VerifyEmail(newUser);
+        } else {
+            Debug.Log("Fix the errors first");
+        }
+    }
+    public void Submit() {
+        newUser.password = Password.text;
+
         if (!errors.ContainsValue(true)) {
             UserController.Signup(newUser);
+            UIManager.DisplayLoading();
         } else {
             Debug.Log("Fix the errors first");
         }
