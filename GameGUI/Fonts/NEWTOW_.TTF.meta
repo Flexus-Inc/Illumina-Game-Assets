@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c6a45e9c6086dde49835bcea84b5f0b4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Newtown
+  fontNames:
+  - Newtown
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1622366445f78ec4db177636ec0e19c5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
