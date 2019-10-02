@@ -98,15 +98,21 @@ namespace Illumina.Controller {
             };
 
             logoutRequest.RequestSuccessEvents += OnLogoutRequestSuccess;
-            logoutRequest.RequestFailedEvents += OnLogoutRequestSuccess;
+            logoutRequest.RequestFailedEvents += OnLogoutRequestFailed;
             Update<User>(logoutRequest);
         }
 
         public static void OnLogoutRequestSuccess(object source) {
-            GameData.User = (User) source;
-            Debug.Log(GameData.User.GetServerMessage());
-            UIManager.HideLoading();
-            ScenesManager.GoToScene(3);
+            GameData.User = null;
+            var user = (User) source;
+            if (GameData.User == null) {
+                Debug.Log(user.GetServerMessage());
+                UIManager.HideLoading();
+                ScenesManager.GoToScene(2);
+            } else {
+                UIManager.Alert("Error in logging out");
+            }
+
         }
 
         public static void OnLogoutRequestFailed(Exception err) {

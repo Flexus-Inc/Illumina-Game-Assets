@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Illumina.Controller;
+using Illumina.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +20,8 @@ public class MainMenuView : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-
+    public void Logout() {
+        UserController.Logout(GameData.User);
+        UIManager.DisplayLoading();
     }
 }

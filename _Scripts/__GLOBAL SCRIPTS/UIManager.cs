@@ -32,6 +32,10 @@ public class UIManager : MonoBehaviour {
     public static event CancelEventHandler CancelEvent;
     public static event CloseEventHandler CloseEvent;
     void Awake() {
+        Initiate();
+    }
+
+    void Initiate() {
         ActiveUIPanel = UIPanels[ActiveUIPanelIndex];
         ActiveUIPanelButtons = UIPanelButtons[ActiveUIPanelIndex];
         ActiveUIPanelText = UIPanelText[ActiveUIPanelIndex];
@@ -119,6 +123,7 @@ public class UIManager : MonoBehaviour {
     }
 
     IEnumerator Pop(int type, int animationtype) {
+        Initiate();
         popup_open = true;
         ActiveUIPanel.SetTrigger("Start");
         ActiveUIPanel.SetInteger("Type", animationtype);
@@ -128,6 +133,7 @@ public class UIManager : MonoBehaviour {
         ActiveUIPanel.SetTrigger("End");
     }
     IEnumerator Warn() {
+        Initiate();
         popup_open = true;
         WarningPanel.SetTrigger("Start");
         while (popup_open) {
@@ -137,6 +143,7 @@ public class UIManager : MonoBehaviour {
     }
 
     IEnumerator Loading() {
+        Initiate();
         ActiveUILoader.SetTrigger("Start");
         loadingStop = false;
         while (!loadingStop) {
