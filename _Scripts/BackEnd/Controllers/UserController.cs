@@ -65,6 +65,7 @@ namespace Illumina.Controller {
 
         public static void OnSignUpRequestFailed(Exception err) {
             Debug.Log(err);
+            UIManager.HideLoading();
             UIManager.Alert(err.Message);
         }
         public static void Login(User user) {
@@ -88,6 +89,7 @@ namespace Illumina.Controller {
 
         public static void OnLoginRequestFailed(Exception err) {
             Debug.Log(err);
+            UIManager.HideLoading();
             UIManager.Alert(err.Message);
         }
 
@@ -110,6 +112,7 @@ namespace Illumina.Controller {
                 UIManager.HideLoading();
                 ScenesManager.GoToScene(2);
             } else {
+                UIManager.HideLoading();
                 UIManager.Alert("Error in logging out");
             }
 
@@ -117,6 +120,7 @@ namespace Illumina.Controller {
 
         public static void OnLogoutRequestFailed(Exception err) {
             Debug.Log(err);
+            UIManager.HideLoading();
             UIManager.Alert(err.Message);
         }
 

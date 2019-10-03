@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/_Scenes": true,
+			"**/*.asset": true,
+			"**/*.meta": true,
+			"**/*.prefab": true,
+			"**/GameAudio": true,
+			"**/*.code-workspace": true,
+		}
+	}
+}
