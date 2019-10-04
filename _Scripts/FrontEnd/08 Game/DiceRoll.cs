@@ -69,10 +69,10 @@ public class DiceRoll : MonoBehaviour
         animator[1].SetBool("Shrink", true);
 
         //If it is the player's turn
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(10f);
         diceCollider.enabled = true;
-        animator[0].SetBool("Shrink", false);
-        animator[1].SetBool("Shrink", false);
+        /*animator[0].SetBool("Shrink", false);
+        animator[1].SetBool("Shrink", false);*/
     }
 
     void RollOne()
