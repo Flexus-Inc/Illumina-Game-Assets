@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+public enum Notification {
+    Success = 1, Info = 2, Warning, Danger, Primary, Secondary, Dark, Light
+}
 public class UIManager : MonoBehaviour {
     // Start is called before the first frame update
     public Animator[] UIPanels;
@@ -13,16 +15,20 @@ public class UIManager : MonoBehaviour {
     public static Animator ActiveUIPanel;
     public static Animator ActiveUILoader;
     public Animator WarningPanel;
+    public Animator BootstrapAlert;
+    public Image BootstrapAlertPanel;
+    public TextMeshProUGUI BootstrapAlertText;
     public GameObject WarningText;
     public Image WarningBar;
-    public Color WarningColor;
-    public Color AlertColor;
+    public Color[] AlertColors;
+    public Color[] AlertFontColors;
     public static GameObject ActiveUIPanelButtons;
     public static GameObject ActiveUIPanelText;
     public int ActiveUIPanelIndex;
     public int ActiveUILoaderIndex;
 
     public static bool popup_open = false;
+    public static bool notif_open = false;
     public static bool loadingStop = true;
     public static bool enableClosing = true;
     public delegate void ConfirmEventHandler();
@@ -49,27 +55,38 @@ public class UIManager : MonoBehaviour {
         StartCoroutine(Pop(type, animationtype));
     }
 
-    void OpenWarning(string title, string content, bool alert = false) {
-        if (alert) {
-            WarningBar.color = AlertColor;
-        } else {
-            WarningBar.color = WarningColor;
-        }
+    void OpenWarning(string title, string content, Notification alert = Notification.Info) {
+        WarningBar.color = AlertColors[(int) alert];
         var _title = WarningText.transform.GetChild(0);
         var _content = WarningText.transform.GetChild(1);
         _title.GetComponent<TextMeshProUGUI>().text = title;
         _content.GetComponent<TextMeshProUGUI>().text = content;
+
         StartCoroutine(Warn());
+    }
+
+    void ShowNotification(Notification type, string content, bool fromtop = true) {
+        BootstrapAlertPanel.color = AlertColors[(int) type];
+        BootstrapAlertText.color = AlertFontColors[(int) type];
+        BootstrapAlertText.text = content;
+        StartCoroutine(Notify(fromtop));
     }
 
     public void OpenLoader() {
         StartCoroutine(Loading());
     }
-    public static void Alert(string content) {
-        GameObject.Find("__UIManager").GetComponent<UIManager>().OpenWarning("alert", content, true);
+    public static void Danger(string content) {
+        GameObject.Find("__UIManager").GetComponent<UIManager>().OpenWarning("alert", content, Notification.Danger);
+    }
+
+    public static void Notify(Notification alert, string content, bool fromtop = true) {
+        GameObject.Find("__UIManager").GetComponent<UIManager>().ShowNotification(alert, content, fromtop);
+    }
+    public static void AlertBox(Notification type, string content) {
+        GameObject.Find("__UIManager").GetComponent<UIManager>().OpenWarning(type.ToString(), content, type);
     }
     public static void Warning(string content) {
-        GameObject.Find("__UIManager").GetComponent<UIManager>().OpenWarning("warning", content, false);
+        GameObject.Find("__UIManager").GetComponent<UIManager>().OpenWarning("warning", content, Notification.Warning);
     }
 
     public static void PopUp(string title, string content, bool showButtons = true, int type = 0, int animationtype = 0) {
@@ -117,6 +134,9 @@ public class UIManager : MonoBehaviour {
         CloseEvent();
         CloseEvent = DoNothing;
     }
+    public void NotifClose() {
+        notif_open = false;
+    }
 
     public void DoNothing() {
         //nothing
@@ -150,5 +170,15 @@ public class UIManager : MonoBehaviour {
             yield return null;
         }
         ActiveUILoader.SetTrigger("End");
+    }
+
+    IEnumerator Notify(bool fromtop) {
+        notif_open = true;
+        BootstrapAlert.SetBool("Top", fromtop);
+        BootstrapAlert.SetTrigger("Start");
+        while (notif_open) {
+            yield return null;
+        }
+        BootstrapAlert.SetTrigger("End");
     }
 }

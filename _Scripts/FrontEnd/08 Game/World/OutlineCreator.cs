@@ -12,6 +12,7 @@ namespace Illumina {
         }
 
         public Outline(Tilemap map, TileBase tile) {
+            HexPos = new Vector3Int[7];
             Tile = tile;
             OutlineMap = map;
         }
@@ -57,8 +58,11 @@ namespace Illumina {
 
         }
         public void FillHexPos() {
-            foreach (var pos in HexPos) {
-                OutlineMap.SetTile(pos, Tile);
+            for (int i = 0; i < HexPos.Length; i++) {
+                if (i == 3) {
+                    continue;
+                }
+                OutlineMap.SetTile(HexPos[i], Tile);
             }
         }
 
@@ -69,7 +73,7 @@ namespace Illumina {
             this.Tile = defaultTile;
         }
 
-        public virtual Vector3Int[] GetSurroundingPos(Vector3Int center) {
+        public Vector3Int[] GetSurroundingPos(Vector3Int center) {
             FindHexPos(center);
             return HexPos;
         }

@@ -7,9 +7,12 @@ using UnityEngine.UI;
 
 public class LoginView : MonoBehaviour {
     public InputField UserName;
+    public InputField Email;
     public InputField Password;
+    public Text EmailExistText;
     public Text UserNameExistText;
     public Button LoginButton;
+    public Button ConfirmButton;
 
     User user;
     void Awake() {
@@ -40,6 +43,31 @@ public class LoginView : MonoBehaviour {
     void UsernameCheckError(Exception err) {
         UserNameExistText.text = "Cannot verify";
         LoginButton.interactable = false;
+        DisplayWarning();
+    }
+
+    public void OnEndEditEmail() {
+        EmailExistText.text = "Verifying...";
+        UserController.UserExists("email", Email.text, EmailExistsResult, EmailCheckError);
+    }
+
+    void EmailExistsResult(object source) {
+        if ((string) source == "Email already exist") {
+            EmailExistText.text = "";
+            ConfirmButton.interactable = true;
+        } else {
+            EmailExistText.text = "";
+            ConfirmButton.interactable = false;
+        }
+    }
+
+    void EmailCheckError(Exception err) {
+        EmailExistText.text = "Cannot verify";
+        DisplayWarning();
+    }
+
+    void DisplayWarning() {
+        UIManager.Notify(Notification.Warning, "Cannot connect from the server");
     }
     public void Login() {
         User user = new User {
@@ -49,5 +77,12 @@ public class LoginView : MonoBehaviour {
         };
         UserController.Login(user);
         UIManager.DisplayLoading();
+    }
+
+    public void ConfirmForgotPassword() {
+        User user = new User {
+            email = Email.text
+        };
+        UserController.ResetPass(user);
     }
 }

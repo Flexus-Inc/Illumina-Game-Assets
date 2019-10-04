@@ -53,7 +53,7 @@ namespace Illumina {
         public override float Z { get => (int) z; }
 
         public Vector3Int ToVector3Int() {
-            return new Vector3Int((int) this.x, (int) this.y, (int) this.z);
+            return new Vector3Int((int) this.X, (int) this.Y, (int) this.Z);
         }
     }
 
