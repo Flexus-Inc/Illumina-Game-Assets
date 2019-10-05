@@ -57,9 +57,9 @@ namespace Illumina {
             return HexPos;
 
         }
-        public void FillHexPos() {
+        public void FillHexPos(bool centerfill = true) {
             for (int i = 0; i < HexPos.Length; i++) {
-                if (i == 3) {
+                if (i == 3 && !centerfill) {
                     continue;
                 }
                 OutlineMap.SetTile(HexPos[i], Tile);

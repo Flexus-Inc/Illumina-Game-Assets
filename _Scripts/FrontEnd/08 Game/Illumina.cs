@@ -3,6 +3,27 @@ using UnityEngine;
 namespace Illumina {
 
     //Illumina Datatypes
+    public struct Limit {
+
+        public float x, y;
+
+        public Limit(float _xy) {
+            this.x = _xy;
+            this.y = _xy;
+        }
+        public Limit(float _x, float _y) {
+            this.x = _x;
+            this.y = _y;
+        }
+
+        public bool CompareTo(float other) {
+            var isX = (other < this.x) || (other > this.y);
+            if (isX) {
+                return false;
+            }
+            return true;
+        }
+    }
 
     [System.Serializable]
     public class Coord {

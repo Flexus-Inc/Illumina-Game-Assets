@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace Illumina {
 
+    public enum WorldEntityType {
+        Floor = 0, Base = 1, General, Navigator, Trap
+    }
+
     [System.Serializable]
     public class WorldEntity {
         public Player owner;

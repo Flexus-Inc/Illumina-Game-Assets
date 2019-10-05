@@ -30,7 +30,7 @@ namespace Illumina {
                 if (num < bases) {
                     int iterations = bases - num;
                     bool IsNearby = true;
-                    var req = 8;
+                    var req = 7;
 
                     //Gets the random coordinates until it is not nearby the previous base
                     do {
