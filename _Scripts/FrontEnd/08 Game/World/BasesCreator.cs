@@ -59,13 +59,17 @@ namespace Illumina {
             for (int i = 0; i < players.Count; i++) {
                 Base player_base = new Base(players[i], BasesPos[i]);
                 world.Map.PlaceBase(BasesPos[i], player_base);
-            }
-            GenerateBasesFloor();
-        }
-
-        public void GenerateBasesFloor() {
-            foreach (var player_base in world.Map.Maps.BasesMap) {
-                GenerateRandomFloorPosition(player_base.Value, player_base.Key);
+                Outline _outline = new Outline(world.Collection.Layers[0], world.Collection.GroundTiles[1]);
+                var positions = _outline.GetSurroundingPos(BasesPos[i]);
+                var pos_index = Random.Range(0, 7);
+                while (pos_index == 3) {
+                    pos_index = Random.Range(0, 7);
+                }
+                var position = positions[pos_index];
+                Debug.Log(players[i].tribe + " , " + position);
+                var general = new General(players[i], BasesPos[i]);
+                world.Map.PlaceGeneral(position, general);
+                GenerateRandomFloorPosition(player_base, IlluminaConverter.ToCoordInt(BasesPos[i]));
             }
         }
 

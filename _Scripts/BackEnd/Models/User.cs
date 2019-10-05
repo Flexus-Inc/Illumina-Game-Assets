@@ -1,5 +1,6 @@
 namespace Illumina.Models {
 
+    [System.Serializable]
     public class User : IlluminaModel {
         public string username;
         public string email;

@@ -64,6 +64,7 @@ namespace Illumina {
         }
     }
 
+    [System.Serializable]
     public class CoordInt : Coord {
         public CoordInt(int x, int y, int z = 0) : base((float) x, (float) y, (float) z) {
             //do nothing;
@@ -81,6 +82,14 @@ namespace Illumina {
     public class IlluminaConverter {
         public static CoordInt ToCoordInt(Vector3Int pos) {
             return new CoordInt(pos.x, pos.y, pos.z);
+        }
+
+        public static Vector3Int ToFlatTopPos(Vector3Int pos) {
+            return new Vector3Int(pos.y, pos.x, pos.z);
+        }
+
+        public static CoordInt FlapTopSwitch(CoordInt pos) {
+            return new CoordInt((int) pos.Y, (int) pos.X, (int) pos.Z);
         }
     }
 }

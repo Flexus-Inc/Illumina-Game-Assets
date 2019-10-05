@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using Illumina.Controller;
 using Illumina.Models;
 using Illumina.Security;
 using UnityEngine;
 
 namespace Illumina {
 
+    [System.Serializable]
     public class World {
+        List<Player> players = new List<Player>();
         public WorldCollection Collection;
         public WorldMap Map;
 
@@ -14,21 +17,90 @@ namespace Illumina {
             Map = new WorldMap();
         }
 
+        public void PaintGround() {
+            foreach (var item in Map.Maps.FloorMap) {
+                var tileIndex = (int) item.Value.owner.tribe;
+                Collection.Layers[0].SetTile(item.Key.ToVector3Int(), Collection.GroundTiles[tileIndex]);
+            }
+        }
+
+        public void PlaceBaseStructures() {
+            foreach (var item in Map.Maps.BasesMap) {
+                var tribeIndex = (int) item.Value.owner.tribe;
+                var pos = IlluminaConverter.ToFlatTopPos(item.Key.ToVector3Int());
+                var worldPos = Collection.Layers[0].CellToWorld(pos);
+                worldPos.z = 0;
+                var basesParent = Collection.EntitiesParent[0].transform;
+                var baseStructure = Collection.BasePrefabs[tribeIndex];
+                var baseObject = Object.Instantiate(baseStructure, worldPos, Quaternion.identity, basesParent);
+                var p = baseObject.transform.position;
+                baseObject.GetComponent<BaseEntityManager>().GridPosition = pos;
+                baseObject.GetComponent<BaseEntityManager>().BasePosition = baseObject.transform.position;
+            }
+        }
+
+        public void AddNavigator(Vector3Int pos, Player owner, bool flipX = false) {
+            if (!Map.Maps.NavigatorsMap.ContainsKey(IlluminaConverter.ToCoordInt(pos))) {
+                var navigator = new Navigator(owner, pos, flipX);
+                Map.PlaceNavigator(pos, navigator);
+                PlaceNavigator(navigator);
+                PlayDataController.SavePlayData();
+            }
+
+        }
+
+        public void PlaceNavigator(Navigator navigator) {
+            var tribeIndex = (int) navigator.owner.tribe;
+            var pos = navigator.GridPosition.ToVector3Int();
+            var worldPos = Collection.Layers[0].CellToWorld(pos);
+            var navigatorsParent = Collection.EntitiesParent[2].transform;
+            var navigatorEntity = Collection.NavigatorPrefabs[tribeIndex];
+            var navigatorObject = Object.Instantiate(navigatorEntity, worldPos, Quaternion.identity, navigatorsParent);
+            navigatorObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = navigator.flipX;
+        }
+        public void PlaceNavigators() {
+            foreach (var item in Map.Maps.NavigatorsMap) {
+                PlaceNavigator(item.Value);
+            }
+        }
+
+        public void PlaceBaseGenerals() {
+            foreach (var item in Map.Maps.GeneralsMap) {
+                var tribeIndex = (int) item.Value.owner.tribe;
+                var pos = item.Key.ToVector3Int();
+                var worldPos = Collection.Layers[0].CellToWorld(pos);
+                var generalsParent = Collection.EntitiesParent[1].transform;
+                var generalEntity = Collection.GeneralPrefabs[tribeIndex];
+                var generalObject = Object.Instantiate(generalEntity, worldPos, Quaternion.identity, generalsParent);
+            }
+
+        }
+
+        public void CreateNew() {
+            Test(); // TODO: remove this if player creation is created;
+            var baseCreator = new BasesCreator(this);
+            baseCreator.PlaceBases(this.players);
+        }
+
+        public void Create() {
+            //do refreshing of the map
+        }
+
+        public void Render() {
+            PaintGround();
+            PlaceBaseStructures();
+            PlaceBaseGenerals();
+            PlaceNavigators();
+        }
+
         public void Test() {
-            List<Player> players = new List<Player>();
             for (int i = 0; i < 4; i++) {
                 var host = i == 0 ? true : false;
                 var user = new User();
                 user.name = Keys.RandomKey(7);
                 var player = new Player(user, host);
                 player.tribe = (Tribe) i;
-                players.Add(player);
-            }
-            var bc = new BasesCreator(this);
-            bc.PlaceBases(players);
-            foreach (var item in Map.Maps.FloorMap) {
-                var tileIndex = (int) item.Value.owner.tribe;
-                Collection.Layers[0].SetTile(item.Key.ToVector3Int(), Collection.GroundTiles[tileIndex]);
+                this.players.Add(player);
             }
         }
     }

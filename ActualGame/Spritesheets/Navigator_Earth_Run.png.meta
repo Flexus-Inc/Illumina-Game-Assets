@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: d5a5b320312bbb144b4cdab89822c022
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5942223301867468876
+    second: Navigator_Earth_Run_0
+  - first:
+      213: -635389089970585333
+    second: Navigator_Earth_Run_1
+  - first:
+      213: 6414484148194812897
+    second: Navigator_Earth_Run_2
+  - first:
+      213: -7023502402598827010
+    second: Navigator_Earth_Run_3
+  - first:
+      213: 8003332464300348271
+    second: Navigator_Earth_Run_4
+  - first:
+      213: 4942738518363665812
+    second: Navigator_Earth_Run_5
+  - first:
+      213: 6367740924602911573
+    second: Navigator_Earth_Run_6
+  - first:
+      213: -7119671246438314211
+    second: Navigator_Earth_Run_7
+  - first:
+      213: -3816136291665927656
+    second: Navigator_Earth_Run_8
+  - first:
+      213: 3166424452385122599
+    second: Navigator_Earth_Run_9
+  - first:
+      213: 5960298527088117292
+    second: Navigator_Earth_Run_10
+  - first:
+      213: 8686968649862801684
+    second: Navigator_Earth_Run_11
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_0
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 13
+        width: 599
+        height: 629
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beb62cbe799c5174892da0444034d8c9
+      internalID: -5942223301867468876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_1
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 13
+        width: 600
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 098f1ae8a1476e2449a4d79ff6a2119b
+      internalID: -635389089970585333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_2
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 30
+        width: 603
+        height: 633
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09e8ad4a663186b4b9d0bb0ab0800ba7
+      internalID: 6414484148194812897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_3
+      rect:
+        serializedVersion: 2
+        x: 2219
+        y: 38
+        width: 599
+        height: 633
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a07f0e2d6534064c90cb8f1328d80c5
+      internalID: -7023502402598827010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_4
+      rect:
+        serializedVersion: 2
+        x: 2940
+        y: 51
+        width: 600
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be3c1ad8d5be51641a41ac7563d7567a
+      internalID: 8003332464300348271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_5
+      rect:
+        serializedVersion: 2
+        x: 3658
+        y: 46
+        width: 603
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e61755479348746498a71c2d69c3d8bb
+      internalID: 4942738518363665812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_6
+      rect:
+        serializedVersion: 2
+        x: 4379
+        y: 34
+        width: 599
+        height: 654
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e333bdb0ead0b145b93559051e40f71
+      internalID: 6367740924602911573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_7
+      rect:
+        serializedVersion: 2
+        x: 5100
+        y: 25
+        width: 600
+        height: 663
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827c8275ba3843041b097c76d4b6078b
+      internalID: -7119671246438314211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_8
+      rect:
+        serializedVersion: 2
+        x: 5818
+        y: 13
+        width: 603
+        height: 675
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ab9da943d590074b8db7323ad711c71
+      internalID: -3816136291665927656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_9
+      rect:
+        serializedVersion: 2
+        x: 6539
+        y: 13
+        width: 599
+        height: 658
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11af9ee3e67f7484ea9e6303af0156ee
+      internalID: 3166424452385122599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_10
+      rect:
+        serializedVersion: 2
+        x: 7260
+        y: 13
+        width: 600
+        height: 645
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f34d1d9bc8e46264cb8ec2c46de47d62
+      internalID: 5960298527088117292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navigator_Earth_Run_11
+      rect:
+        serializedVersion: 2
+        x: 7978
+        y: 13
+        width: 603
+        height: 629
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb527bc7de0240a44ac4a15db54d07ac
+      internalID: 8686968649862801684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

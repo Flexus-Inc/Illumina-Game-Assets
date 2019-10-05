@@ -59,6 +59,16 @@ namespace Illumina {
                 return DestinationEntity.None;
             }
         }
+        public DestinationEntity PlaceNavigator(Vector3Int pos, Navigator navigator) {
+            var destination = IlluminaConverter.ToCoordInt(pos);
+            if (Maps.EntitiesMap.ContainsKey(destination)) {
+                return DestinationEntity.NoDestination;
+            } else {
+                Maps.NavigatorsMap.Add(destination, navigator);
+                Maps.EntitiesMap.Add(destination, navigator);
+                return DestinationEntity.None;
+            }
+        }
 
         public DestinationEntity CheckDestinationEntity(CoordInt pos) {
 

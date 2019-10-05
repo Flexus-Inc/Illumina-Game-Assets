@@ -7,7 +7,7 @@ namespace Illumina.Controller {
         static Serializer settingsSerializer;
         public static SettingsData Data;
 
-        public static void CreateSerializers() {
+        public static void CreateSerializer() {
             Data = new SettingsData();
             settingsSerializer = new Serializer() {
                 saveFileName = "settings_data.save",

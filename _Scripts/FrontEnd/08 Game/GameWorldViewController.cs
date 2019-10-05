@@ -54,7 +54,7 @@ public class GameWorldViewController : MonoBehaviour {
                 var req = new Vector3(reqx, reqy, cam_pos.z);
                 StartCoroutine(GoBack(req));
             } else {
-                Debug.Log("h");
+
                 Camera.main.transform.position += displacement;
             }
         }

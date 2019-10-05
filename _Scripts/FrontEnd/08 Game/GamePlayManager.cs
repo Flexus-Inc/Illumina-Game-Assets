@@ -1,20 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Illumina;
+using Illumina.Controller;
+using Illumina.Models;
 using UnityEngine;
 
 public class GamePlayManager : MonoBehaviour {
 
-    World world;
+    public World world;
+
+    void OnEnable() {
+        PlayDataController.LoadSettingsData();
+    }
     void Start() {
+        CreateGameWorld();
+    }
+
+    void CreateGameWorld() {
         var collections = this.gameObject.GetComponent<GameAssetsCollection>();
         world = new World(collections.ToWorldCollection());
-        StartCoroutine(PlaceBase());
+        if (GameData.PlayData.old) {
+            world.Map = GameData.PlayData.worldMap;
+        }
+        if (!GameData.PlayData.old) {
+            world.CreateNew();
+            var data = new PlayData();
+            data.worldMap = this.world.Map;
+            PlayDataController.Data = data;
+            PlayDataController.SavePlayData();
+        }
+        world.Render();
     }
-    
+
     // Update is called once per frame
     IEnumerator PlaceBase() {
         world.Test();
         yield return null;
+
     }
 }
