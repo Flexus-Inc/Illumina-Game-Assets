@@ -6,19 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class Loading : MonoBehaviour
 {
-    public GameObject LoadingScreen;
+    public GameObject loadingpanel;
     public Text loadingtext;
+
     public void LoadScene(int sceneIndex){
         StartCoroutine(LoadAsynchronously(sceneIndex));
     }
+
     IEnumerator LoadAsynchronously(int sceneIndex){
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        LoadingScreen.SetActive(true);
-    while(!operation.isDone)
-        {
+        loadingpanel.SetActive(true);
+
+        while(!operation.isDone){
             float progress = Mathf.Clamp01(operation.progress/.9f);
-            loadingtext.text = progress * 100f +"%";
+            loadingtext.text = progress * 100f + "%";
             yield return null;
-        }    
+        }
     }
 }
