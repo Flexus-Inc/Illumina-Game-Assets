@@ -23,7 +23,7 @@ public class PositionAnimator : MonoBehaviour
         speed = Random.Range(2f, 3f);
         duration = Random.Range(10f, 25f);
         currentPos = transform.localPosition;
-        img.canvasRenderer.SetAlpha(Random.Range(3f, 5f));
+        img.canvasRenderer.SetAlpha(Random.Range(0.1f, 1f));
         while (repeatable)
         {
             

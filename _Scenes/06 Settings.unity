@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15422df0ff0c1df4e8f46711179c1118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   repeatable: 1
   duration: 30
   yPosition: -322.2277
@@ -1734,7 +1734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15422df0ff0c1df4e8f46711179c1118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   repeatable: 1
   duration: 30
   yPosition: -322.2277

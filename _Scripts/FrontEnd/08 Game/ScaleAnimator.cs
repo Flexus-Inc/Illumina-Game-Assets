@@ -11,9 +11,9 @@ public class ScaleAnimator : MonoBehaviour
     IEnumerator Start()
     {
         speed = Random.Range(2f, 3f);
-        duration = Random.Range(2f, 7f);
+        duration = Random.Range(2f, 10f);
         minScale = transform.localScale;
-        sizeX = Random.Range(2f, 3f);
+        sizeX = Random.Range(1.5f, 2f);
         sizeY = sizeX;
         maxScale = new Vector3(sizeX, sizeY);
         while (repeatable)

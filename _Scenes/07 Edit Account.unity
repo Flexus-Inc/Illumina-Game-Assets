@@ -1787,6 +1787,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1090262248}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1090262250 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 410053441003066463, guid: e90c77865ca36b148a4904e280b68c1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1090262248}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576f5b68f3ae2864ea3a78da4fadb30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1104010641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,8 +1911,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 472, y: -138}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 470.84, y: -132.29}
+  m_SizeDelta: {x: 115.61, y: 111.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1304609341
 MonoBehaviour:
@@ -1963,7 +1975,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19a560c6c55d93744ba858b98e3eaee7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 360b7c35d69cf114da01b6d8a76df972, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2139,7 +2151,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1090262250}
         m_MethodName: SceneManager_GoToScene
         m_Mode: 3
         m_Arguments:
