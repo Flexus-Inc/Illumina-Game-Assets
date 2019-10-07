@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6774373201581385286}
   - component: {fileID: 6313429468643803782}
   - component: {fileID: 8295534997035903377}
+  - component: {fileID: 3553893400929411439}
   m_Layer: 0
   m_Name: EarthBase
   m_TagString: Base
@@ -66,6 +67,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 41.5}
   serializedVersion: 2
   m_Radius: 51.5
+--- !u!95 &3553893400929411439
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6774373201581385287}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e3540285d3af807449ad085c3ab2062b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6774373201823470365
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +155,8 @@ SpriteRenderer:
   m_SortingLayerID: 826448517
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 071b3ecda6d71224e93a6630ae40bea6, type: 3}
+  m_Sprite: {fileID: -2111959059100401925, guid: 86af6794610a3ec4786d4652e5da8f90,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

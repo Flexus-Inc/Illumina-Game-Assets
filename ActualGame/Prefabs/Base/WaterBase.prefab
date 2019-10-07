@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5555799784140326759}
   - component: {fileID: 4937225409548788647}
   - component: {fileID: 6919477224553449648}
+  - component: {fileID: 6749580238390782925}
   m_Layer: 0
   m_Name: WaterBase
   m_TagString: Base
@@ -66,6 +67,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 41.5}
   serializedVersion: 2
   m_Radius: 51.5
+--- !u!95 &6749580238390782925
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555799784140326758}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1b2117b3db1abb4ab82cbd6780e93eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5555799784365912636
 GameObject:
   m_ObjectHideFlags: 0

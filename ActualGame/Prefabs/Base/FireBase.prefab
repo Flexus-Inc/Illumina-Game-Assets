@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 1270102089723712915}
   - component: {fileID: 1747090103045910867}
   - component: {fileID: 4376529855575808580}
+  - component: {fileID: 6475928929671298757}
   m_Layer: 0
   m_Name: FireBase
   m_TagString: Base
@@ -146,3 +147,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 41.5}
   serializedVersion: 2
   m_Radius: 51.5
+--- !u!95 &6475928929671298757
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270102089723712914}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95ba3161deb76b54ebe5b94ca4031f25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

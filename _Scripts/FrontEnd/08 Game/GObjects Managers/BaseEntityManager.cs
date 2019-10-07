@@ -43,12 +43,8 @@ public class BaseEntityManager : MonoBehaviour {
                     eq = clickedBase.GridPosition == pos;
                 }
                 if (OutlinePositions.Contains(gridpos) && eq) {
-                    var flipX = false;
-                    if (gridpos.x < GridPosition.x) {
-                        flipX = true;
-                    }
 
-                    world.AddNavigator(gridpos, clickedBase.owner, flipX);
+                    world.AddNavigator(gridpos, clickedBase.owner, GridPosition);
                 }
             }
         }
@@ -69,8 +65,11 @@ public class BaseEntityManager : MonoBehaviour {
             var available = true;
             if (show) {
                 available = clickedBase.owner.navigators.Count < 3;
+                if (((int) clickedBase.owner.tribe) != GamePlayManager.PlayerTurn) {
+                    continue;
+                }
             }
-            if ((!world.Map.Maps.GeneralsMap.ContainsKey(_pos) && !world.Map.Maps.NavigatorsMap.ContainsKey(_pos)) && i != 3 && available) {
+            if ((!world.Map.Maps.GeneralsMap.ContainsKey(_pos) && !world.Map.Maps.NavigatorsMap.ContainsKey(_pos)) && i != 3 && i != 0 && available) {
                 OutlinePositions.Add(outlines[i]);
                 OutlineCreator.SetTile(outlines[i]);
             }

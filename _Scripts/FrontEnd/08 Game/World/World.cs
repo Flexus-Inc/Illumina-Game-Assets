@@ -39,28 +39,39 @@ namespace Illumina {
             }
         }
 
-        public void AddNavigator(Vector3Int pos, Player owner, bool flipX = false) {
-            if (!Map.Maps.NavigatorsMap.ContainsKey(IlluminaConverter.ToCoordInt(pos))) {
+        public void AddNavigator(Vector3Int pos, Player owner, Vector3Int gridpos) {
+            var vacantSlot = !Map.Maps.NavigatorsMap.ContainsKey(IlluminaConverter.ToCoordInt(pos));
+            var hasRights = (int) owner.tribe == GamePlayManager.PlayerTurn;
+            if (vacantSlot && hasRights && owner.navigators.Count < 3) {
+                var flipX = false;
+                if (pos.y < gridpos.y) {
+                    flipX = true;
+                }
                 var navigator = new Navigator(owner, pos, flipX);
                 Map.PlaceNavigator(pos, navigator);
-                PlaceNavigator(navigator);
+                PlaceNavigator(navigator, flipX);
                 PlayDataController.SavePlayData();
             }
-
         }
 
-        public void PlaceNavigator(Navigator navigator) {
+        public void PlaceNavigator(Navigator navigator, bool flipX = false) {
+
             var tribeIndex = (int) navigator.owner.tribe;
             var pos = navigator.GridPosition.ToVector3Int();
             var worldPos = Collection.Layers[0].CellToWorld(pos);
             var navigatorsParent = Collection.EntitiesParent[2].transform;
             var navigatorEntity = Collection.NavigatorPrefabs[tribeIndex];
             var navigatorObject = Object.Instantiate(navigatorEntity, worldPos, Quaternion.identity, navigatorsParent);
-            navigatorObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = navigator.flipX;
+            var flip = navigatorObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX;
+            if (flipX) {
+                flip = !flip;
+            }
+            navigatorObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = flip;
+            Debug.Log(navigator.GridPosition.ToVector3Int());
         }
         public void PlaceNavigators() {
             foreach (var item in Map.Maps.NavigatorsMap) {
-                PlaceNavigator(item.Value);
+                PlaceNavigator(item.Value, item.Value.flipX);
             }
         }
 

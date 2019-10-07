@@ -8,6 +8,9 @@ using UnityEngine;
 public class GamePlayManager : MonoBehaviour {
 
     public World world;
+    public static int PlayerTurn = 0;
+    public int TurnNumber = 1;
+    public int PlayersTurnNumber = 1;
 
     void OnEnable() {
         PlayDataController.LoadSettingsData();
@@ -19,10 +22,10 @@ public class GamePlayManager : MonoBehaviour {
     void CreateGameWorld() {
         var collections = this.gameObject.GetComponent<GameAssetsCollection>();
         world = new World(collections.ToWorldCollection());
+        // if (GameData.PlayData.old) {
+        //     world.Map = GameData.PlayData.worldMap;
+        // }
         if (GameData.PlayData.old) {
-            world.Map = GameData.PlayData.worldMap;
-        }
-        if (!GameData.PlayData.old) {
             world.CreateNew();
             var data = new PlayData();
             data.worldMap = this.world.Map;
