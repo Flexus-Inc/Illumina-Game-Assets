@@ -7094,7 +7094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &510120540
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12162,7 +12162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1608569182}
   img: {fileID: 2164157414277279422, guid: c4cd25435318bf8478ef62fc94785a40, type: 3}
-  NumOfObjects: 25
+  NumOfObjects: 10
 --- !u!114 &665959288
 MonoBehaviour:
   m_ObjectHideFlags: 0

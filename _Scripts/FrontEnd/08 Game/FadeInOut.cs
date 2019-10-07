@@ -13,21 +13,21 @@ public class FadeInOut : MonoBehaviour
     IEnumerator Start()
     {
         start = Random.Range(0.0f, 1.0f);
-        img.canvasRenderer.SetAlpha(1);
+        img.canvasRenderer.SetAlpha(start);
         while (repeatable)
         {
-            yield return FadeIn(duration);
             yield return FadeOut(duration);
+            yield return FadeIn(duration);
         }
     }
     IEnumerator FadeOut(float time)
     {
         float i = 0.0f;
         float rate = (1.0f / time) * speed;
-        while (i < 1f)
+        while (i < 1.0f)
         {
             i += Time.deltaTime * rate;
-            img.CrossFadeAlpha(0, 1, false);
+            img.CrossFadeAlpha(0, 2, false);
             yield return null;
         }
     }
@@ -36,10 +36,10 @@ public class FadeInOut : MonoBehaviour
     {
         float i = 0.0f;
         float rate = (1.0f / time) * speed;
-        while(i < 1f)
+        while(i < 1.0f)
         {
             i += Time.deltaTime * rate;
-            img.CrossFadeAlpha(1, 1, false);
+            img.CrossFadeAlpha(1, 2, false);
             yield return null;
         }
     }

@@ -68,8 +68,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1ecd01d3444fe8c46aa612922ad405ed, type: 3}
   img: {fileID: 6125291446900221390}
   repeatable: 1
-  LimitXAxis: 1920
-  LimitYAxis: 1080
+  LimitXAxis: 200
+  LimitYAxis: 200
 --- !u!114 &3052046271036016331
 MonoBehaviour:
   m_ObjectHideFlags: 0

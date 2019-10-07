@@ -10,9 +10,9 @@ public class ScaleAnimator : MonoBehaviour
     float sizeX, sizeY;
     IEnumerator Start()
     {
-        speed = Random.Range(2f, 3f);
+        speed = Random.Range(1f, 1.5f);
         duration = Random.Range(2f, 10f);
-        minScale = transform.localScale;
+        minScale = transform.localScale ;
         sizeX = Random.Range(1.5f, 2f);
         sizeY = sizeX;
         maxScale = new Vector3(sizeX, sizeY);
