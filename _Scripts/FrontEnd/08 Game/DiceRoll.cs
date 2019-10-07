@@ -67,6 +67,7 @@ public class DiceRoll : MonoBehaviour
         yield return new WaitForSeconds(2f);
         animator[0].SetBool("Shrink", true);
         animator[1].SetBool("Shrink", true);
+        animator[2].SetBool("Shrink", true);
 
         //If it is the player's turn
         //yield return new WaitForSeconds(10f);

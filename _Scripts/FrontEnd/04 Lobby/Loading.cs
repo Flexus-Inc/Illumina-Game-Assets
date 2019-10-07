@@ -18,7 +18,7 @@ public class Loading : MonoBehaviour
         loadingpanel.SetActive(true);
 
         while(!operation.isDone){
-            float progress = Mathf.Clamp01(operation.progress/.9f);
+            float progress = Mathf.Clamp01(operation.progress/0.9f);
             loadingtext.text = progress * 100f + "%";
             yield return null;
         }
