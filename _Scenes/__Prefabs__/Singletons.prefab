@@ -581,13 +581,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicSources:
   - {fileID: 8300000, guid: d8a633892c3165a45a09e1d653cb39b0, type: 3}
-  - {fileID: 8300000, guid: f13db1aa1921edf498efe14f91b03e14, type: 3}
-  - {fileID: 8300000, guid: 59cf410ede243eb499987584fba63773, type: 3}
+  - {fileID: 8300000, guid: f72ad467a3618ec4c829c933d87fc514, type: 3}
+  - {fileID: 8300000, guid: 47aafb8c88615fa4ea3d7ecb1423e760, type: 3}
+  - {fileID: 8300000, guid: 9fa70ce673119f04d8dd884ae30d4331, type: 3}
   MusicSourcesDefaultVolume:
   - 1
   - 1
-  - 0
-  MusicSourcesIsLooping: 000101
+  - 1
+  - 1
+  MusicSourcesIsLooping: 00010101
   DefaultMusic: {fileID: 8300000, guid: f13db1aa1921edf498efe14f91b03e14, type: 3}
   SplashMusicIndex: 0
   source: {fileID: 0}

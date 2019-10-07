@@ -2328,6 +2328,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1678838916}
+        m_MethodName: SoundManager_PlaySoundFX
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1300143533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2598,6 +2609,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2419026506989358477, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: MusicSources.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: f72ad467a3618ec4c829c933d87fc514, type: 3}
+    - target: {fileID: 2419026506989358477, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: MusicSources.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fa70ce673119f04d8dd884ae30d4331, type: 3}
+    - target: {fileID: 2419026507685046517, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: SoundFXSources.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419026507685046517, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: SoundFXSources.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: ed87e2436610ab04ab6a027a0aff7aaa, type: 3}
+    - target: {fileID: 2419026507685046517, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: SoundFXSources.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b7365baa47b9c44c85dfa5aec7b8868, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69d89439ea4d7d4bb0632b8658813f3, type: 3}
 --- !u!1 &1425505301
@@ -3055,6 +3091,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1678838914}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1678838916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 410053441003066463, guid: e90c77865ca36b148a4904e280b68c1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1678838914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576f5b68f3ae2864ea3a78da4fadb30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1749713207
 GameObject:
   m_ObjectHideFlags: 0
