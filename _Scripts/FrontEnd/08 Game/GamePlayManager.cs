@@ -22,10 +22,10 @@ public class GamePlayManager : MonoBehaviour {
     void CreateGameWorld() {
         var collections = this.gameObject.GetComponent<GameAssetsCollection>();
         world = new World(collections.ToWorldCollection());
+        // if (GameData.PlayData.old) {
+        //     world.Map = GameData.PlayData.worldMap;
+        // }
         if (GameData.PlayData.old) {
-            world.Map = GameData.PlayData.worldMap;
-        }
-        if (!GameData.PlayData.old) {
             world.CreateNew();
             var data = new PlayData();
             data.worldMap = this.world.Map;
