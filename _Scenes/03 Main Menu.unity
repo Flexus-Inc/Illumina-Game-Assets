@@ -1627,6 +1627,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1498363356}
+        m_MethodName: Logout
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1064746036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2068,6 +2079,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952336864806386450, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0021972656
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.5251465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.900024
       objectReference: {fileID: 0}
     - target: {fileID: 2419026506989358477, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
