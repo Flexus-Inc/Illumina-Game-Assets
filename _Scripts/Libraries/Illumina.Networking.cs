@@ -52,7 +52,7 @@ namespace Illumina.Networking {
 
         public static void GetCsrfToken() {
             var tokenQuery = IlluminaHash.GetUniqueDateTimeHash();
-            var uri = "/" + tokenQuery + "/token";
+            var uri = NetworkManager.App_Url + "/" + tokenQuery + "/token";
             Request csrfRequest = new Request {
                 uri = uri,
             };
