@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12, y: -167.99994}
+  m_AnchoredPosition: {x: -12, y: -209}
   m_SizeDelta: {x: -1551.2, y: -1042.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &147446844
@@ -862,7 +862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 193.10004}
+  m_AnchoredPosition: {x: 0, y: 166}
   m_SizeDelta: {x: -816.4, y: -739.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &631885451
@@ -937,7 +937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12, y: -265.99994}
+  m_AnchoredPosition: {x: -12, y: -306.99997}
   m_SizeDelta: {x: -1604.1, y: -1060.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &661365370
@@ -1324,7 +1324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12, y: -70.99997}
+  m_AnchoredPosition: {x: -12, y: -112.00003}
   m_SizeDelta: {x: -1664.8, y: -1047.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870286273
@@ -1777,7 +1777,7 @@ Canvas:
   m_GameObject: {fileID: 1083917194}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 288923433}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2085,16 +2085,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.0021972656
       objectReference: {fileID: 0}
-    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 7.5251465
-      objectReference: {fileID: 0}
-    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -46.900024
-      objectReference: {fileID: 0}
     - target: {fileID: 2419026506989358477, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: MusicSources.Array.size
@@ -2220,6 +2210,16 @@ PrefabInstance:
       propertyPath: SoundFXSources.Array.data[7]
       value: 
       objectReference: {fileID: 8300000, guid: 3fc75d15b9672014ca250a5f53a76b1a, type: 3}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.5251465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.900024
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69d89439ea4d7d4bb0632b8658813f3, type: 3}
 --- !u!1 &1459483771
