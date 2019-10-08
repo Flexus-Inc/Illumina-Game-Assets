@@ -1,5 +1,11 @@
+using System.Collections.Generic;
+
 namespace Illumina.Models {
+
+    [System.Serializable]
     public class PlayData : IlluminaModel {
-        public World world;
+        public bool old = false;
+        public WorldMap worldMap;
+        //public List<Player> Players;
     }
 }

@@ -20,15 +20,15 @@ public class PositionAnimator : MonoBehaviour
         randomImg = Random.Range(0, baybayinImg.Length);
         img.sprite = baybayinImg[randomImg];
         Debug.Log(img.sprite);
-        speed = Random.Range(1f, 1.5f);
-        duration = Random.Range(10f, 20f);
+        speed = Random.Range(2f, 3f);
+        duration = Random.Range(10f, 25f);
         currentPos = transform.localPosition;
-        img.canvasRenderer.SetAlpha(Random.Range(0.1f, 1f));
+        img.canvasRenderer.SetAlpha(Random.Range(3f, 5f));
         while (repeatable)
         {
             
-            x = Random.Range(-(LimitXAxis), (LimitXAxis));
-            y = Random.Range(-(LimitYAxis), (LimitYAxis));
+            x = Random.Range(-(LimitXAxis / 2f), (LimitXAxis / 2f));
+            y = Random.Range(-(LimitYAxis / 2f), (LimitYAxis / 2f));
             targetPos = new Vector3(x, y);
             
             yield return Position(currentPos, targetPos, duration);

@@ -53,7 +53,7 @@ namespace Illumina.Controller {
 
         public static void OnVerifyRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Alert(err.Message);
+            UIManager.Danger(err.Message);
         }
         public static void OnSignUpRequestSuccess(object source) {
             var user = (User) source;
@@ -65,7 +65,8 @@ namespace Illumina.Controller {
 
         public static void OnSignUpRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Alert(err.Message);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
         }
         public static void Login(User user) {
             user.password = IlluminaHash.GetHash(user.password);
@@ -88,7 +89,8 @@ namespace Illumina.Controller {
 
         public static void OnLoginRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Alert(err.Message);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
         }
 
         public static void Logout(User user) {
@@ -98,20 +100,48 @@ namespace Illumina.Controller {
             };
 
             logoutRequest.RequestSuccessEvents += OnLogoutRequestSuccess;
-            logoutRequest.RequestFailedEvents += OnLogoutRequestSuccess;
+            logoutRequest.RequestFailedEvents += OnLogoutRequestFailed;
             Update<User>(logoutRequest);
         }
 
         public static void OnLogoutRequestSuccess(object source) {
-            GameData.User = (User) source;
-            Debug.Log(GameData.User.GetServerMessage());
-            UIManager.HideLoading();
-            ScenesManager.GoToScene(3);
+            GameData.User = null;
+            var user = (User) source;
+            if (GameData.User == null) {
+                Debug.Log(user.GetServerMessage());
+                UIManager.HideLoading();
+                ScenesManager.GoToScene(2);
+            } else {
+                UIManager.HideLoading();
+                UIManager.Danger("Error in logging out");
+            }
+
         }
 
         public static void OnLogoutRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Alert(err.Message);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
+        }
+
+        public static void ResetPass(User user) {
+            Request forgotPassRequest = new Request {
+                uri = "/user/forgotpass",
+                body = user
+            };
+
+            forgotPassRequest.RequestSuccessEvents += OnForgotPassRequestSuccess;
+            forgotPassRequest.RequestFailedEvents += OnForgotPassRequestFailed;
+            Update<User>(forgotPassRequest);
+        }
+
+        public static void OnForgotPassRequestSuccess(object source) {
+            UIManager.HideLoading();
+        }
+        public static void OnForgotPassRequestFailed(Exception err) {
+            Debug.Log(err);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
         }
 
     }

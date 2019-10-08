@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Illumina.Models;
 using UnityEngine;
 
 namespace Illumina {
@@ -8,7 +9,7 @@ namespace Illumina {
     }
 
     [System.Serializable]
-    class WorldMaps {
+    public class WorldMaps {
         //
         public Dictionary<CoordInt, WorldEntity> EntitiesMap;
         public Dictionary<CoordInt, Floor> FloorMap;
@@ -30,7 +31,8 @@ namespace Illumina {
     [System.Serializable]
     public class WorldMap {
 
-        WorldMaps Maps;
+        public WorldMaps Maps;
+        //TODO: remove public keyword before build
 
         public WorldMap() {
             Maps = new WorldMaps();
@@ -54,6 +56,16 @@ namespace Illumina {
             } else {
                 Maps.GeneralsMap.Add(destination, general);
                 Maps.EntitiesMap.Add(destination, general);
+                return DestinationEntity.None;
+            }
+        }
+        public DestinationEntity PlaceNavigator(Vector3Int pos, Navigator navigator) {
+            var destination = IlluminaConverter.ToCoordInt(pos);
+            if (Maps.EntitiesMap.ContainsKey(destination)) {
+                return DestinationEntity.NoDestination;
+            } else {
+                Maps.NavigatorsMap.Add(destination, navigator);
+                Maps.EntitiesMap.Add(destination, navigator);
                 return DestinationEntity.None;
             }
         }
@@ -81,7 +93,8 @@ namespace Illumina {
                 Maps.EntitiesMap.Remove(trap_pos);
                 return trap;
             } else {
-                return new Trap();
+                return new Trap(new Player(new User()), pos);
+                //TODO: must send the actual player 
             }
         }
 
@@ -96,6 +109,7 @@ namespace Illumina {
             }
         }
 
+        // ChangeNavigatorPosition(,) == DestinationEntity.None;
         public DestinationEntity ChangeNavigatorPosition(Vector3Int oldPos, Vector3Int newPos) {
             var old_pos = IlluminaConverter.ToCoordInt(oldPos);
             var new_pos = IlluminaConverter.ToCoordInt(newPos);

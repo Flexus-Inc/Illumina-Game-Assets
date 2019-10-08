@@ -3,8 +3,8 @@ using UnityEngine.Tilemaps;
 
 namespace Illumina {
     public class Outline {
-        protected Tilemap OutlineMap;
-        protected TileBase Tile;
+        public Tilemap OutlineMap;
+        public TileBase Tile;
         protected Vector3Int[] HexPos = new Vector3Int[7];
 
         public Vector3Int[] GetHexPos() {
@@ -12,6 +12,7 @@ namespace Illumina {
         }
 
         public Outline(Tilemap map, TileBase tile) {
+            HexPos = new Vector3Int[7];
             Tile = tile;
             OutlineMap = map;
         }
@@ -56,10 +57,17 @@ namespace Illumina {
             return HexPos;
 
         }
-        public void FillHexPos() {
-            foreach (var pos in HexPos) {
-                OutlineMap.SetTile(pos, Tile);
+        public void FillHexPos(bool centerfill = true) {
+            for (int i = 0; i < HexPos.Length; i++) {
+                if (i == 3 && !centerfill) {
+                    continue;
+                }
+                OutlineMap.SetTile(HexPos[i], Tile);
             }
+        }
+
+        public void SetTile(Vector3Int pos) {
+            OutlineMap.SetTile(pos, Tile);
         }
 
         public void FillHexPos(Tile tile) {
@@ -69,7 +77,7 @@ namespace Illumina {
             this.Tile = defaultTile;
         }
 
-        public virtual Vector3Int[] GetSurroundingPos(Vector3Int center) {
+        public Vector3Int[] GetSurroundingPos(Vector3Int center) {
             FindHexPos(center);
             return HexPos;
         }
