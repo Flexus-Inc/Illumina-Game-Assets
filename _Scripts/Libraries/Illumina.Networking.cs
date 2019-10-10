@@ -23,6 +23,7 @@ namespace Illumina.Networking {
         public Dictionary<string, string> headers;
         public string uri = null;
         public object body = null;
+        public WWWForm form = null;
         public void SetHeader(string key, string value) {
             headers.Add(key, value);
         }
@@ -52,7 +53,7 @@ namespace Illumina.Networking {
 
         public static void GetCsrfToken() {
             var tokenQuery = IlluminaHash.GetUniqueDateTimeHash();
-            var uri = NetworkManager.App_Url + "/" + tokenQuery + "/token";
+            var uri = NetworkManager.Laravel_Uri + "/" + tokenQuery + "/token";
             Request csrfRequest = new Request {
                 uri = uri,
             };
@@ -97,6 +98,19 @@ namespace Illumina.Networking {
                 .Then(res => request.CallSuccessEvents(res))
                 .Catch(err => request.CallFailedEvents(err));
         }
+
+        public static void PostForm(Request request) {
+            RequestHelper postRequest = new RequestHelper {
+                Uri = request.uri,
+                Body = request.body,
+                Headers = request.headers,
+                FormData = request.form
+            };
+            postRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+            RestClient.Post(postRequest)
+                .Then(res => request.CallSuccessEvents(res))
+                .Catch(err => request.CallFailedEvents(err));
+        }
         public static void Put(Request request) {
             RequestHelper putRequest = new RequestHelper {
                 Uri = request.uri,
@@ -114,7 +128,7 @@ namespace Illumina.Networking {
                 Body = request.body,
                 Headers = request.headers
             };
-            putRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+            //putRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
             RestClient.Put<T>(putRequest)
                 .Then(res => request.CallSuccessEvents(res))
                 .Catch(err => request.CallFailedEvents(err));

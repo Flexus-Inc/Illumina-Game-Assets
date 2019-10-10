@@ -8,7 +8,7 @@ namespace Illumina {
 
     [System.Serializable]
     public class World {
-        List<Player> players = new List<Player>();
+        public List<Player> players = new List<Player>();
         public WorldCollection Collection;
         public WorldMap Map;
 
@@ -35,6 +35,7 @@ namespace Illumina {
                 var baseObject = Object.Instantiate(baseStructure, worldPos, Quaternion.identity, basesParent);
                 var p = baseObject.transform.position;
                 baseObject.GetComponent<BaseEntityManager>().GridPosition = pos;
+                baseObject.GetComponent<BaseEntityManager>().TribeIdentity = item.Value.owner.tribe;
                 baseObject.GetComponent<BaseEntityManager>().BasePosition = baseObject.transform.position;
             }
         }
@@ -43,6 +44,7 @@ namespace Illumina {
             var vacantSlot = !Map.Maps.NavigatorsMap.ContainsKey(IlluminaConverter.ToCoordInt(pos));
             var hasRights = (int) owner.tribe == GamePlayManager.PlayerTurn;
             if (vacantSlot && hasRights && owner.navigators.Count < 3) {
+                CreateMove();
                 var flipX = false;
                 if (pos.y < gridpos.y) {
                     flipX = true;
@@ -51,6 +53,14 @@ namespace Illumina {
                 Map.PlaceNavigator(pos, navigator);
                 PlaceNavigator(navigator, flipX);
                 PlayDataController.SavePlayData();
+            }
+        }
+
+        public static void CreateMove() {
+            DiceRoll.RemoveHexPos();
+            GamePlayManager.TurnMoves++;
+            if (GamePlayManager.TurnMoves == GamePlayManager.TurnMaxMoves) {
+                GamePlayManager.MovementEnabled = false;
             }
         }
 
@@ -108,7 +118,8 @@ namespace Illumina {
             for (int i = 0; i < 4; i++) {
                 var host = i == 0 ? true : false;
                 var user = new User();
-                user.name = Keys.RandomKey(7);
+                user.name = (new Key()).GenerateRandom(7);
+                user.username = (new Key()).GenerateRandom(5);
                 var player = new Player(user, host);
                 player.tribe = (Tribe) i;
                 this.players.Add(player);

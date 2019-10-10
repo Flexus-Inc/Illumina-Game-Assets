@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class BaseEntityManager : MonoBehaviour {
-    public WorldEntityType EntityType;
+
     public static Base clickedBase;
     public Tile Blanktile;
     Outline OutlineCreator;
@@ -14,7 +14,7 @@ public class BaseEntityManager : MonoBehaviour {
     public Vector3 BasePosition;
     public Vector3Int GridPosition;
     List<Vector3Int> OutlinePositions;
-    public bool isSelected;
+    public Tribe TribeIdentity;
     void Awake() {
         var map = GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<GameAssetsCollection>().Layers[1];
         var outline = (Tile) GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<GameAssetsCollection>().Outline;
@@ -25,7 +25,7 @@ public class BaseEntityManager : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !GamePlayManager.GamePaused && GamePlayManager.MovementEnabled && (this.gameObject.GetComponent<BaseEntityManager>().TribeIdentity == (Tribe) GamePlayManager.PlayerTurn)) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2d = new Vector2(mousePos.x, mousePos.y);
             RaycastHit2D hit = Physics2D.Raycast(mousePos2d, Vector2.zero);

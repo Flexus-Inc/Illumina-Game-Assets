@@ -1516,7 +1516,6 @@ GameObject:
   - component: {fileID: 312993388}
   - component: {fileID: 312993390}
   - component: {fileID: 312993389}
-  - component: {fileID: 312993391}
   m_Layer: 5
   m_Name: Timer text
   m_TagString: Untagged
@@ -1583,20 +1582,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312993387}
   m_CullTransparentMesh: 0
---- !u!114 &312993391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312993387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e2b167f42908349b7e8cbba3e3726f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 45
-  countdownText: {fileID: 312993389}
 --- !u!1 &315524356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6837,6 +6822,17 @@ MonoBehaviour:
           m_StringArgument: End
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1498363357}
+        m_MethodName: PauseGame
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &486052629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7254,6 +7250,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Start
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1498363357}
+        m_MethodName: PauseGame
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &510366345
 MonoBehaviour:
@@ -36630,6 +36637,8 @@ GameObject:
   - component: {fileID: 1498363355}
   - component: {fileID: 1498363356}
   - component: {fileID: 1498363357}
+  - component: {fileID: 1498363358}
+  - component: {fileID: 1498363359}
   m_Layer: 0
   m_Name: _ScriptsContainer
   m_TagString: ScriptsContainer
@@ -36717,6 +36726,46 @@ MonoBehaviour:
     Map: {}
   TurnNumber: 1
   PlayersTurnNumber: 1
+--- !u!114 &1498363358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498363354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dbfc2cabd7aae44f864c00235838e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Timer: {fileID: 312993389}
+--- !u!114 &1498363359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498363354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786c37dd3e02df74cb7d984bb92646cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.05
+  repetitions: 25
+  diceCollider: {fileID: 2128979357}
+  animator:
+  - {fileID: 2128979355}
+  - {fileID: 1178790861}
+  - {fileID: 337763895}
+  renderHex:
+  - {fileID: 1050047145}
+  - {fileID: 1045939618}
+  - {fileID: 1194633918}
+  - {fileID: 1332840074}
+  - {fileID: 976792581}
+  - {fileID: 402886087}
+  - {fileID: 1678061272}
 --- !u!1 &1505697243
 GameObject:
   m_ObjectHideFlags: 0
@@ -55072,7 +55121,6 @@ GameObject:
   - component: {fileID: 2128979354}
   - component: {fileID: 2128979358}
   - component: {fileID: 2128979357}
-  - component: {fileID: 2128979356}
   - component: {fileID: 2128979355}
   - component: {fileID: 2128979359}
   m_Layer: 5
@@ -55128,33 +55176,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2128979356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128979353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 786c37dd3e02df74cb7d984bb92646cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0.05
-  repetitions: 25
-  diceCollider: {fileID: 2128979357}
-  animator:
-  - {fileID: 2128979355}
-  - {fileID: 1178790861}
-  - {fileID: 337763895}
-  renderHex:
-  - {fileID: 1050047145}
-  - {fileID: 1045939618}
-  - {fileID: 1194633918}
-  - {fileID: 1332840074}
-  - {fileID: 976792581}
-  - {fileID: 402886087}
-  - {fileID: 1678061272}
 --- !u!58 &2128979357
 CircleCollider2D:
   m_ObjectHideFlags: 0
