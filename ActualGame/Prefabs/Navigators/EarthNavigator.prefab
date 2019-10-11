@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3683228943950305475}
   - component: {fileID: 2942862737623250299}
+  - component: {fileID: 7534750482633572911}
   m_Layer: 0
   m_Name: EarthNavigator
   m_TagString: Untagged
@@ -51,6 +52,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &7534750482633572911
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362321992623351333}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 3}
+  serializedVersion: 2
+  m_Radius: 3.25
 --- !u!1 &6465122437818443690
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +140,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -8302603101992733286, guid: 1a1cc01a757162a44bf2c9aaf2570a14,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 5.991457, y: 6.27}

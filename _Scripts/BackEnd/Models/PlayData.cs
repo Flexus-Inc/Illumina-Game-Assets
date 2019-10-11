@@ -32,12 +32,16 @@ namespace Illumina.Models {
             }
 
             List<string> owners = new List<string>();
+            List<string> fowners = new List<string>();
             List<bool> ownersIsHost = new List<bool>();
             List<int> ownersTribe = new List<int>();
             List<string> keys = new List<string>();
+            List<string> fkeys = new List<string>();
             List<int> types = new List<int>();
             List<int> posx = new List<int>();
+            List<int> fposx = new List<int>();
             List<int> posy = new List<int>();
+            List<int> fposy = new List<int>();
             List<bool> flipx = new List<bool>();
             foreach (var item in worldMap.Maps.EntitiesMap) {
                 owners.Add(item.Value.owner.username);
@@ -53,6 +57,13 @@ namespace Illumina.Models {
                     flipx.Add(false);
                 }
             }
+
+            foreach (var item in worldMap.Maps.FloorMap) {
+                fowners.Add(item.Value.owner.username);
+                fkeys.Add(item.Value.key);
+                fposx.Add((int) item.Key.X);
+                fposy.Add((int) item.Key.Y);
+            }
             data.w_owner = owners.ToArray();
             data.w_owner_host = ownersIsHost.ToArray();
             data.w_owner_tribe = ownersTribe.ToArray();
@@ -61,7 +72,10 @@ namespace Illumina.Models {
             data.w_posx = posx.ToArray();
             data.w_posy = posy.ToArray();
             data.w_flipx = flipx.ToArray();
-
+            data.f_owner = fowners.ToArray();
+            data.f_key = fkeys.ToArray();
+            data.f_posx = fposx.ToArray();
+            data.f_posy = fposy.ToArray();
             return data;
         }
     }
@@ -75,7 +89,6 @@ namespace Illumina.Models {
         public int[] players_tribe = new int[4];
         public int[] count_traps = new int[4];
         public int[] count_navigators = new int[4];
-
         public string[] w_owner;
         public bool[] w_owner_host;
         public int[] w_owner_tribe;
@@ -84,6 +97,10 @@ namespace Illumina.Models {
         public int[] w_posx;
         public int[] w_posy;
         public bool[] w_flipx;
+        public string[] f_owner;
+        public string[] f_key;
+        public int[] f_posx;
+        public int[] f_posy;
 
         public PlayData ToPlayData() {
             PlayData data = new PlayData();
@@ -101,7 +118,6 @@ namespace Illumina.Models {
 
             for (int i = 0; i < w_owner.Length; i++) {
                 Vector3Int pos = new Vector3Int(w_posx[i], w_posy[i], 0);
-                Tribe tribe = (Tribe) w_owner_tribe[i];
                 WorldEntityType type = (WorldEntityType) w_type[i];
                 Player owner = Player.GetPlayer(data.players, w_owner[i]);
 
@@ -118,12 +134,6 @@ namespace Illumina.Models {
                         data.worldMap.Maps.GeneralsMap.Add(IlluminaConverter.ToCoordInt(pos), general);
                         data.worldMap.Maps.EntitiesMap.Add(IlluminaConverter.ToCoordInt(pos), general);
                         break;
-                    case WorldEntityType.Floor:
-                        var floor = new Floor(owner, pos);
-                        floor.key = w_key[i];
-                        data.worldMap.Maps.FloorMap.Add((IlluminaConverter.ToCoordInt(pos)), floor);
-                        data.worldMap.Maps.EntitiesMap.Add(IlluminaConverter.ToCoordInt(pos), floor);
-                        break;
                     case WorldEntityType.Navigator:
                         var navigator = new Navigator(owner, pos, w_flipx[i]);
                         navigator.key = w_key[i];
@@ -139,6 +149,14 @@ namespace Illumina.Models {
                     default:
                         break;
                 }
+            }
+
+            for (int i = 0; i < f_owner.Length; i++) {
+                Vector3Int pos = new Vector3Int(f_posx[i], f_posy[i], 0);
+                Player owner = Player.GetPlayer(data.players, f_owner[i]);
+                var floor = new Floor(owner, pos);
+                floor.key = f_key[i];
+                data.worldMap.Maps.FloorMap.Add((IlluminaConverter.ToCoordInt(pos)), floor);
             }
 
             return data;

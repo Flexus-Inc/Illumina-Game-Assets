@@ -110,15 +110,23 @@ namespace Illumina {
         }
 
         // ChangeNavigatorPosition(,) == DestinationEntity.None;
-        public DestinationEntity ChangeNavigatorPosition(Vector3Int oldPos, Vector3Int newPos) {
+        public DestinationEntity ChangeNavigatorPosition(Vector3Int oldPos, Vector3Int newPos, bool flipX) {
             var old_pos = IlluminaConverter.ToCoordInt(oldPos);
+            //old_pos = IlluminaConverter.FlapTopSwitch(old_pos);
             var new_pos = IlluminaConverter.ToCoordInt(newPos);
+            //new_pos = IlluminaConverter.FlapTopSwitch(new_pos);
             if (Maps.EntitiesMap.ContainsKey(new_pos)) {
                 return CheckDestinationEntity(new_pos);
             }
 
             if (Maps.NavigatorsMap.ContainsKey(old_pos)) {
+                Debug.Log("oldpos validated");
                 var navigator = Maps.NavigatorsMap[old_pos];
+                navigator.GridPosition = new_pos;
+                if (flipX) {
+                    navigator.flipX = !navigator.flipX;
+                }
+
                 Maps.NavigatorsMap.Remove(old_pos);
                 Maps.EntitiesMap.Remove(old_pos);
                 Maps.NavigatorsMap.Add(new_pos, navigator);

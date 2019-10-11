@@ -26,22 +26,29 @@ namespace Illumina.Controller {
             Data.old = true;
             playDataSerializer.SaveData(Data);
             //TODO : include saving to firebase
-
-            var data = Data.ToServerData();
-            Debug.Log("Before :" + JsonConvert.SerializeObject(data));
-            PlayData _data = data.ToPlayData();
-            data = _data.ToServerData();
-            Debug.Log("After :" + JsonConvert.SerializeObject(data));
+            // var data = Data.ToServerData();
+            // RestClient.Put("https://illumina-6a2f2.firebaseio.com/playdatas/" + data.play_key + ".json", data);
         }
 
         public static void OnVerifyRequestSuccess(Exception e) {
             Debug.Log(e.Message);
         }
 
-        public static PlayData LoadSettingsData() {
+        public static PlayData LoadPlayData() {
             playDataSerializer.Initialize();
             Data = (PlayData) playDataSerializer.LoadData(Data);
             GameData.PlayData = Data;
+            GameData.PlayDataLoaded = true;
+
+            // RestClient.Get<GamePlayData>("https://illumina-6a2f2.firebaseio.com/playdatas/bwbGnZe.json").Then(res => {
+            //     Data = res.ToPlayData();
+            //     Data.old = true;
+            //     GameData.PlayData = Data;
+            //     GameData.PlayDataLoaded = true;
+            //     Debug.Log("data loaded");
+            //     Debug.Log(res.players_username[0]);
+
+            // }).Catch(err => { Data.old = false; Debug.Log(err); });
             return Data;
             //TODO: Include loading data from firebase
         }

@@ -37,6 +37,7 @@ namespace Illumina {
                 baseObject.GetComponent<BaseEntityManager>().GridPosition = pos;
                 baseObject.GetComponent<BaseEntityManager>().TribeIdentity = item.Value.owner.tribe;
                 baseObject.GetComponent<BaseEntityManager>().BasePosition = baseObject.transform.position;
+                baseObject.GetComponent<BaseEntityManager>().key = item.Value.key;
             }
         }
 
@@ -44,7 +45,6 @@ namespace Illumina {
             var vacantSlot = !Map.Maps.NavigatorsMap.ContainsKey(IlluminaConverter.ToCoordInt(pos));
             var hasRights = (int) owner.tribe == GamePlayManager.PlayerTurn;
             if (vacantSlot && hasRights && owner.navigators.Count < 3) {
-                CreateMove();
                 var flipX = false;
                 if (pos.y < gridpos.y) {
                     flipX = true;
@@ -52,8 +52,27 @@ namespace Illumina {
                 var navigator = new Navigator(owner, pos, flipX);
                 Map.PlaceNavigator(pos, navigator);
                 PlaceNavigator(navigator, flipX);
-                PlayDataController.SavePlayData();
+                GamePlayManager.EnableNavButton(players[GamePlayManager.PlayerTurn].navigators.Count - 1);
+                if (navigator.owner.tribe == (Tribe) GamePlayManager.PlayerTurn) {
+                    GamePlayManager.NavigatorKeys.Add(navigator.key);
+                }
+                CreateMove();
             }
+        }
+
+        public void MoveNavigator(Vector3Int newPos, GameObject navigator, bool flipX) {
+            Vector3Int oldPos = navigator.GetComponent<NavigatorEntityManager>().GridPosition;
+            Vector3 oldpos = navigator.GetComponent<NavigatorEntityManager>().BasePosition;
+            Vector3 newpos = Collection.Layers[0].CellToWorld(newPos);
+            navigator.GetComponent<NavigatorEntityManager>().GridPosition = newPos;
+            navigator.GetComponent<NavigatorEntityManager>().BasePosition = newpos;
+            var flip = navigator.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX;
+            if (flipX) {
+                flip = !flip;
+            }
+            navigator.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = flip;
+            navigator.GetComponent<NavigatorEntityManager>().MoveNavigatorEntity(oldpos, newpos, navigator);
+
         }
 
         public static void CreateMove() {
@@ -62,8 +81,27 @@ namespace Illumina {
             if (GamePlayManager.TurnMoves == GamePlayManager.TurnMaxMoves) {
                 GamePlayManager.MovementEnabled = false;
             }
+            PlayDataController.SavePlayData();
         }
 
+        public void UpdateNavigatorPosition(Vector3Int oldPos, Vector3Int newPos, GameObject navigator) {
+            var flipX = false;
+            var flip = navigator.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX;
+            if (flip && oldPos.y > newPos.y) {
+                flipX = false;
+            } else if (!flip && oldPos.y > newPos.y) {
+                flipX = true;
+            } else if (flip && oldPos.y < newPos.y) {
+                flipX = true;
+            } else {
+                flipX = false;
+            }
+
+            if (Map.ChangeNavigatorPosition(oldPos, newPos, flipX) == DestinationEntity.None) {
+                MoveNavigator(newPos, navigator, flipX);
+                CreateMove();
+            }
+        }
         public void PlaceNavigator(Navigator navigator, bool flipX = false) {
 
             var tribeIndex = (int) navigator.owner.tribe;
@@ -77,11 +115,26 @@ namespace Illumina {
                 flip = !flip;
             }
             navigatorObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = flip;
-            Debug.Log(navigator.GridPosition.ToVector3Int());
+
+            var p = navigatorObject.transform.position;
+            navigatorObject.GetComponent<NavigatorEntityManager>().GridPosition = pos;
+            navigatorObject.GetComponent<NavigatorEntityManager>().TribeIdentity = navigator.owner.tribe;
+            navigatorObject.GetComponent<NavigatorEntityManager>().BasePosition = navigatorObject.transform.position;
+            navigatorObject.GetComponent<NavigatorEntityManager>().key = navigator.key;
+            if (navigator.owner.tribe == (Tribe) GamePlayManager.PlayerTurn) {
+                GamePlayManager.Navigators.Add(navigatorObject);
+            }
         }
         public void PlaceNavigators() {
             foreach (var item in Map.Maps.NavigatorsMap) {
                 PlaceNavigator(item.Value, item.Value.flipX);
+            }
+            var player = GameData.PlayData.players[GamePlayManager.PlayerTurn];
+            for (int i = 0; i < player.navigators.Count; i++) {
+                GamePlayManager.EnableNavButton(i);
+            }
+            foreach (var item in player.navigators) {
+                GamePlayManager.NavigatorKeys.Add(item.Value.key);
             }
         }
 
@@ -125,5 +178,7 @@ namespace Illumina {
                 this.players.Add(player);
             }
         }
+
+        //Coroutines
     }
 }
