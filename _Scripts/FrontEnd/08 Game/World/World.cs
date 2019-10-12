@@ -52,10 +52,7 @@ namespace Illumina {
                 var navigator = new Navigator(owner, pos, flipX);
                 Map.PlaceNavigator(pos, navigator);
                 PlaceNavigator(navigator, flipX);
-                GamePlayManager.EnableNavButton(players[GamePlayManager.PlayerTurn].navigators.Count - 1);
-                if (navigator.owner.tribe == (Tribe) GamePlayManager.PlayerTurn) {
-                    GamePlayManager.NavigatorKeys.Add(navigator.key);
-                }
+
                 CreateMove();
             }
         }
@@ -99,8 +96,22 @@ namespace Illumina {
 
             if (Map.ChangeNavigatorPosition(oldPos, newPos, flipX) == DestinationEntity.None) {
                 MoveNavigator(newPos, navigator, flipX);
-                CreateMove();
+            } else {
+                switch (Map.ChangeNavigatorPosition(oldPos, newPos, flipX)) {
+                    case DestinationEntity.General:
+                        Debug.Log("General fight");
+                        break;
+                    case DestinationEntity.Navigator:
+                        Debug.Log("Navigator fight");
+                        break;
+                    case DestinationEntity.Trap:
+                        Debug.Log("Trap activated");
+                        break;
+                    default:
+                        break;
+                }
             }
+            CreateMove();
         }
         public void PlaceNavigator(Navigator navigator, bool flipX = false) {
 
@@ -123,19 +134,24 @@ namespace Illumina {
             navigatorObject.GetComponent<NavigatorEntityManager>().key = navigator.key;
             if (navigator.owner.tribe == (Tribe) GamePlayManager.PlayerTurn) {
                 GamePlayManager.Navigators.Add(navigatorObject);
+                GamePlayManager.EnableNavButton(GamePlayManager.Navigators.Count - 1);
+            }
+        }
+
+        public void PlaceTrap(Player owner, Vector3Int pos) {
+            var trap = new Trap(owner, pos);
+            if (Map.PlaceTrap(pos, trap) == DestinationEntity.None) {
+                Debug.Log("Trap placed at " + pos + ", Owned by " + owner.tribe);
+                GamePlayManager.TrapPlacingEnabled = false;
+                Collection.Layers[0].SetTile(pos, Collection.GroundTiles[0]);
+                CreateMove();
             }
         }
         public void PlaceNavigators() {
             foreach (var item in Map.Maps.NavigatorsMap) {
                 PlaceNavigator(item.Value, item.Value.flipX);
             }
-            var player = GameData.PlayData.players[GamePlayManager.PlayerTurn];
-            for (int i = 0; i < player.navigators.Count; i++) {
-                GamePlayManager.EnableNavButton(i);
-            }
-            foreach (var item in player.navigators) {
-                GamePlayManager.NavigatorKeys.Add(item.Value.key);
-            }
+
         }
 
         public void PlaceBaseGenerals() {

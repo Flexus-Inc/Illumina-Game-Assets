@@ -52,10 +52,7 @@ public class NavigatorEntityManager : MonoBehaviour {
                 }
             }
             if (world.Map.Maps.BasesMap.ContainsKey(IlluminaConverter.FlapTopSwitch(_pos))) {
-                var _base = world.Map.Maps.BasesMap[IlluminaConverter.FlapTopSwitch(_pos)];
-                if (_base.owner.tribe == this.gameObject.GetComponent<NavigatorEntityManager>().TribeIdentity) {
-                    continue;
-                }
+                continue;
             }
             if (world.Map.Maps.NavigatorsMap.ContainsKey(_pos)) {
                 var navigator = world.Map.Maps.NavigatorsMap[_pos];
@@ -68,7 +65,6 @@ public class NavigatorEntityManager : MonoBehaviour {
                 if (!OutlineManager.Outlines.ContainsKey(outlines[i])) {
                     OutlineManager.Outlines.Add(outlines[i], this.gameObject);
                 }
-
             }
         }
 

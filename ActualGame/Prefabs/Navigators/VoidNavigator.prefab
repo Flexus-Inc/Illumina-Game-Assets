@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7403000649142830147}
   - component: {fileID: 7403000649142830146}
   - component: {fileID: 6654547431386108501}
-  - component: {fileID: 1529598641987717491}
+  - component: {fileID: 4890054842177096118}
   m_Layer: 0
   m_Name: VoidNavigator
   m_TagString: Untagged
@@ -147,11 +147,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Blank: {fileID: 0}
+  OutlineShown: 0
   BasePosition: {x: 0, y: 0, z: 0}
   GridPosition: {x: 0, y: 0, z: 0}
   TribeIdentity: 0
---- !u!61 &1529598641987717491
-BoxCollider2D:
+  key: 
+--- !u!60 &4890054842177096118
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -163,7 +165,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.17}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -173,6 +175,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.3}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.31386474, y: 0.3574182}
+      - {x: -0.5865698, y: 0.12686706}
+      - {x: -0.30429322, y: -0.1057196}
+      - {x: 0.31331053, y: -0.10571899}
+      - {x: 0.5827234, y: 0.12196716}
+      - {x: 0.32332763, y: 0.3494946}

@@ -11,12 +11,13 @@ public class GamePlayManager : MonoBehaviour {
     public GameObject[] NavigatorButtons = new GameObject[3];
     public static GameObject[] NavButtons;
     public static List<GameObject> Navigators = new List<GameObject>();
-    public static List<string> NavigatorKeys = new List<string>();
-    public static int PlayerTurn = 0;
+    public static int PlayerTurn = 1;
     public static bool GamePaused = true;
     public static bool MovementEnabled = true;
     public static int TurnMoves = 0;
     public static int TurnMaxMoves = 0;
+    public static bool TrapPlacingEnabled = false;
+    public static int TrapSelected = 0;
 
     void OnEnable() {
         GameData.PlayDataLoaded = false;
@@ -47,15 +48,19 @@ public class GamePlayManager : MonoBehaviour {
         Debug.Log("activated");
     }
 
-    public static void EnableNavButton(int index) {
-        GameObject.FindGameObjectWithTag("ScriptsContainer").
-        GetComponent<GamePlayManager>().EnableNavigatorButton(index);
+    public static void EnableNavButton(int i) {
+        GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<GamePlayManager>().EnableNavigatorButton(i);
+    }
+
+    public void EnableTrapPlacing() {
+        TrapPlacingEnabled = true;
+
     }
 
     public void GoToNavigatorPosition(int index) {
-        var pos = Navigators[index].GetComponent<Transform>().localPosition;
+        var pos = Navigators[index].GetComponent<Transform>().position;
         var newpos = new Vector3(pos.x, pos.y, 0);
-        Camera.main.transform.localPosition = newpos;
+        GameWorldViewController.GoTo(newpos);
         //make it animated
     }
 
@@ -76,6 +81,7 @@ public class GamePlayManager : MonoBehaviour {
         }
 
         world.Render();
+        PanToBase();
     }
 
     // Update is called once per frame
@@ -83,6 +89,21 @@ public class GamePlayManager : MonoBehaviour {
         world.Test();
         yield return null;
 
+    }
+
+    public void PanToBase() {
+        CoordInt basepos = new CoordInt(0, 0, 0);
+        foreach (var item in world.Map.Maps.BasesMap) {
+            if (item.Value.owner.tribe == (Tribe) PlayerTurn) {
+                basepos = item.Value.GridPosition;
+
+                break;
+            }
+        }
+        basepos = IlluminaConverter.FlapTopSwitch(basepos);
+        Debug.Log(basepos.ToVector3Int());
+        Vector3 pos = world.Collection.Layers[0].CellToWorld(basepos.ToVector3Int());
+        GameWorldViewController.GoTo(pos);
     }
 
     public void PauseGame(bool paused = true) {

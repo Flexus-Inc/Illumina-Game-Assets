@@ -91,7 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 336129292392364948}
   - component: {fileID: 1804162764995673422}
-  - component: {fileID: 5876724962073488846}
+  - component: {fileID: 7548153729950753647}
+  - component: {fileID: 2062552294257035975}
   m_Layer: 0
   m_Name: WaterNavigator
   m_TagString: Untagged
@@ -133,8 +134,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &5876724962073488846
-CircleCollider2D:
+--- !u!60 &7548153729950753647
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,6 +147,39 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.78}
-  serializedVersion: 2
-  m_Radius: 0.7
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.77551574, y: 0.85314065}
+      - {x: -0.762677, y: 0.8519848}
+      - {x: -1.4390808, y: 0.30093536}
+      - {x: -0.7398743, y: -0.24451523}
+      - {x: 0.780307, y: -0.26135978}
+      - {x: 1.4323578, y: 0.3238186}
+--- !u!114 &2062552294257035975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8465641450444015712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfdbee3d1eacc04cb2b77e881bed663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blank: {fileID: 0}
+  OutlineShown: 0
+  BasePosition: {x: 0, y: 0, z: 0}
+  GridPosition: {x: 0, y: 0, z: 0}
+  TribeIdentity: 3
+  key: 

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3683228943950305475}
   - component: {fileID: 2942862737623250299}
-  - component: {fileID: 7534750482633572911}
+  - component: {fileID: 3197343249250822794}
+  - component: {fileID: 9203880768821151249}
   m_Layer: 0
   m_Name: EarthNavigator
   m_TagString: Untagged
@@ -52,8 +53,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &7534750482633572911
-CircleCollider2D:
+--- !u!60 &3197343249250822794
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -65,9 +66,42 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3}
-  serializedVersion: 2
-  m_Radius: 3.25
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.1426606, y: 3.5913436}
+      - {x: -3.0794678, y: 3.5819993}
+      - {x: -6.097162, y: 1.2513245}
+      - {x: -3.2197633, y: -1.2801697}
+      - {x: 3.1411958, y: -1.2409073}
+      - {x: 6.136438, y: 1.2513245}
+--- !u!114 &9203880768821151249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362321992623351333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfdbee3d1eacc04cb2b77e881bed663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blank: {fileID: 0}
+  OutlineShown: 0
+  BasePosition: {x: 0, y: 0, z: 0}
+  GridPosition: {x: 0, y: 0, z: 0}
+  TribeIdentity: 1
+  key: 
 --- !u!1 &6465122437818443690
 GameObject:
   m_ObjectHideFlags: 0

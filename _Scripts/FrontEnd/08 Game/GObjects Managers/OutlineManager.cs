@@ -81,6 +81,9 @@ public class OutlineManager : MonoBehaviour {
     }
 
     public static void ShowOutlines(NavigatorEntityManager entity) {
+        if (GamePlayManager.TrapPlacingEnabled) {
+            OutlineCreator.Tile = (Tile) GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<GameAssetsCollection>().TrapMagic;
+        }
         foreach (var item in Outlines) {
             var ent = item.Value.GetComponent<NavigatorEntityManager>();
             if (entity.key == ent.key) {
@@ -138,7 +141,12 @@ public class OutlineManager : MonoBehaviour {
                     var pos = IlluminaConverter.ToCoordInt(gridpos);
                     //pos = IlluminaConverter.FlapTopSwitch(pos);
                     var clickedNavigator = GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<GamePlayManager>().world.Map.Maps.NavigatorsMap[pos];
-                    GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<GamePlayManager>().world.UpdateNavigatorPosition(gridpos, cell, obj);
+                    if (GamePlayManager.TrapPlacingEnabled) {
+                        GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<GamePlayManager>().world.PlaceTrap(clickedNavigator.owner, cell);
+                    } else {
+                        GameObject.FindGameObjectWithTag("ScriptsContainer").GetComponent<GamePlayManager>().world.UpdateNavigatorPosition(gridpos, cell, obj);
+                    }
+
                     ClearNavigatorOutlines();
                 }
             }

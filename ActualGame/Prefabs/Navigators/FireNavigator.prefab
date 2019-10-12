@@ -91,7 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8660173684209702363}
   - component: {fileID: 2729472621884455358}
-  - component: {fileID: 1187313809798713129}
+  - component: {fileID: 7528584712965054679}
+  - component: {fileID: 4092059456279038218}
   m_Layer: 5
   m_Name: FireNavigator
   m_TagString: Untagged
@@ -133,8 +134,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &1187313809798713129
-CircleCollider2D:
+--- !u!114 &7528584712965054679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059478078968540592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfdbee3d1eacc04cb2b77e881bed663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blank: {fileID: 0}
+  OutlineShown: 0
+  BasePosition: {x: 0, y: 0, z: 0}
+  GridPosition: {x: 0, y: 0, z: 0}
+  TribeIdentity: 2
+  key: 
+--- !u!60 &4092059456279038218
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,6 +165,21 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.9}
-  serializedVersion: 2
-  m_Radius: 0.7
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.60208946, y: 0.6541184}
+      - {x: -0.5735462, y: 0.6768963}
+      - {x: -1.1387628, y: 0.24648108}
+      - {x: -0.59821373, y: -0.2149259}
+      - {x: 0.5982126, y: -0.21492472}
+      - {x: 1.1074781, y: 0.21521346}

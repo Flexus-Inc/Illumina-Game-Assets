@@ -26,7 +26,6 @@ namespace Illumina.Controller {
             Data.old = true;
             playDataSerializer.SaveData(Data);
             //TODO : include saving to firebase
-            // var data = Data.ToServerData();
             // RestClient.Put("https://illumina-6a2f2.firebaseio.com/playdatas/" + data.play_key + ".json", data);
         }
 

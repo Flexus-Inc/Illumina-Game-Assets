@@ -31,7 +31,7 @@ public class BaseEntityManager : MonoBehaviour {
     }
 
     void BaseClick() {
-        if (!GamePlayManager.GamePaused && GamePlayManager.MovementEnabled && (this.gameObject.GetComponent<BaseEntityManager>().TribeIdentity == (Tribe) GamePlayManager.PlayerTurn)) {
+        if (!GamePlayManager.GamePaused && GamePlayManager.MovementEnabled && (this.gameObject.GetComponent<BaseEntityManager>().TribeIdentity == (Tribe) GamePlayManager.PlayerTurn) && GamePlayManager.Navigators.Count < 3) {
             var selectedObj = this.gameObject;
             selectedObj.GetComponent<BaseEntityManager>().ShowOutlines(selectedObj.GetComponent<BaseEntityManager>().GridPosition);
             OutlineManager.ShowOutlines(selectedObj.GetComponent<BaseEntityManager>());
