@@ -1711,7 +1711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 252.14996, y: -95.20099}
+  m_AnchoredPosition: {x: 252.14996, y: -95.20098}
   m_SizeDelta: {x: -1091.3, y: -320.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &993351830
@@ -2228,7 +2228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 258.2, y: -84.604004}
+  m_AnchoredPosition: {x: 258.2, y: -84.604}
   m_SizeDelta: {x: -1132.8, y: -341.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1197628088
@@ -3260,9 +3260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e2b167f42908349b7e8cbba3e3726f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timertext: {fileID: 205590677}
   timer: 60
-  countdownText: {fileID: 205590677}
-  sceneindex: 3
+  sceneIndex: 3
 --- !u!114 &1532042845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4085,7 +4085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 252.15002, y: -89.60004}
+  m_AnchoredPosition: {x: 252.15002, y: -89.60003}
   m_SizeDelta: {x: -1091.3, y: -309.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1982952937
@@ -4327,7 +4327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 252.15002, y: -89.599976}
+  m_AnchoredPosition: {x: 252.15002, y: -89.59997}
   m_SizeDelta: {x: -1091.3, y: -309.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124075336

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Illumina.Controller;
 using Proyecto26;
 
 public class DiceRoll : MonoBehaviour
@@ -11,6 +13,7 @@ public class DiceRoll : MonoBehaviour
 
     public float delay;
     public int repetitions;
+    //public int soundIndex;
 
     public Collider2D diceCollider;
     public Animator[] animator;
@@ -20,6 +23,7 @@ public class DiceRoll : MonoBehaviour
     private void OnMouseDown()
     {
         StartCoroutine(DiceRoller());
+        //GameObject.Find("__SoundManager").GetComponent<SoundManager>().PlaySound(soundIndex);
     }
 
     IEnumerator DiceRoller()
