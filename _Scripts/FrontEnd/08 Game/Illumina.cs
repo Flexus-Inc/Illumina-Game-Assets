@@ -3,6 +3,27 @@ using UnityEngine;
 namespace Illumina {
 
     //Illumina Datatypes
+    public struct Limit {
+
+        public float x, y;
+
+        public Limit(float _xy) {
+            this.x = _xy;
+            this.y = _xy;
+        }
+        public Limit(float _x, float _y) {
+            this.x = _x;
+            this.y = _y;
+        }
+
+        public bool CompareTo(float other) {
+            var isX = (other < this.x) || (other > this.y);
+            if (isX) {
+                return false;
+            }
+            return true;
+        }
+    }
 
     [System.Serializable]
     public class Coord {
@@ -43,6 +64,7 @@ namespace Illumina {
         }
     }
 
+    [System.Serializable]
     public class CoordInt : Coord {
         public CoordInt(int x, int y, int z = 0) : base((float) x, (float) y, (float) z) {
             //do nothing;
@@ -53,13 +75,21 @@ namespace Illumina {
         public override float Z { get => (int) z; }
 
         public Vector3Int ToVector3Int() {
-            return new Vector3Int((int) this.x, (int) this.y, (int) this.z);
+            return new Vector3Int((int) this.X, (int) this.Y, (int) this.Z);
         }
     }
 
     public class IlluminaConverter {
         public static CoordInt ToCoordInt(Vector3Int pos) {
             return new CoordInt(pos.x, pos.y, pos.z);
+        }
+
+        public static Vector3Int ToFlatTopPos(Vector3Int pos) {
+            return new Vector3Int(pos.y, pos.x, pos.z);
+        }
+
+        public static CoordInt FlapTopSwitch(CoordInt pos) {
+            return new CoordInt((int) pos.Y, (int) pos.X, (int) pos.Z);
         }
     }
 }

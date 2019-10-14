@@ -12,6 +12,8 @@ using Illumina.Security;
 using UnityEngine;
 
 namespace Illumina.Models {
+
+    [System.Serializable]
     public class IlluminaModel {
         public string response_message = "";
         public string response_code = "";

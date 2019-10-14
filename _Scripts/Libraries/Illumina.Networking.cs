@@ -52,7 +52,7 @@ namespace Illumina.Networking {
 
         public static void GetCsrfToken() {
             var tokenQuery = IlluminaHash.GetUniqueDateTimeHash();
-            var uri = "/" + tokenQuery + "/token";
+            var uri = NetworkManager.App_Url + "/" + tokenQuery + "/token";
             Request csrfRequest = new Request {
                 uri = uri,
             };
@@ -67,9 +67,9 @@ namespace Illumina.Networking {
 
         private static void DisplayAlert(Exception err) {
             if (Application.internetReachability == NetworkReachability.NotReachable) {
-                UIManager.Alert("No internet connection");
+                UIManager.AlertBox(Notification.Danger, "No internet connection");
             } else {
-                UIManager.Alert("CONNECTION ERROR : " + err.Message);
+                UIManager.Danger("CONNECTION ERROR : " + err.Message);
             }
 
         }

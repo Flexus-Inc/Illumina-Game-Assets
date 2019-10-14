@@ -9,12 +9,16 @@ public class GameDataManager : MonoBehaviour {
     public Sprite[] ProfileAvatars;
     void Awake() {
         CreateSerializers();
+    }
+
+    void OnEnable() {
         SettingsController.LoadSettingsData();
     }
 
     void CreateSerializers() {
         Serializer.SavePathDirectory = Application.persistentDataPath + "/saves/";
-        SettingsController.CreateSerializers();
+        SettingsController.CreateSerializer();
+        PlayDataController.CreateSerializer();
     }
 
     public Sprite GetAvatar(int profile) {

@@ -3,26 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public int timer;
-    public Text countdownText;
-
-    void Start(){
-        StartCoroutine("LoseTime");
-        Time.timeScale = 1;
-    }
+    public Text timertext;
+    public float timer = 0.0f;
+    private  int time;
+    public int sceneIndex;
 
     void Update(){
-        countdownText.text = ("" + timer);
-    }
-
-    IEnumerator LoseTime(){
-        while(timer>0){
-            yield return new WaitForSeconds(1);
-            timer--;
+        timer -= Time.deltaTime;
+        time = (int)(timer % 60);
+        timertext.text = time.ToString();
+        if(timer < 0){
+            SceneManager.LoadScene(sceneIndex);
         }
     }
-
 }

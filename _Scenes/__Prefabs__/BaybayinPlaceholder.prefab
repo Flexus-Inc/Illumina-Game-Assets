@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2164157414277279422}
   - component: {fileID: 2164157414277279421}
   - component: {fileID: 4856002695378881131}
+  - component: {fileID: 6487982625925238554}
   m_Layer: 5
   m_Name: BaybayinPlaceholder
   m_TagString: Untagged
@@ -29,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 2164157414277279410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,8 +101,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0f0e5285230120642a59e2dddbae309c, type: 3}
   img: {fileID: 2164157414277279422}
   repeatable: 1
-  LimitXAxis: 1920
-  LimitYAxis: 1080
+  LimitXAxis: 3840
+  LimitYAxis: 2160
 --- !u!114 &4856002695378881131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,3 +116,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 1
+--- !u!114 &6487982625925238554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164157414277279410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fc1b89081be8547906cfa6022c72b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  repeatable: 1
+  duration: 5
+  img: {fileID: 2164157414277279422}

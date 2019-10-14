@@ -12,7 +12,7 @@ namespace Illumina.Controller {
 
         public static void UserExists(string identifier, string value, RequestSuccessEventHandler e, RequestFailedEventHandler f) {
             var tokenQuery = IlluminaHash.GetUniqueDateTimeHash();
-            var uri = "/user/exists/" + tokenQuery;
+            var uri = NetworkManager.App_Url + "/user/exists/" + tokenQuery;
             uri += "?" + identifier + "=" + value;
             Request userExistRequest = new Request {
                 uri = uri,
@@ -25,7 +25,7 @@ namespace Illumina.Controller {
         public static void VerifyEmail(User user) {
             user.password = IlluminaHash.GetHash(user.password);
             Request verifyRequest = new Request {
-                uri = "/user/verifyemail/" + IlluminaHash.GetUniqueDateTimeHash(),
+                uri = NetworkManager.App_Url + "/user/verifyemail/" + IlluminaHash.GetUniqueDateTimeHash(),
                 body = user
             };
 
@@ -38,7 +38,7 @@ namespace Illumina.Controller {
             password = user.password;
             user.password = IlluminaHash.GetHash(user.password);
             Request signupRequest = new Request {
-                uri = "/user",
+                uri = NetworkManager.App_Url + "/user",
                 body = user
             };
             signupRequest.RequestSuccessEvents += OnSignUpRequestSuccess;
@@ -53,7 +53,7 @@ namespace Illumina.Controller {
 
         public static void OnVerifyRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Alert(err.Message);
+            UIManager.Danger(err.Message);
         }
         public static void OnSignUpRequestSuccess(object source) {
             var user = (User) source;
@@ -65,13 +65,14 @@ namespace Illumina.Controller {
 
         public static void OnSignUpRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Alert(err.Message);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
         }
         public static void Login(User user) {
             user.password = IlluminaHash.GetHash(user.password);
             //user.username = IlluminaCipher.Encipher(user.username);
             Request loginRequest = new Request {
-                uri = "/user/login",
+                uri = NetworkManager.App_Url + "/user/login",
                 body = user
             };
             loginRequest.RequestSuccessEvents += OnLoginRequestSuccess;
@@ -88,30 +89,59 @@ namespace Illumina.Controller {
 
         public static void OnLoginRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Alert(err.Message);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
         }
 
         public static void Logout(User user) {
             Request logoutRequest = new Request {
-                uri = "/user/logout",
+                uri = NetworkManager.App_Url + "/user/logout",
                 body = user
             };
 
             logoutRequest.RequestSuccessEvents += OnLogoutRequestSuccess;
-            logoutRequest.RequestFailedEvents += OnLogoutRequestSuccess;
+            logoutRequest.RequestFailedEvents += OnLogoutRequestFailed;
             Update<User>(logoutRequest);
         }
 
         public static void OnLogoutRequestSuccess(object source) {
-            GameData.User = (User) source;
-            Debug.Log(GameData.User.GetServerMessage());
-            UIManager.HideLoading();
-            ScenesManager.GoToScene(3);
+            GameData.User = null;
+            var user = (User) source;
+            if (GameData.User == null) {
+                Debug.Log(user.GetServerMessage());
+                UIManager.HideLoading();
+                ScenesManager.GoToScene(2);
+            } else {
+                UIManager.HideLoading();
+                UIManager.Danger("Error in logging out");
+            }
+
         }
 
         public static void OnLogoutRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Alert(err.Message);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
+        }
+
+        public static void ResetPass(User user) {
+            Request forgotPassRequest = new Request {
+                uri = NetworkManager.App_Url + "/user/forgotpass",
+                body = user
+            };
+
+            forgotPassRequest.RequestSuccessEvents += OnForgotPassRequestSuccess;
+            forgotPassRequest.RequestFailedEvents += OnForgotPassRequestFailed;
+            Update<User>(forgotPassRequest);
+        }
+
+        public static void OnForgotPassRequestSuccess(object source) {
+            UIManager.HideLoading();
+        }
+        public static void OnForgotPassRequestFailed(Exception err) {
+            Debug.Log(err);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
         }
 
     }
