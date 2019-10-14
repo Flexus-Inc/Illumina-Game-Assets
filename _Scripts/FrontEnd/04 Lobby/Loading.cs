@@ -8,6 +8,7 @@ public class Loading : MonoBehaviour
 {
     public GameObject loadingpanel;
     public Text loadingtext;
+    public int sceneIndex;
 
     public void LoadScene(int sceneIndex){
         StartCoroutine(LoadAsynchronously(sceneIndex));

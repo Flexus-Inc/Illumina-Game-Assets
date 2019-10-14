@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 ﻿using System.Collections;
 using System.Collections.Generic;
+=======
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Illumina.Controller;
+>>>>>>> 3be2b2b61d85af4a3ca764c622fb222147b18a7c
 using Proyecto26;
 using UnityEngine;
 
@@ -11,18 +18,29 @@ public class DiceRoll : MonoBehaviour {
 
     public float delay;
     public int repetitions;
+<<<<<<< HEAD
     bool roll_enabled = true;
     public static List<int> hexpos = new List<int>();
+=======
+    //public int soundIndex;
+>>>>>>> 3be2b2b61d85af4a3ca764c622fb222147b18a7c
 
     public Collider2D diceCollider;
     public Animator[] animator;
     public SpriteRenderer[] renderHex;
 
+<<<<<<< HEAD
     private void Update() {
         if (Input.GetMouseButtonDown(0) && roll_enabled) {
             StartCoroutine(DiceRoller());
         }
 
+=======
+    private void OnMouseDown()
+    {
+        StartCoroutine(DiceRoller());
+        //GameObject.Find("__SoundManager").GetComponent<SoundManager>().PlaySound(soundIndex);
+>>>>>>> 3be2b2b61d85af4a3ca764c622fb222147b18a7c
     }
 
     IEnumerator DiceRoller() {
