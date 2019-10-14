@@ -32,7 +32,6 @@ namespace Illumina {
     public class WorldMap {
 
         public WorldMaps Maps;
-        //TODO: remove public keyword before build
 
         public WorldMap() {
             Maps = new WorldMaps();

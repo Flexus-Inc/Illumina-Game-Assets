@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour {
-    public static string Laravel_Uri = "https://server.ilumina.flexus.online";
+    public static string Laravel_Uri = "";
+    //TODO: change to https://server.ilumina.flexus.online
     public static string Firebase_Uri = "https://illumina-6a2f2.firebaseio.com/";
 
     void OnEnable() {

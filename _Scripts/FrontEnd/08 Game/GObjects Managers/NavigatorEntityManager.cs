@@ -31,7 +31,7 @@ public class NavigatorEntityManager : MonoBehaviour {
     }
 
     void OnMouseDown() {
-        if (!GamePlayManager.GamePaused && GamePlayManager.MovementEnabled && (this.gameObject.GetComponent<NavigatorEntityManager>().TribeIdentity == (Tribe) GamePlayManager.PlayerTurn)) {
+        if (!GamePlayManager.GamePaused && GamePlayManager.MovementEnabled && (this.gameObject.GetComponent<NavigatorEntityManager>().TribeIdentity == (Tribe) GamePlayManager.PlayerTurn) && this.key == GamePlayManager.ActiveNavigatorKey) {
             var selectedObj = this.gameObject;
             selectedObj.GetComponent<NavigatorEntityManager>().ShowOutlines(selectedObj.GetComponent<NavigatorEntityManager>().GridPosition);
             OutlineManager.ShowOutlines(selectedObj.GetComponent<NavigatorEntityManager>());
@@ -78,12 +78,12 @@ public class NavigatorEntityManager : MonoBehaviour {
         yield return null;
         float timeStartedLerping = Time.time;
         float timeSinceStarted = Time.time - timeStartedLerping;
-        float percentageComplete = timeSinceStarted / 0.5f;
+        float percentageComplete = timeSinceStarted / 0.75f;
         Debug.Log("runned");
         navigator.GetComponent<Animator>().SetTrigger("Run");
         while (true) {
             timeSinceStarted = Time.time - timeStartedLerping;
-            percentageComplete = timeSinceStarted / 0.5f;
+            percentageComplete = timeSinceStarted / 0.75f;
             float currentXValue = Mathf.Lerp(oldpos.x, newpos.x, percentageComplete);
             float currentYValue = Mathf.Lerp(oldpos.y, newpos.y, percentageComplete);
             float currentZValue = Mathf.Lerp(oldpos.z, newpos.z, percentageComplete);

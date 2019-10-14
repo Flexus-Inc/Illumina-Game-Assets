@@ -64,6 +64,7 @@ namespace Illumina.Networking {
 
         private static void SetCsrfToken(object source) {
             csrf_token = (string) source;
+            Debug.Log(csrf_token);
         }
 
         private static void DisplayAlert(Exception err) {
@@ -128,7 +129,7 @@ namespace Illumina.Networking {
                 Body = request.body,
                 Headers = request.headers
             };
-            //putRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+            putRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
             RestClient.Put<T>(putRequest)
                 .Then(res => request.CallSuccessEvents(res))
                 .Catch(err => request.CallFailedEvents(err));

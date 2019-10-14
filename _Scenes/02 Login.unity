@@ -803,7 +803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.011963, y: 0.019714355}
+  m_AnchoredPosition: {x: 15.011963, y: 0.01965332}
   m_SizeDelta: {x: 90.962, y: 33.756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &125733583
@@ -1722,7 +1722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -134.1, y: -128}
+  m_AnchoredPosition: {x: -134.1, y: -127.999985}
   m_SizeDelta: {x: -1880, y: -1014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &361141552
@@ -2062,7 +2062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -316.99994}
+  m_AnchoredPosition: {x: 0, y: -317}
   m_SizeDelta: {x: -2950, y: -1648}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &445507337
@@ -2584,7 +2584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -134.1, y: -50}
+  m_AnchoredPosition: {x: -134.1, y: -49.999985}
   m_SizeDelta: {x: -1880, y: -1014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &560751450
@@ -2669,20 +2669,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560751453}
   m_TextComponent: {fileID: 361141554}
   m_Placeholder: {fileID: 786941003}
-  m_ContentType: 4
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 5
+  m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498363356}
-        m_MethodName: OnEndEditUsername
-        m_Mode: 1
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: OnChangedEmail
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2693,7 +2693,18 @@ MonoBehaviour:
         m_CallState: 2
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: OnChangedEmail
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -2934,7 +2945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 28.77002, y: -0.000061035156}
+  m_AnchoredPosition: {x: 28.77002, y: 0}
   m_SizeDelta: {x: -1055.4, y: -401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &612110661
@@ -3827,7 +3838,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -129.99997, y: -101}
+  m_AnchoredPosition: {x: -129.99997, y: -100.999985}
   m_SizeDelta: {x: -1880, y: -1014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &764972203
@@ -4682,7 +4693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5.1000366}
+  m_AnchoredPosition: {x: 0, y: -5.0999756}
   m_SizeDelta: {x: 1089.8003, y: 613.1001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &967867514
@@ -4759,7 +4770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 226.59998, y: -105.72003}
+  m_AnchoredPosition: {x: 226.59998, y: -105.72002}
   m_SizeDelta: {x: -1880, y: -1014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &991807177
@@ -6179,15 +6190,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35.599976
       objectReference: {fileID: 0}
-    - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -104.6001
-      objectReference: {fileID: 0}
     - target: {fileID: 1697556758192354190, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -35.01245
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.6001
       objectReference: {fileID: 0}
     - target: {fileID: 2132537207688700539, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
@@ -7076,6 +7087,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: ConfirmForgotPass
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1441698473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7427,6 +7449,7 @@ GameObject:
   - component: {fileID: 1498363355}
   - component: {fileID: 1498363356}
   - component: {fileID: 1498363357}
+  - component: {fileID: 1498363358}
   m_Layer: 0
   m_Name: _ScriptsContainer
   m_TagString: Untagged
@@ -7461,12 +7484,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserName: {fileID: 2139053630}
-  Email: {fileID: 0}
   Password: {fileID: 2016690179}
-  EmailExistText: {fileID: 0}
   UserNameExistText: {fileID: 1019878660}
   LoginButton: {fileID: 2038275561}
-  ConfirmButton: {fileID: 0}
 --- !u!114 &1498363357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7493,6 +7513,22 @@ MonoBehaviour:
   VerificationEmail: {fileID: 1802192345}
   VerificationCode: {fileID: 153490}
   VerificationCodeMismatch: {fileID: 389945387}
+--- !u!114 &1498363358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498363354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5188f22476c5b4f971b5825daea591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Email: {fileID: 560751452}
+  EmailInvalid: {fileID: 702280467}
+  Confirm: {fileID: 1441698472}
+  EmailValid: 0
 --- !u!1 &1561446593
 GameObject:
   m_ObjectHideFlags: 0

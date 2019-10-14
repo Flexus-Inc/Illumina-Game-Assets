@@ -124,14 +124,15 @@ namespace Illumina.Controller {
             UIManager.Danger(err.Message);
         }
 
-        public static void ResetPass(User user) {
-            Request forgotPassRequest = new Request {
-                uri = NetworkManager.Laravel_Uri + "/user/forgotpass",
-                body = user
+        public static void ResetPass(string email) {
+            User findUser = new User {
+                email = email
             };
-
+            Request forgotPassRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/user/forgotPass",
+                body = findUser
+            };
             forgotPassRequest.RequestSuccessEvents += OnForgotPassRequestSuccess;
-            forgotPassRequest.RequestFailedEvents += OnForgotPassRequestFailed;
             Update<User>(forgotPassRequest);
         }
 

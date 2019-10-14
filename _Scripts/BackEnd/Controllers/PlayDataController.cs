@@ -39,6 +39,7 @@ namespace Illumina.Controller {
             GameData.PlayData = Data;
             GameData.PlayDataLoaded = true;
 
+            //TODO: Include loading data from firebase and add security to firebase
             // RestClient.Get<GamePlayData>("https://illumina-6a2f2.firebaseio.com/playdatas/bwbGnZe.json").Then(res => {
             //     Data = res.ToPlayData();
             //     Data.old = true;
@@ -49,7 +50,7 @@ namespace Illumina.Controller {
 
             // }).Catch(err => { Data.old = false; Debug.Log(err); });
             return Data;
-            //TODO: Include loading data from firebase
+
         }
     }
 }

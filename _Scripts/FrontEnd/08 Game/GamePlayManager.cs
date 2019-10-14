@@ -6,11 +6,12 @@ using Illumina.Models;
 using UnityEngine;
 
 public class GamePlayManager : MonoBehaviour {
-
+    
     public World world;
     public GameObject[] NavigatorButtons = new GameObject[3];
     public static GameObject[] NavButtons;
     public static List<GameObject> Navigators = new List<GameObject>();
+    public static string ActiveNavigatorKey;
     public static int PlayerTurn = 1;
     public static bool GamePaused = true;
     public static bool MovementEnabled = true;
@@ -58,10 +59,11 @@ public class GamePlayManager : MonoBehaviour {
     }
 
     public void GoToNavigatorPosition(int index) {
+        var key = Navigators[index].GetComponent<NavigatorEntityManager>().key;
         var pos = Navigators[index].GetComponent<Transform>().position;
         var newpos = new Vector3(pos.x, pos.y, 0);
         GameWorldViewController.GoTo(newpos);
-        //make it animated
+        ActiveNavigatorKey = key;
     }
 
     void CreateGameWorld() {
@@ -110,6 +112,11 @@ public class GamePlayManager : MonoBehaviour {
         GamePaused = paused;
     }
 
+    public void EndGameTurn() {
+        ScenesManager.GoToScene(8);
+        // TODO: change 8 to the buildIndex of c Game
+    }
+
     IEnumerator SetTimer(float duration) {
         var time = duration;
         while (time > 0) {
@@ -122,5 +129,6 @@ public class GamePlayManager : MonoBehaviour {
             }
 
         }
+
     }
 }
