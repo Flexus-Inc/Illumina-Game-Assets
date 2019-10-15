@@ -13,7 +13,7 @@ public class DiceRoll : MonoBehaviour
 
     public float delay;
     public int repetitions;
-    //public int soundIndex;
+    public int soundIndex;
 
     public Collider2D diceCollider;
     public Animator[] animator;
@@ -33,7 +33,7 @@ public class DiceRoll : MonoBehaviour
         for (int i = 0; i <= repetitions; i++)
         {
             diceValue = Random.Range(1, 7);
-
+            GameObject.Find("__SoundManager").GetComponent<SoundManager>().PlaySound(soundIndex);
             if (diceValue == 1)
             {
                 RollOne(); previousRoll = 1;
