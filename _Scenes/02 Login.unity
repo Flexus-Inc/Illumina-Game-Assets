@@ -3252,19 +3252,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 570830060}
   m_TextComponent: {fileID: 627758336}
   m_Placeholder: {fileID: 1347592213}
-  m_ContentType: 4
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 0
+  m_CharacterLimit: 18
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1498363357}
-        m_MethodName: OnEndEditUsername
+        m_MethodName: OnEndEditPassword
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5753,19 +5753,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 974942460}
   m_TextComponent: {fileID: 1289811903}
   m_Placeholder: {fileID: 1335665918}
-  m_ContentType: 4
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 0
+  m_CharacterLimit: 18
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1498363357}
-        m_MethodName: OnEndEditUsername
+        m_MethodName: OnEndEditPassword
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6943,11 +6943,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.0021972656
       objectReference: {fileID: 0}
-    - target: {fileID: 1697556758192354190, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -35.01245
-      objectReference: {fileID: 0}
     - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6962,6 +6957,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -104.6001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697556758192354190, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35.01245
       objectReference: {fileID: 0}
     - target: {fileID: 2132537207688700539, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
@@ -8428,12 +8428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserName: {fileID: 2139053630}
-  Email: {fileID: 0}
   Password: {fileID: 2016690179}
-  EmailExistText: {fileID: 0}
   UserNameExistText: {fileID: 1019878660}
   LoginButton: {fileID: 2038275561}
-  ConfirmButton: {fileID: 1441698472}
 --- !u!114 &1498363357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11013,19 +11010,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1878640212}
   m_TextComponent: {fileID: 1514397126}
   m_Placeholder: {fileID: 1564218096}
-  m_ContentType: 4
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 5
+  m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1498363357}
-        m_MethodName: OnEndEditUsername
+        m_MethodName: OnEndEditEmail
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

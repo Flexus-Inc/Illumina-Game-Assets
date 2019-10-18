@@ -6,13 +6,13 @@ using Illumina.Models;
 using UnityEngine;
 
 public class GamePlayManager : MonoBehaviour {
-    
+
     public World world;
     public GameObject[] NavigatorButtons = new GameObject[3];
     public static GameObject[] NavButtons;
     public static List<GameObject> Navigators = new List<GameObject>();
     public static string ActiveNavigatorKey;
-    public static int PlayerTurn = 1;
+    public static int PlayerTurn = 0;
     public static bool GamePaused = true;
     public static bool MovementEnabled = true;
     public static int TurnMoves = 0;

@@ -868,7 +868,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 270
+  orthographic size: 200
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -953,7 +953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.5999756, y: 0.024963379}
+  m_AnchoredPosition: {x: 4.6000977, y: 0.025024414}
   m_SizeDelta: {x: 45.2, y: 0.050048828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299102905
@@ -6389,6 +6389,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1605760083}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 749581963}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &506954713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6507,7 +6529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.5999756, y: 20}
+  m_AnchoredPosition: {x: 4.6000977, y: 20}
   m_SizeDelta: {x: 45.2, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510120541
@@ -16492,7 +16514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -11.075012}
+  m_AnchoredPosition: {x: 0, y: -11.075073}
   m_SizeDelta: {x: 0, y: 22.150047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665959287
@@ -22910,6 +22932,28 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1605760083}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 506954712}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -51275,6 +51319,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 749581963}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 506954712}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1605760084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52838,7 +52904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4, y: 15.856995}
+  m_AnchoredPosition: {x: -4, y: 15.857056}
   m_SizeDelta: {x: 8, y: -31.714}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856045178
@@ -55372,5 +55438,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a1f7f1213f4c9e045b67287a24707e4f,
         type: 2}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.5249023
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.900024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.6001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69d89439ea4d7d4bb0632b8658813f3, type: 3}
