@@ -69,7 +69,7 @@ namespace Illumina.Networking {
 
         private static void DisplayAlert(Exception err) {
             if (Application.internetReachability == NetworkReachability.NotReachable) {
-                UIManager.AlertBox(Notification.Danger, "No internet connection");
+                //do nothing
             } else {
                 UIManager.Danger("CONNECTION ERROR : " + err.Message);
             }

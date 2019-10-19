@@ -14,27 +14,24 @@ public class NetworkManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-
+    void Start() {
+        StartCoroutine(ListenToConnectionChanges());
     }
 
-    public void SendPlayData(WWWForm form) {
-        StartCoroutine(UploadPlayData(form));
-    }
-
-    public static void SendGameData(WWWForm form) {
-        GameObject.Find("__NetworkManager").GetComponent<NetworkManager>().SendPlayData(form);
-    }
-
-    IEnumerator UploadPlayData(WWWForm form) {
-        using(var w = UnityWebRequest.Post(Laravel_Uri + "/upload", form)) {
-            //w.SetRequestHeader("X-CSRF-TOKEN", IlluminaWebRequest.csrf_token);
-            yield return w.SendWebRequest();
-            if (w.isNetworkError || w.isHttpError) {
-                print(w.error);
-            } else {
-                print("Finished Uploading Screenshot");
+    IEnumerator ListenToConnectionChanges() {
+        var closed = true;
+        while (true) {
+            if (Application.internetReachability == NetworkReachability.NotReachable && closed) {
+                UIManager.AlertBox(Notification.Warning, "No internet connection. ", false);
+                closed = false;
             }
+            if (Application.internetReachability != NetworkReachability.NotReachable && !closed) {
+                UIManager.enableClosing = true;
+                UIManager.popup_open = false;   
+                closed = true;
+            }
+            yield return new WaitForSeconds(1);
+
         }
     }
 }

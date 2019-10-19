@@ -79,14 +79,16 @@ public class UIManager : MonoBehaviour {
         GameObject.Find("__UIManager").GetComponent<UIManager>().OpenWarning("alert", content, Notification.Danger);
     }
 
-    public static void Notify(Notification alert, string content, bool fromtop = true) {
-        GameObject.Find("__UIManager").GetComponent<UIManager>().ShowNotification(alert, content, fromtop);
-    }
-    public static void AlertBox(Notification type, string content) {
+    public static void AlertBox(Notification type, string content, bool _enableClosing = true) {
+        enableClosing = _enableClosing;
         GameObject.Find("__UIManager").GetComponent<UIManager>().OpenWarning(type.ToString(), content, type);
     }
     public static void Warning(string content) {
         GameObject.Find("__UIManager").GetComponent<UIManager>().OpenWarning("warning", content, Notification.Warning);
+    }
+
+    public static void Notify(Notification alert, string content, bool fromtop = true) {
+        GameObject.Find("__UIManager").GetComponent<UIManager>().ShowNotification(alert, content, fromtop);
     }
 
     public static void PopUp(string title, string content, bool showButtons = true, int type = 0, int animationtype = 0) {
