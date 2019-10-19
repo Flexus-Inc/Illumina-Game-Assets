@@ -35,8 +35,8 @@ namespace Illumina.Controller {
         }
 
         public static void Signup(User user) {
-            user.password = IlluminaHash.GetHash(user.password);
             password = user.password;
+            user.password = IlluminaHash.GetHash(user.password);
             Request signupRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/user",
                 body = user
@@ -57,11 +57,16 @@ namespace Illumina.Controller {
         }
         public static void OnSignUpRequestSuccess(object source) {
             var user = (User) source;
-            user.logged_in = true;
-            user.password = password;
-            Login(user);
-            user.password = null;
-            password = null;
+            if (user.response_code == "0") {
+                user.logged_in = true;
+                user.password = password;
+                Login(user);
+                user.password = null;
+                password = null;
+            } else {
+                UIManager.Warning(user.GetServerMessage());
+            }
+
         }
 
         public static void OnSignUpRequestFailed(Exception err) {
@@ -82,10 +87,16 @@ namespace Illumina.Controller {
         }
 
         public static void OnLoginRequestSuccess(object source) {
-            GameData.User = (User) source;
+            var user = (User) source;
             Debug.Log(GameData.User.GetServerMessage());
             UIManager.HideLoading();
-            ScenesManager.GoToScene(3);
+            if (user.response_code == "0") {
+                GameData.User = user;
+                ScenesManager.GoToScene(3);
+            } else {
+                UIManager.Warning(user.GetServerMessage());
+            }
+
         }
 
         public static void OnLoginRequestFailed(Exception err) {

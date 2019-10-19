@@ -24,6 +24,7 @@ public class SignUpView : MonoBehaviour {
     public InputField VerificationCode;
     public Text VerificationCodeMismatch;
     string code;
+    int profile;
     User newUser;
     Dictionary<string, bool> errors;
 
@@ -93,6 +94,7 @@ public class SignUpView : MonoBehaviour {
         EmailExistText.text = "Cannot verify";
     }
     public void ChangeProfile(int index) {
+        profile = index;
         newUser.profile = index;
     }
 
@@ -112,6 +114,7 @@ public class SignUpView : MonoBehaviour {
             password = Password.text,
             email = Email.text,
             name = DisplayName.text,
+            profile = profile,
             code = this.code
         };
 
@@ -124,7 +127,7 @@ public class SignUpView : MonoBehaviour {
     }
     public void Submit() {
         newUser.password = Password.text;
-
+        
         if (!errors.ContainsValue(true)) {
             UserController.Signup(newUser);
             UIManager.DisplayLoading();

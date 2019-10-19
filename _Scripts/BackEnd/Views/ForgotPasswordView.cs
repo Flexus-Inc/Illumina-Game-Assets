@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ForgotPasswordView : MonoBehaviour {
+    //TODO: make it working by sunday;
     public InputField Email;
     public Text EmailInvalid;
     public Button Confirm;
