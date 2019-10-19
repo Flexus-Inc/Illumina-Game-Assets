@@ -50,11 +50,39 @@ namespace Illumina.Controller {
 
         public static void OnUpdateRequestSuccess(object source) {
             var lobby = (LobbyRoom) source;
+            if (lobby.users.Length > LobbyView.lobby.users.Length) {
+                LobbyView.decreasedCount = true;
+            }
             LobbyView.lobby = lobby;
             LobbyView.playersUpdating = false;
         }
 
         public static void OnUpdateRequestFailed(Exception err) {
+            Debug.Log(err);
+            UIManager.Danger(err.Message);
+        }
+
+        public static void StatusCheck(User user, LobbyRoom lobby) {
+            LobbyRegistree registree = new LobbyRegistree {
+                username = user.username,
+                hostid = lobby.hostid
+            };
+            Request checkRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/lobby/statuscheck",
+                body = registree
+            };
+            checkRequest.RequestSuccessEvents += OnCheckRequestSuccess;
+            checkRequest.RequestFailedEvents += OnCheckRequestFailed;
+            Update<LobbyRegistree>(checkRequest);
+        }
+
+        public static void OnCheckRequestSuccess(object source) {
+            var lobby = (LobbyRegistree) source;
+            Debug.Log("Checked status of " + lobby.username);
+            LobbyView.playersChecking = false;
+        }
+
+        public static void OnCheckRequestFailed(Exception err) {
             Debug.Log(err);
             UIManager.Danger(err.Message);
         }
