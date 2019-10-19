@@ -35,8 +35,8 @@ namespace Illumina.Controller {
         }
 
         public static void Signup(User user) {
-            password = user.password;
             user.password = IlluminaHash.GetHash(user.password);
+            password = user.password;
             Request signupRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/user",
                 body = user
@@ -61,6 +61,7 @@ namespace Illumina.Controller {
             user.password = password;
             Login(user);
             user.password = null;
+            password = null;
         }
 
         public static void OnSignUpRequestFailed(Exception err) {
@@ -141,6 +142,32 @@ namespace Illumina.Controller {
         }
         public static void OnForgotPassRequestFailed(Exception err) {
             Debug.Log(err);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
+        }
+
+        public static void Edit(User user) {
+            user.password = IlluminaHash.GetHash(user.password);
+            password = user.password;
+            Request editRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/user/editaccount",
+                body = user
+            };
+            editRequest.RequestSuccessEvents += OnEditRequestSuccess;
+            editRequest.RequestFailedEvents += OnEditRequestFailed;
+            Store<User>(editRequest);
+        }
+
+        public static void OnEditRequestSuccess(object source) {
+            var user = (User) source;
+            user.password = password;
+            GameData.User = user;
+            password = null;
+            Debug.Log(user.response_message);
+            UIManager.HideLoading();
+            ScenesManager.GoToScene(3);
+        }
+        public static void OnEditRequestFailed(Exception err) {
             UIManager.HideLoading();
             UIManager.Danger(err.Message);
         }
