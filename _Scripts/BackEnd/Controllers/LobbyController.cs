@@ -50,10 +50,7 @@ namespace Illumina.Controller {
 
         public static void OnUpdateRequestSuccess(object source) {
             var lobby = (LobbyRoom) source;
-            if (lobby.users.Length > LobbyView.lobby.users.Length) {
-                LobbyView.decreasedCount = true;
-            }
-            LobbyView.lobby = lobby;
+            LobbyView.stagingLobby = lobby;
             LobbyView.playersUpdating = false;
         }
 

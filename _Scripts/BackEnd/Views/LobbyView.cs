@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class LobbyView : MonoBehaviour {
 
     public GameObject[] UserContainers;
+    public static LobbyRoom stagingLobby;
     public static LobbyRoom lobby;
     public static bool registrationDone = false;
     public static bool playersUpdating = false;
@@ -42,19 +43,22 @@ public class LobbyView : MonoBehaviour {
             while (playersUpdating) {
                 yield return null;
             }
-            if (decreasedCount) {
-                for (int i = lobby.users.Length - 1; i >= 0; i--) {
-                    UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
-                    yield return new WaitForSeconds(0.15f);
-                }
-                decreasedCount = false;
-            }
+
             for (int i = 0; i < lobby.users.Length; i++) {
-                UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = lobby.users[i].username;
-                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = lobby.users[i].email;
+                if (stagingLobby.users.Length < lobby.users.Length && i == (lobby.users.Length - 1)) {
+                    UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
+                    break;
+                }
+                if (UserContainers[i].transform.GetChild(1).GetComponent<Text>().text != stagingLobby.users[i].username) {
+                    UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
+                    yield return new WaitForSeconds(0.75f);
+                }
+                UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = stagingLobby.users[i].username;
+                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = stagingLobby.users[i].email;
                 UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
                 yield return new WaitForSeconds(0.25f);
             }
+            lobby = stagingLobby;
         }
     }
 
