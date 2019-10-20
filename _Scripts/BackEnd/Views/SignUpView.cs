@@ -107,7 +107,7 @@ public class SignUpView : MonoBehaviour {
     }
 
     public void Verify() {
-        this.code = (new Key()).GenerateRandom(6);
+        var code = (new Key()).GenerateRandom(6);
         Debug.Log(this.code);
         newUser = new User {
             username = UserName.text,
@@ -127,7 +127,7 @@ public class SignUpView : MonoBehaviour {
     }
     public void Submit() {
         newUser.password = Password.text;
-        
+
         if (!errors.ContainsValue(true)) {
             UserController.Signup(newUser);
             UIManager.DisplayLoading();

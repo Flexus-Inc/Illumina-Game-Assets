@@ -23,7 +23,7 @@ namespace Illumina.Controller {
         }
 
         public static void VerifyEmail(User user) {
-            user.password = IlluminaHash.GetHash(user.password);
+
             Request verifyRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/user/verifyemail/" + IlluminaHash.GetUniqueDateTimeHash(),
                 body = user
@@ -88,7 +88,7 @@ namespace Illumina.Controller {
 
         public static void OnLoginRequestSuccess(object source) {
             var user = (User) source;
-            Debug.Log(GameData.User.GetServerMessage());
+            Debug.Log(user.GetServerMessage());
             UIManager.HideLoading();
             if (user.response_code == "0") {
                 GameData.User = user;
@@ -150,6 +150,7 @@ namespace Illumina.Controller {
 
         public static void OnForgotPassRequestSuccess(object source) {
             UIManager.HideLoading();
+            ScenesManager.GoToScene(2);
         }
         public static void OnForgotPassRequestFailed(Exception err) {
             Debug.Log(err);

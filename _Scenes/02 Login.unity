@@ -2955,6 +2955,7 @@ GameObject:
   - component: {fileID: 560751454}
   - component: {fileID: 560751453}
   - component: {fileID: 560751452}
+  - component: {fileID: 560751455}
   m_Layer: 5
   m_Name: Email input
   m_TagString: Untagged
@@ -3025,19 +3026,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560751453}
   m_TextComponent: {fileID: 361141554}
   m_Placeholder: {fileID: 786941003}
-  m_ContentType: 4
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 5
+  m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498363356}
-        m_MethodName: OnEndEditUsername
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: OnEndEditEmailEmail
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3093,6 +3094,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560751450}
   m_CullTransparentMesh: 0
+--- !u!114 &560751455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560751450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 8
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 702280467}
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Click out of the input filed to verify your email
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &568280734
 GameObject:
   m_ObjectHideFlags: 0
@@ -4538,6 +4567,17 @@ MonoBehaviour:
       - m_Target: {fileID: 801636796}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: ConfirmForgotPass
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6993,6 +7033,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7897554021879026296, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69d89439ea4d7d4bb0632b8658813f3, type: 3}
 --- !u!1 &1287455036
@@ -8112,6 +8157,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: VerifyIdentity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1441698473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8394,6 +8450,7 @@ GameObject:
   - component: {fileID: 1498363355}
   - component: {fileID: 1498363356}
   - component: {fileID: 1498363357}
+  - component: {fileID: 1498363358}
   m_Layer: 0
   m_Name: _ScriptsContainer
   m_TagString: Untagged
@@ -8457,6 +8514,25 @@ MonoBehaviour:
   VerificationEmail: {fileID: 1802192345}
   VerificationCode: {fileID: 153490}
   VerificationCodeMismatch: {fileID: 389945387}
+--- !u!114 &1498363358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498363354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5188f22476c5b4f971b5825daea591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Email: {fileID: 560751452}
+  VerificationCode: {fileID: 1585343029}
+  EmailInvalid: {fileID: 702280467}
+  VerificationCodeMismatch: {fileID: 1853810308}
+  Confirm: {fileID: 1441698472}
+  VerifyButton: {fileID: 785850212}
+  EmailValid: 0
 --- !u!1 &1514397124
 GameObject:
   m_ObjectHideFlags: 0
@@ -9076,6 +9152,7 @@ GameObject:
   - component: {fileID: 1585343031}
   - component: {fileID: 1585343030}
   - component: {fileID: 1585343029}
+  - component: {fileID: 1585343032}
   m_Layer: 5
   m_Name: Code input
   m_TagString: Untagged
@@ -9157,8 +9234,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498363356}
-        m_MethodName: OnEndEditUsername
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: OnEditCode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9214,6 +9291,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585343027}
   m_CullTransparentMesh: 0
+--- !u!114 &1585343032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585343027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1853810308}
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Click outside the input field to verify the code
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1597210338
 GameObject:
   m_ObjectHideFlags: 0
@@ -10724,7 +10829,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Invalid code
+  m_Text: 
 --- !u!222 &1853810309
 CanvasRenderer:
   m_ObjectHideFlags: 0
