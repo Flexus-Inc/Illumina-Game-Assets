@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/__ImportedAssets": true,
+			"**/_Scenes": true,
+			"**/*.code-workspace": true,
+			"**/*.meta": true,
+			"**/Logs": true,
+			"**/Packages": true,
+			"**/*.collabignore": true,
+			"**/*.csproj": true,
+			"**/*.sln": true,
+		},
+		"todo-tree.filtering.excludeGlobs": ["**/__ImportedAssets", "**/Library"]
+	}
+}

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public static class GameData {
 
+    public static bool PlayDataLoaded = false;
     static User user = new User();
     static PlayData playdata = new PlayData();
     public static User User { get => user; set => user = value; }

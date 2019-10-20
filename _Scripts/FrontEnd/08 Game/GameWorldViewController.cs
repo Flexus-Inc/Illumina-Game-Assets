@@ -24,15 +24,9 @@ public class GameWorldViewController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //var scroll_pos = Input.GetAxis("Mouse ScrollWheel"); // latest scroll position
-        //if (scroll_pos != ScrollPos)
-        //{
-        //ZoomView(scroll_pos);
-        // if (ActualGameManager.IsGameAccesible()) {
-        //     
-        // }
-        PanInMap();
-        //}
+        if (!GamePlayManager.GamePaused) {
+            PanInMap();
+        }
 
     }
     void PanInMap() {
@@ -59,6 +53,13 @@ public class GameWorldViewController : MonoBehaviour {
             }
         }
     }
+    public void PanTo(Vector3 pos) {
+        StartCoroutine(GoBack(pos));
+    }
+
+    public static void GoTo(Vector3 pos) {
+        Camera.main.gameObject.GetComponent<GameWorldViewController>().PanTo(pos);
+    }
 
     public IEnumerator GoBack(Vector3 req, float lerpTime = 0.5f) {
         Vector3 end = req;
@@ -77,4 +78,5 @@ public class GameWorldViewController : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
     }
+
 }

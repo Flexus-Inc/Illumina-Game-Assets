@@ -52,7 +52,6 @@ namespace FedLibrary.Encrypting {
     }
 
     public static class FedCipher {
-        //TODO: do it tommorrow morning
         static List<char> vowels = new List<char>() { 'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u' };
 
         public static string Encrypt(string text, bool CommaSeperated = false) {
