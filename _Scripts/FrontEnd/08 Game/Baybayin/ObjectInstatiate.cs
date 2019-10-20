@@ -13,7 +13,7 @@ public class ObjectInstatiate : MonoBehaviour
     {
         for(int i = 0; i < NumOfObjects; i++)
         {
-            var C = Instantiate(img, new Vector3(Random.Range(-400f, 400f), Random.Range(-300f, 300f)), Quaternion.identity) as Image;
+            var C = Instantiate(img, new Vector3(Random.Range(-960f, 960f), Random.Range(-640f, 640f)), Quaternion.identity) as Image;
             C.transform.SetParent(canvas.transform, false);
         }
     }
