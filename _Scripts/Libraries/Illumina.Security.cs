@@ -48,8 +48,8 @@ namespace Illumina.Security {
             return comparer.Compare(hashOfInput, hash) == 0;
         }
     }
-    static class Keys {
-        public static string DataTimeKey(bool Hashed = false, bool ContainingSeconds = false) {
+    public class Key {
+        public string DataTime(bool Hashed = false, bool ContainingSeconds = false) {
             var now = DateTime.UtcNow;
             var str = "" + now.Year + now.Month + now.Day + now.Hour + now.Minute;
             str = ContainingSeconds ? str + now.Second : str;
@@ -59,25 +59,23 @@ namespace Illumina.Security {
             return str;
         }
 
-        public static string RandomKey(int length = 10) {
-            var rand = new System.Random();
+        public string GenerateRandom(int length = 10) {
             char[] keyChar = new char[length];
             for (int i = 0; i < length; i++) {
-                var startingChar = rand.Next(0, 2) == 1 ? 'a' : 'A';
-                keyChar[i] = (char) (startingChar + rand.Next(0, 26));
+                var startingChar = UnityEngine.Random.Range(0, 2) == 1 ? 'a' : 'A';
+                keyChar[i] = (char) (startingChar + UnityEngine.Random.Range(0, 26));
             }
             return new string(keyChar);
         }
-
     }
 
     static class IlluminaHash {
 
         public static string GetUniqueDateTimeHash() {
-            return GetHash(Keys.DataTimeKey());
+            return GetHash((new Key()).DataTime());
         }
         public static string GetHash(string msg) {
-            var keystring = Keys.RandomKey(msg.Length);
+            var keystring = (new Key()).GenerateRandom(msg.Length);
             char[] cipheredMsg = new char[msg.Length * 2];
             for (int i = 0; i < msg.Length; i++) {
                 cipheredMsg[i * 2] = msg[msg.Length - 1 - i];
@@ -112,7 +110,7 @@ namespace Illumina.Security {
 
         static string[] keywords = { "HAVING", "FUN", "WITH", "ILLUMINA" };
         public static string Encipher(string value) {
-            string randomKey = Keys.RandomKey(value.Length * 4);
+            string randomKey = (new Key()).GenerateRandom(value.Length * 4);
             List<string> cipheredParts = new List<string>();
             List<List<char>> keys = new List<List<char>>() {
                 new List<char>(),

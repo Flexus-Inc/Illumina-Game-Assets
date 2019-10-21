@@ -105,7 +105,7 @@ public class SignUpView : MonoBehaviour {
     }
 
     public void Verify() {
-        this.code = Keys.RandomKey(6);
+        this.code = (new Key()).GenerateRandom(6);
 
         newUser = new User {
             username = UserName.text,

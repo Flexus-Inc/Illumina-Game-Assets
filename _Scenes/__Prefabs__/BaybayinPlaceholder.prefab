@@ -85,24 +85,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2164157414277279410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aec60db1e476074a9e6f50ab45e5bff, type: 3}
+  m_Script: {fileID: 11500000, guid: 22960b7289f1b3c47aac86612d26700c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baybayinImg:
-  - {fileID: 21300000, guid: ee08019d1208ffb4b9a4bf5e659303cb, type: 3}
-  - {fileID: 21300000, guid: f2528026580f9374ca4c9169b64402a4, type: 3}
-  - {fileID: 21300000, guid: 7ab2474d09b3e79428c126f00b3d9745, type: 3}
-  - {fileID: 21300000, guid: 4a96f42310dcf16408eeb87f468b12c0, type: 3}
-  - {fileID: 21300000, guid: 47788df361c96eb46b6370998a96e4a4, type: 3}
-  - {fileID: 21300000, guid: f31744904ed6c6545ab5fda80add0755, type: 3}
-  - {fileID: 21300000, guid: cba5b92bd275269479bdae561f0544a7, type: 3}
-  - {fileID: 21300000, guid: 8e6cddc261494d844b2dbada8b700c4c, type: 3}
-  - {fileID: 21300000, guid: a5b104768c640e24c819ff4dfdde0407, type: 3}
-  - {fileID: 21300000, guid: 0f0e5285230120642a59e2dddbae309c, type: 3}
+  - {fileID: 21300000, guid: 214a7219c2d7a5e47ad82769a39570d8, type: 3}
+  - {fileID: 21300000, guid: 5c17f3bcb9ff6eb40939cc3cd6144dcd, type: 3}
+  - {fileID: 21300000, guid: ee6649728e5fd3640a357e7f49095bce, type: 3}
+  - {fileID: 21300000, guid: be012c8408935074084ce7f648713a53, type: 3}
+  - {fileID: 21300000, guid: 09001f99e1f765c488f3c157b3f396a0, type: 3}
+  - {fileID: 21300000, guid: 9026cf9eeb2b9f246a86ca8cc6b9c85f, type: 3}
+  - {fileID: 21300000, guid: 4df36c787969321478937dba229a6ae0, type: 3}
+  - {fileID: 21300000, guid: b2e8a4071b021a7409829f00a5f4d2b2, type: 3}
   img: {fileID: 2164157414277279422}
   repeatable: 1
-  LimitXAxis: 3840
-  LimitYAxis: 2160
+  LimitXAxis: 1920
+  LimitYAxis: 1080
 --- !u!114 &4856002695378881131
 MonoBehaviour:
   m_ObjectHideFlags: 0

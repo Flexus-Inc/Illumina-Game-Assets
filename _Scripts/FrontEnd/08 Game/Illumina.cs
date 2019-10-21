@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Illumina {
@@ -77,6 +78,10 @@ namespace Illumina {
         public Vector3Int ToVector3Int() {
             return new Vector3Int((int) this.X, (int) this.Y, (int) this.Z);
         }
+
+        public string ToText() {
+            return "x" + this.X + "y" + this.Y + "z" + this.Z;
+        }
     }
 
     public class IlluminaConverter {
@@ -91,5 +96,6 @@ namespace Illumina {
         public static CoordInt FlapTopSwitch(CoordInt pos) {
             return new CoordInt((int) pos.Y, (int) pos.X, (int) pos.Z);
         }
+
     }
 }
