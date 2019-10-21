@@ -11,12 +11,8 @@ public class DiceRoll : MonoBehaviour {
 
     public float delay;
     public int repetitions;
-<<<<<<< HEAD
-    public int soundIndex;
-=======
     bool roll_enabled = true;
     public static List<int> hexpos = new List<int>();
->>>>>>> 2be8f8ee494afa3d23a6f439b559598f8fac4934
 
     public Collider2D diceCollider;
     public Animator[] animator;
@@ -34,32 +30,6 @@ public class DiceRoll : MonoBehaviour {
         hexpos.Clear();
         for (int i = 0; i <= repetitions; i++) {
             diceValue = Random.Range(1, 7);
-<<<<<<< HEAD
-            GameObject.Find("__SoundManager").GetComponent<SoundManager>().PlaySound(soundIndex);
-            if (diceValue == 1)
-            {
-                RollOne(); previousRoll = 1;
-            }
-            else if(diceValue == 2)
-            {
-                RollTwo(); previousRoll = 2;
-            }
-            else if (diceValue == 3)
-            {
-                RollThree(); previousRoll = 3;
-            }
-            else if (diceValue == 4)
-            {
-                RollFour(); previousRoll = 4;
-            }
-            else if (diceValue == 5)
-            {
-                RollFive(); previousRoll = 5;
-            }
-            else if (diceValue == 6)
-            {
-                RollSix(); previousRoll = 6;
-=======
 
             if (diceValue == 1) {
                 RollOne();
@@ -79,7 +49,6 @@ public class DiceRoll : MonoBehaviour {
             } else if (diceValue == 6) {
                 RollSix();
                 previousRoll = 6;
->>>>>>> 2be8f8ee494afa3d23a6f439b559598f8fac4934
             }
 
             yield return new WaitForSeconds(delay);
