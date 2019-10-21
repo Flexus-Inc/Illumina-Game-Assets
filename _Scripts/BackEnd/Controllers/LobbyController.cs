@@ -3,6 +3,7 @@ using Illumina.Models;
 using Illumina.Networking;
 using Illumina.Serialization;
 using UnityEngine;
+using static Illumina.Networking.Request;
 
 namespace Illumina.Controller {
 
@@ -52,6 +53,9 @@ namespace Illumina.Controller {
             var lobby = (LobbyRoom) source;
             LobbyView.stagingLobby = lobby;
             LobbyView.playersUpdating = false;
+            if (lobby.response_code == "4") {
+                UIManager.Notify(Notification.Light, "Someone left the lobby", false);
+            }
         }
 
         public static void OnUpdateRequestFailed(Exception err) {
@@ -80,6 +84,40 @@ namespace Illumina.Controller {
         }
 
         public static void OnCheckRequestFailed(Exception err) {
+            Debug.Log(err);
+            UIManager.Danger(err.Message);
+        }
+
+        public static void Ready(LobbyRoom lobby, RequestSuccessEventHandler e, RequestFailedEventHandler f) {
+            LobbyRoom room = lobby;
+            Request updateRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/lobby/ready",
+                body = room
+            };
+            updateRequest.RequestSuccessEvents += e;
+            updateRequest.RequestFailedEvents += f;
+            Update<LobbyRoom>(updateRequest);
+        }
+
+        public static void CreatePlayRoom(PlayRoom room) {
+            Request createRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/lobby/createplay",
+                body = room
+            };
+            createRequest.RequestSuccessEvents += OnCreatePlayRoomRequestSuccess;
+            createRequest.RequestFailedEvents += OnCreatePlayRoomRequestFailed;
+            Store<PlayRoom>(createRequest);
+        }
+
+        public static void OnCreatePlayRoomRequestSuccess(object source) {
+            var room = (PlayRoom) source;
+            Debug.Log("Play room created ,hosting " + room.hostid);
+            GameData.PlayRoom = room;
+            UIManager.HideLoading();
+            ScenesManager.GoToScene(8);
+        }
+
+        public static void OnCreatePlayRoomRequestFailed(Exception err) {
             Debug.Log(err);
             UIManager.Danger(err.Message);
         }

@@ -23,7 +23,6 @@ public class GamePlayManager : MonoBehaviour {
     void OnEnable() {
         GameData.PlayDataLoaded = false;
         PlayDataController.LoadPlayData();
-
     }
     void Awake() {
         foreach (var item in NavigatorButtons) {

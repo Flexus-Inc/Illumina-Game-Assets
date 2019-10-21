@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour {
-    public static string Laravel_Uri = "";
+    public static string Laravel_Uri = "http://192.168.1.13";
     //TODO: change to https://server.ilumina.flexus.online
     public static string Firebase_Uri = "https://illumina-6a2f2.firebaseio.com/";
 
@@ -27,7 +27,7 @@ public class NetworkManager : MonoBehaviour {
             }
             if (Application.internetReachability != NetworkReachability.NotReachable && !closed) {
                 UIManager.enableClosing = true;
-                UIManager.popup_open = false;   
+                UIManager.popup_open = false;
                 closed = true;
             }
             yield return new WaitForSeconds(1);

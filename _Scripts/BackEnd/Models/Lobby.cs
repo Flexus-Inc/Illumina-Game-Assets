@@ -13,8 +13,10 @@ namespace Illumina.Models {
 
     public class LobbyRoom : IlluminaModel {
         public int hostid;
+        public string host;
         public int status;
         public User[] users;
+        public int readyplayers;
     }
 
 }

@@ -23,7 +23,7 @@ public class SignUpView : MonoBehaviour {
     public Text VerificationEmail;
     public InputField VerificationCode;
     public Text VerificationCodeMismatch;
-    string code;
+    string code = "";
     int profile;
     User newUser;
     Dictionary<string, bool> errors;
@@ -107,7 +107,7 @@ public class SignUpView : MonoBehaviour {
     }
 
     public void Verify() {
-        var code = (new Key()).GenerateRandom(6);
+        this.code = (new Key()).GenerateRandom(6);
         Debug.Log(this.code);
         newUser = new User {
             username = UserName.text,

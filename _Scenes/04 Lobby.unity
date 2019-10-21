@@ -2381,7 +2381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1300143531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3293,7 +3293,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532042842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 629ad951b31cde1409fb2df60bdef2c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 19cbddf4ce20b4546b45908a3de8ddfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tribepanel:
@@ -3333,6 +3333,7 @@ MonoBehaviour:
   - {fileID: 1241839883}
   - {fileID: 1562150814}
   - {fileID: 2044578287}
+  ReadyButton: {fileID: 1300143532}
 --- !u!1 &1562150814
 GameObject:
   m_ObjectHideFlags: 0

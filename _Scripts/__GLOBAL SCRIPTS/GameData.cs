@@ -15,6 +15,7 @@ public static class GameData {
         email = "edrianjoseferrer@gmail.com"
     };
     static PlayData playdata = new PlayData();
+    public static PlayRoom PlayRoom = new PlayRoom();
     public static User User { get => user; set => user = value; }
     public static PlayData PlayData { get => playdata; set => playdata = value; }
 }
