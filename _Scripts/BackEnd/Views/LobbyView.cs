@@ -36,7 +36,7 @@ public class LobbyView : MonoBehaviour {
     public void OnReadyRequestSuccess(object source) {
         var _lobby = (LobbyRoom) source;
         stagingLobby = _lobby;
-        if (_lobby.readyplayers == 4) {
+        if (_lobby.readyplayers == 4 && !creatingPlayRoom) {
             creatingPlayRoom = true;
             var room = CreatePlayRoom();
             UIManager.DisplayLoading();
@@ -111,7 +111,7 @@ public class LobbyView : MonoBehaviour {
                 ReadyButton.interactable = true;
             }
             if (lobby.readyplayers == 4) {
-                if (creatingPlayRoom) {
+                if (!creatingPlayRoom) {
                     OnReadyRequestSuccess(lobby);
                 }
                 break;
