@@ -108,7 +108,11 @@ public class LobbyView : MonoBehaviour {
                 ReadyButton.gameObject.SetActive(true);
                 ReadyButton.interactable = true;
             }
+            if (lobby.readyplayers == 4) {
+                break;
+            }
             Debug.Log(lobby.readyplayers);
+            yield return new WaitForSeconds(1);
         }
     }
 
@@ -122,7 +126,7 @@ public class LobbyView : MonoBehaviour {
             while (playersChecking) {
                 yield return null;
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(5);
         }
     }
 
