@@ -129,6 +129,7 @@ namespace Illumina.Controller {
         }
 
         public static void OnCreatePlayRoomRequestSuccess(object source) {
+            Debug.Log("created");
             var room = (PlayRoom) source;
             Debug.Log("Play room created ,hosting " + room.hostid);
             GameData.PlayRoom = room;
