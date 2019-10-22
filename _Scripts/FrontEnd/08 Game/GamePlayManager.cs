@@ -20,10 +20,10 @@ public class GamePlayManager : MonoBehaviour {
     public static bool TrapPlacingEnabled = false;
     public static int TrapSelected = 0;
 
-    void OnEnable() {
-        GameData.PlayDataLoaded = false;
-        PlayDataController.LoadPlayData();
-    }
+    // void OnEnable() {
+    //     GameData.PlayDataLoaded = false;
+    //     PlayDataController.LoadPlayData();
+    // }
     void Awake() {
         foreach (var item in NavigatorButtons) {
             item.SetActive(false);
@@ -65,22 +65,30 @@ public class GamePlayManager : MonoBehaviour {
         ActiveNavigatorKey = key;
     }
 
+    // void CreateGameWorld() {
+    //     var collections = this.gameObject.GetComponent<GameAssetsCollection>();
+    //     world = new World(collections.ToWorldCollection());
+    //     if (GameData.PlayData.old) {
+    //         world.players = GameData.PlayData.players;
+    //         world.Map = GameData.PlayData.worldMap;
+    //     }
+    //     if (!GameData.PlayData.old) {
+    //         world.CreateNew();
+    //         var data = new PlayData();
+    //         data.worldMap = this.world.Map;
+    //         data.players = this.world.players;
+    //         PlayDataController.Data = data;
+    //         PlayDataController.SavePlayData();
+    //     }
+
+    //     world.Render();
+    //     PanToBase();
+    // }
     void CreateGameWorld() {
         var collections = this.gameObject.GetComponent<GameAssetsCollection>();
         world = new World(collections.ToWorldCollection());
-        if (GameData.PlayData.old) {
-            world.players = GameData.PlayData.players;
-            world.Map = GameData.PlayData.worldMap;
-        }
-        if (!GameData.PlayData.old) {
-            world.CreateNew();
-            var data = new PlayData();
-            data.worldMap = this.world.Map;
-            data.players = this.world.players;
-            PlayDataController.Data = data;
-            PlayDataController.SavePlayData();
-        }
-
+        world.players = GameData.PlayData.players;
+        world.Map = GameData.PlayData.worldMap;
         world.Render();
         PanToBase();
     }

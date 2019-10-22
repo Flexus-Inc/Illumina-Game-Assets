@@ -118,13 +118,25 @@ namespace Illumina.Controller {
             createRequest.RequestFailedEvents += OnCreatePlayRoomRequestFailed;
             Store<PlayRoom>(createRequest);
         }
+        public static void WaitPlayRoom(LobbyRoom lobby) {
+            Request createRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/lobby/waitplay",
+                body = lobby
+            };
+            createRequest.RequestSuccessEvents += OnCreatePlayRoomRequestSuccess;
+            createRequest.RequestFailedEvents += OnCreatePlayRoomRequestFailed;
+            Store<PlayRoom>(createRequest);
+        }
 
         public static void OnCreatePlayRoomRequestSuccess(object source) {
             var room = (PlayRoom) source;
             Debug.Log("Play room created ,hosting " + room.hostid);
             GameData.PlayRoom = room;
+            GameData.PlayData = room.data.ToPlayData();
+            UIManager.Notify(Notification.Info, "Battlefield is now ready");
             UIManager.HideLoading();
             ScenesManager.GoToScene(8);
+            UIManager.popup_open = false;
         }
 
         public static void OnCreatePlayRoomRequestFailed(Exception err) {
@@ -134,6 +146,7 @@ namespace Illumina.Controller {
             while (UIManager.popup_open) {
                 //do nothing
             }
+            ScenesManager.GoToScene(3);
         }
     }
 }

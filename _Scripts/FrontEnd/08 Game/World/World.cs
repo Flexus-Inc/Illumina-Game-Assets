@@ -167,13 +167,16 @@ namespace Illumina {
         }
 
         public void CreateNew() {
-            Test(); // TODO: remove this if player creation is created;
             var baseCreator = new BasesCreator(this);
-            baseCreator.PlaceBases(this.players);
+            baseCreator.PlaceBases(CreatePlayerList(GameData.PlayRoom.players));
         }
 
-        public void Create() {
-            //do refreshing of the map
+        public List<Player> CreatePlayerList(Player[] playersarray) {
+            var players = new List<Player>();
+            foreach (var item in playersarray) {
+                players.Add(item);
+            }
+            return players;
         }
 
         public void Render() {

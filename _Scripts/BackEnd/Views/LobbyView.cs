@@ -37,10 +37,16 @@ public class LobbyView : MonoBehaviour {
         var _lobby = (LobbyRoom) source;
         stagingLobby = _lobby;
         if (_lobby.readyplayers == 4 && !creatingPlayRoom) {
-            creatingPlayRoom = true;
-            var room = CreatePlayRoom();
+            var ishost = lobby.host == GameData.User.username;
             UIManager.DisplayLoading();
-            LobbyController.CreatePlayRoom(room);
+            creatingPlayRoom = true;
+            if (ishost) {
+                var room = CreatePlayRoom();
+                LobbyController.CreatePlayRoom(room);
+            } else {
+                LobbyController.WaitPlayRoom(_lobby);
+            }
+
         }
     }
 
@@ -48,7 +54,10 @@ public class LobbyView : MonoBehaviour {
         var room = new PlayRoom();
         var players = new List<Player>();
         foreach (var item in lobby.users) {
-            var ishost = lobby.host == GameData.User.username;
+            var ishost = lobby.host == item.username;
+            if (ishost) {
+                room.host = item.username;
+            }
             var player = new Player(item, ishost);
             players.Add(player);
         }
@@ -111,9 +120,7 @@ public class LobbyView : MonoBehaviour {
                 ReadyButton.interactable = true;
             }
             if (lobby.readyplayers == 4) {
-                if (!creatingPlayRoom) {
-                    OnReadyRequestSuccess(lobby);
-                }
+                OnReadyRequestSuccess(lobby);
                 break;
             }
             Debug.Log(lobby.readyplayers);
