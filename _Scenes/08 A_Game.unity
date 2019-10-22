@@ -249,9 +249,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de14c25fe00aca24b830dddf92695a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingpanel: {fileID: 1078676687}
-  loadingtext: {fileID: 455159519}
-  sceneIndex: 0
+  LoadingPanel: {fileID: 1078676687}
+  LoadingTexts:
+  - Learn more Decrypting Techniques to win the battle
+  - Learn more Encrypting Techniques to win the battle
+  LoadingTextContainer: {fileID: 1262721609}
 --- !u!114 &252617584
 MonoBehaviour:
   m_ObjectHideFlags: 0
