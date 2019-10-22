@@ -56,9 +56,10 @@ public class LobbyView : MonoBehaviour {
 
     public void OnReadyRequestFailed(Exception err) {
         Debug.Log(err);
-        UIManager.Danger(err.Message);
-        ReadyButton.gameObject.SetActive(true);
-        ReadyButton.interactable = true;
+        UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+        while (UIManager.popup_open) {
+            //do nothing
+        }
     }
 
     IEnumerator DisplayPlayers() {
@@ -83,29 +84,30 @@ public class LobbyView : MonoBehaviour {
             while (playersUpdating) {
                 yield return null;
             }
-            if (stagingLobby.users.Length < 4) {
-                ReadyButton.gameObject.SetActive(false);
-                ReadyButton.interactable = false;
-            }
-            if (stagingLobby.readyplayers == 0 && stagingLobby.users.Length == 4) {
-                ReadyButton.gameObject.SetActive(true);
-                ReadyButton.interactable = true;
-            }
             for (int i = 0; i < lobby.users.Length; i++) {
                 if (stagingLobby.users.Length < lobby.users.Length && i == (lobby.users.Length - 1)) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     break;
                 }
-                if (UserContainers[i].transform.GetChild(1).GetComponent<Text>().text != stagingLobby.users[i].username) {
+                if (UserContainers[i].transform.GetChild(1).GetComponent<Text>().text != stagingLobby.users[i].name) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     yield return new WaitForSeconds(0.75f);
                 }
-                UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = stagingLobby.users[i].username;
-                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = stagingLobby.users[i].email;
+                UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = stagingLobby.users[i].name;
+                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "UN: " + lobby.users[i].username;
                 UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
                 yield return new WaitForSeconds(0.25f);
             }
             lobby = stagingLobby;
+
+            if (lobby.users.Length < 4) {
+                ReadyButton.gameObject.SetActive(false);
+                ReadyButton.interactable = false;
+            }
+            if (lobby.readyplayers == 0 && stagingLobby.users.Length == 4) {
+                ReadyButton.gameObject.SetActive(true);
+                ReadyButton.interactable = true;
+            }
             Debug.Log(lobby.readyplayers);
         }
     }

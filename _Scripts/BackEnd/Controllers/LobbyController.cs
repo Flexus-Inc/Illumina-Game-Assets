@@ -35,7 +35,11 @@ namespace Illumina.Controller {
 
         public static void OnRegisterRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+            while (UIManager.popup_open) {
+                //do nothing
+            }
+            ScenesManager.GoToScene(3);
         }
 
         public static void Update(LobbyRoom lobby) {
@@ -60,7 +64,10 @@ namespace Illumina.Controller {
 
         public static void OnUpdateRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+            while (UIManager.popup_open) {
+                //do nothing
+            }
         }
 
         public static void StatusCheck(User user, LobbyRoom lobby) {
@@ -85,7 +92,10 @@ namespace Illumina.Controller {
 
         public static void OnCheckRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+            while (UIManager.popup_open) {
+                //do nothing
+            }
         }
 
         public static void Ready(LobbyRoom lobby, RequestSuccessEventHandler e, RequestFailedEventHandler f) {
@@ -119,7 +129,10 @@ namespace Illumina.Controller {
 
         public static void OnCreatePlayRoomRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+            while (UIManager.popup_open) {
+                //do nothing
+            }
         }
     }
 }
