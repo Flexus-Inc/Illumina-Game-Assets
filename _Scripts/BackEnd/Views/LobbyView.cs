@@ -18,6 +18,7 @@ public class LobbyView : MonoBehaviour {
     public static bool playersUpdating = false;
     public static bool playersChecking = false;
     public static bool decreasedCount = false;
+    public static bool creatingPlayRoom = false;
     void Start() {
         LobbyController.Register(GameData.User);
         StartCoroutine(DisplayPlayers());
@@ -36,6 +37,7 @@ public class LobbyView : MonoBehaviour {
         var _lobby = (LobbyRoom) source;
         stagingLobby = _lobby;
         if (_lobby.readyplayers == 4) {
+            creatingPlayRoom = true;
             var room = CreatePlayRoom();
             UIManager.DisplayLoading();
             LobbyController.CreatePlayRoom(room);
@@ -109,6 +111,9 @@ public class LobbyView : MonoBehaviour {
                 ReadyButton.interactable = true;
             }
             if (lobby.readyplayers == 4) {
+                if (creatingPlayRoom) {
+                    OnReadyRequestSuccess(lobby);
+                }
                 break;
             }
             Debug.Log(lobby.readyplayers);
