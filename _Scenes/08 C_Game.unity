@@ -1226,7 +1226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &337763894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36759,7 +36759,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loading: {fileID: 413211373}
-  minutes: 0
   sec: 7
 --- !u!1 &1505697243
 GameObject:
@@ -56147,6 +56146,11 @@ PrefabInstance:
       propertyPath: MusicSourcesIsLooping.Array.data[8]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2952336864806386450, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0021972656
+      objectReference: {fileID: 0}
     - target: {fileID: 2419026507685046517, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: SoundFXSources.Array.size
@@ -56237,11 +56241,6 @@ PrefabInstance:
       propertyPath: SoundFXSources.Array.data[17]
       value: 
       objectReference: {fileID: 8300000, guid: 81c1c65e08a86fc43b87368174dee69d, type: 3}
-    - target: {fileID: 2952336864806386450, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.0021972656
-      objectReference: {fileID: 0}
     - target: {fileID: 2419026508134001039, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: map
