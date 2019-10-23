@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class EditAccountView : MonoBehaviour {
     public InputField DisplayName;
+    public InputField Email;
     public InputField Password;
     public InputField NewPassword;
     public InputField ConfirmNewPassword;
@@ -19,6 +20,7 @@ public class EditAccountView : MonoBehaviour {
     User editUser;
     public bool oldpassworderror = false;
     public bool newpassworderror = false;
+    string code = "";
 
     void Awake() {
         if (IlluminaWebRequest.CsrfToken == null) {
@@ -30,6 +32,7 @@ public class EditAccountView : MonoBehaviour {
 
     void InitializeOldValues() {
         DisplayName.text = editUser.name;
+        Email.text = editUser.email;
         //insert also email here
     }
 
@@ -65,11 +68,16 @@ public class EditAccountView : MonoBehaviour {
     }
 
     public void Edit() {
-        editUser.name = DisplayName.text;
-        editUser.password = NewPassword.text;
-        editUser.logged_in = true;
-        UIManager.DisplayLoading();
-        UserController.Edit(editUser);
+        if (editUser.email != Email.text) {
+
+        } else {
+            editUser.name = DisplayName.text;
+            editUser.password = NewPassword.text;
+            editUser.logged_in = true;
+            UIManager.DisplayLoading();
+            UserController.Edit(editUser);
+        }
+
     }
 
 }

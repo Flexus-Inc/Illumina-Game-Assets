@@ -15,6 +15,7 @@ public class ForgotPasswordView : MonoBehaviour {
     public Text VerificationCodeMismatch;
     public Button Confirm;
     public Button VerifyButton;
+    public Animator VerificationPanel;
     // Start is called before the first frame update
     public static bool EmailConfirmationOnGoing = false;
     public bool EmailValid = false;
@@ -65,7 +66,8 @@ public class ForgotPasswordView : MonoBehaviour {
             code = this.code
         };
         if (EmailValid) {
-            UserController.VerifyEmail(user);
+            UIManager.DisplayLoading();
+            UserController.VerifyEmail(user, VerificationPanel);
         }
     }
 

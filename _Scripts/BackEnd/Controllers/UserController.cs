@@ -10,6 +10,7 @@ namespace Illumina.Controller {
 
     public class UserController : Controller {
         public static string password;
+        public static Animator VerificationPanel;
 
         public static void UserExists(string identifier, string value, RequestSuccessEventHandler e, RequestFailedEventHandler f) {
             var tokenQuery = IlluminaHash.GetUniqueDateTimeHash();
@@ -23,8 +24,8 @@ namespace Illumina.Controller {
             IlluminaWebRequest.Get(userExistRequest);
         }
 
-        public static void VerifyEmail(User user) {
-
+        public static void VerifyEmail(User user, Animator verification = null) {
+            VerificationPanel = verification;
             Request verifyRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/user/verifyemail/" + IlluminaHash.GetUniqueDateTimeHash(),
                 body = user
@@ -49,7 +50,10 @@ namespace Illumina.Controller {
 
         public static void OnVerifyRequestSuccess(object source) {
             UIManager.HideLoading();
-            SignUpView.VerificationCodePanel.SetTrigger("Start");
+            if (VerificationPanel != null) {
+                VerificationPanel.SetTrigger("Start");
+            }
+
             var user = (User) source;
             Debug.Log("Code is sent to the email : " + user.email);
         }
@@ -165,6 +169,18 @@ namespace Illumina.Controller {
         }
 
         public static void OnForgotPassRequestSuccess(object source) {
+            var messages = new List<NotificationObject>();
+            messages.Add(new NotificationObject {
+                type = Notification.Success,
+                    message = "Password Reset Completed",
+                    show_at_top = true
+            });
+            messages.Add(new NotificationObject {
+                type = Notification.Primary,
+                    message = "Use the temporary password we had sent to you to login",
+                    show_at_top = false
+            });
+            ScenesManager.SceneStartUpMessages.Add(3, messages);
             UIManager.HideLoading();
             ScenesManager.GoToScene(2);
         }

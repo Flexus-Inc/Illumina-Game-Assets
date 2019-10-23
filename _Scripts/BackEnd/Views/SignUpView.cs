@@ -124,7 +124,7 @@ public class SignUpView : MonoBehaviour {
         if (!errors.ContainsValue(true)) {
             VerificationEmail.text = newUser.email;
             UIManager.DisplayLoading();
-            UserController.VerifyEmail(newUser);
+            UserController.VerifyEmail(newUser, VerificationCodePanel);
         } else {
             Debug.Log("Fix the errors first");
         }
