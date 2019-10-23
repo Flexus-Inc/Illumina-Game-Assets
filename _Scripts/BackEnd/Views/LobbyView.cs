@@ -124,7 +124,7 @@ public class LobbyView : MonoBehaviour {
                 othercount = lobby.users.Length;
             }
             for (int i = 0; i < count; i++) {
-                if (othercount < count && i == (othercount - 1)) {
+                if (lobby.users.Length > stagingLobby.users.Length && i == (lobby.users.Length - 1)) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     break;
                 }
