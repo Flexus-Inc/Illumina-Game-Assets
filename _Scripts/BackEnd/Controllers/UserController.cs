@@ -96,7 +96,7 @@ namespace Illumina.Controller {
         }
         public static void Login(User user) {
             user.password = IlluminaHash.GetHash(user.password);
-            //user.username = IlluminaCipher.Encipher(user.username);
+            password = user.password;
             Request loginRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/user/login",
                 body = user
@@ -108,10 +108,12 @@ namespace Illumina.Controller {
 
         public static void OnLoginRequestSuccess(object source) {
             var user = (User) source;
+            user.password = password;
             Debug.Log(user.GetServerMessage());
             UIManager.HideLoading();
             if (user.response_code == "0") {
                 GameData.User = user;
+
                 Debug.Log("Pass: " + user.password);
                 Debug.Log("Profile " + user.profile);
                 ScenesManager.GoToScene(3);

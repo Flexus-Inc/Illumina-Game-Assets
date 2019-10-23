@@ -105,7 +105,9 @@ public class EditAccountView : MonoBehaviour {
             }
             newpassworderror = true;
         } else {
-            OldPasswordIncorrectText.text = "";
+            if (OldPasswordIncorrectText.text == "Old password is empty") {
+                OldPasswordIncorrectText.text = "";
+            }
             ConfirmPasswordNotMatchText.text = "";
             newpassworderror = false;
         }
