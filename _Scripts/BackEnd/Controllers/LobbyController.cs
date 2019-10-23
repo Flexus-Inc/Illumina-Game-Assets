@@ -65,9 +65,6 @@ namespace Illumina.Controller {
         public static void OnUpdateRequestFailed(Exception err) {
             Debug.Log(err);
             UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
-            while (UIManager.popup_open) {
-                //do nothing
-            }
         }
 
         public static void StatusCheck(User user, LobbyRoom lobby) {
