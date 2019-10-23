@@ -97,6 +97,10 @@ public class LobbyView : MonoBehaviour {
             UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
             yield return new WaitForSeconds(0.5f);
         }
+        if (lobby.users.Length == 4) {
+            ReadyButton.gameObject.SetActive(true);
+            ReadyButton.interactable = true;
+        }
     }
 
     IEnumerator UpdatePlayers() {
@@ -142,8 +146,8 @@ public class LobbyView : MonoBehaviour {
             lobby = stagingLobby;
 
             if (lobby.users.Length < 4) {
-                ReadyButton.gameObject.SetActive(false);
                 ReadyButton.interactable = false;
+                ReadyButton.gameObject.SetActive(false);
             } else {
                 ReadyButton.gameObject.SetActive(true);
                 ReadyButton.interactable = true;
