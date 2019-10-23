@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour {
     public TextMeshProUGUI BootstrapAlertText;
     public GameObject WarningText;
     public Image WarningBar;
+    public Button WarningCloseButton;
     public Color[] AlertColors;
     public Color[] AlertFontColors;
     public static GameObject ActiveUIPanelButtons;
@@ -61,7 +62,13 @@ public class UIManager : MonoBehaviour {
         var _content = WarningText.transform.GetChild(1);
         _title.GetComponent<TextMeshProUGUI>().text = title;
         _content.GetComponent<TextMeshProUGUI>().text = content;
-
+        if (!enableClosing) {
+            WarningCloseButton.interactable = false;
+            WarningCloseButton.gameObject.SetActive(false);
+        } else {
+            WarningCloseButton.gameObject.SetActive(true);
+            WarningCloseButton.interactable = true;
+        }
         StartCoroutine(Warn());
     }
 
