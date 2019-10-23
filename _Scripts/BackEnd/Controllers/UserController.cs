@@ -61,7 +61,7 @@ namespace Illumina.Controller {
         public static void OnVerifyRequestFailed(Exception err) {
             UIManager.HideLoading();
             Debug.Log(err);
-            UIManager.Danger("Cannot send email verification to your email. try again later or check if you input a valid email address");
+            UIManager.Danger("Cannot send email verification to your email. Please check if you input a valid email address or try again later");
         }
         public static void OnSignUpRequestSuccess(object source) {
             var user = (User) source;
@@ -112,6 +112,7 @@ namespace Illumina.Controller {
             UIManager.HideLoading();
             if (user.response_code == "0") {
                 GameData.User = user;
+                Debug.Log("Pass: " + user.password);
                 ScenesManager.GoToScene(3);
             } else {
                 UIManager.Warning(user.GetServerMessage());
@@ -137,9 +138,10 @@ namespace Illumina.Controller {
         }
 
         public static void OnLogoutRequestSuccess(object source) {
-            GameData.User = null;
+
             var user = (User) source;
-            if (GameData.User == null) {
+            if (user.response_code == "0") {
+                GameData.User = null;
                 Debug.Log(user.GetServerMessage());
                 UIManager.HideLoading();
                 ScenesManager.GoToScene(2);
@@ -180,7 +182,7 @@ namespace Illumina.Controller {
                     message = "Use the temporary password we had sent to you to login",
                     show_at_top = false
             });
-            ScenesManager.SceneStartUpMessages.Add(3, messages);
+            ScenesManager.SceneStartUpMessages.Add(2, messages);
             UIManager.HideLoading();
             ScenesManager.GoToScene(2);
         }
@@ -191,8 +193,7 @@ namespace Illumina.Controller {
         }
 
         public static void Edit(User user) {
-            user.password = IlluminaHash.GetHash(user.password);
-            password = user.password;
+            
             Request editRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/user/editaccount",
                 body = user
@@ -204,9 +205,7 @@ namespace Illumina.Controller {
 
         public static void OnEditRequestSuccess(object source) {
             var user = (User) source;
-            user.password = password;
             GameData.User = user;
-            password = null;
             Debug.Log(user.response_message);
             UIManager.HideLoading();
             ScenesManager.GoToScene(3);

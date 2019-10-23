@@ -870,7 +870,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1497345465}
         m_MethodName: OnEditCode
         m_Mode: 1
         m_Arguments:
@@ -1195,7 +1195,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 918244880}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1807,7 +1807,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 918244880}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2699,7 +2699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &818947207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2718,11 +2718,11 @@ RectTransform:
   - {fileID: 1117085281}
   - {fileID: 294766116}
   m_Father: {fileID: 918244880}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: -5.2594604}
+  m_AnchoredPosition: {x: 0, y: -5.2593994}
   m_SizeDelta: {x: 1029.8003, y: 579.3843}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &818947208
@@ -2843,13 +2843,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 838841565}
   m_TextComponent: {fileID: 1649579206}
   m_Placeholder: {fileID: 928186073}
-  m_ContentType: 4
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
+  m_CharacterValidation: 5
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -3186,7 +3186,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 918244880}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3527,6 +3527,7 @@ RectTransform:
   - {fileID: 644628787}
   - {fileID: 558332365}
   - {fileID: 860444611}
+  - {fileID: 1222870003}
   - {fileID: 571817754}
   - {fileID: 415891951}
   - {fileID: 847810351}
@@ -3537,7 +3538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 60, y: 33.71582}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918244881
@@ -4146,6 +4147,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216579854}
   m_CullTransparentMesh: 0
+--- !u!1 &1222870002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1222870003}
+  - component: {fileID: 1222870005}
+  - component: {fileID: 1222870004}
+  m_Layer: 5
+  m_Name: EmailNotExistText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1222870003
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222870002}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 918244880}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -75.00002, y: -84.300026}
+  m_SizeDelta: {x: 394.4, y: 32.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1222870004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222870002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 71d2a3aa47aaae74ca83f35d96a974e9, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 2
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1222870005
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222870002}
+  m_CullTransparentMesh: 0
 --- !u!1 &1304609339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4393,7 +4471,7 @@ RectTransform:
   m_LocalScale: {x: 1.0001402, y: 1.0001402, z: 1.0001402}
   m_Children: []
   m_Father: {fileID: 918244880}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4545,15 +4623,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: {fileID: 519372003}
-  Email: {fileID: 0}
+  Email: {fileID: 838841564}
+  EmailExistText: {fileID: 1222870004}
   Password: {fileID: 1544368217}
   NewPassword: {fileID: 375411648}
   ConfirmNewPassword: {fileID: 786551789}
   SaveButton: {fileID: 847810352}
   ConfirmPasswordNotMatchText: {fileID: 571817755}
   OldPasswordIncorrectText: {fileID: 415891952}
+  VerificationCode: {fileID: 294766117}
+  VerificationCodeMismatch: {fileID: 1117085282}
+  VerificationEmail: {fileID: 1216579856}
+  VerifyButton: {fileID: 1619048035}
+  VerificationPanel: {fileID: 918244883}
+  emailerror: 0
   oldpassworderror: 0
   newpassworderror: 0
+  enableedit: 1
 --- !u!1 &1538950053
 GameObject:
   m_ObjectHideFlags: 0
@@ -4950,8 +5036,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Submit
+      - m_Target: {fileID: 1497345465}
+        m_MethodName: EditWithEmail
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
