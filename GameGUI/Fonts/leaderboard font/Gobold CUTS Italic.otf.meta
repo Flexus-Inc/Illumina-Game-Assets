@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: caa3fc55de374034bb28029ab1b8284b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gobold CUTS
+  fontNames:
+  - Gobold CUTS
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ad2253586044f9d40aed4ecb215a0877, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
