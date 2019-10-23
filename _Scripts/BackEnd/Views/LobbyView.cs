@@ -144,15 +144,18 @@ public class LobbyView : MonoBehaviour {
             if (lobby.users.Length < 4) {
                 ReadyButton.gameObject.SetActive(false);
                 ReadyButton.interactable = false;
-            }
-            if (lobby.readyplayers < 4 && stagingLobby.users.Length == 4) {
+            } else {
                 ReadyButton.gameObject.SetActive(true);
                 ReadyButton.interactable = true;
             }
-            if (lobby.readyplayers == 4) {
-                OnReadyRequestSuccess(lobby);
-                break;
-            }
+            // if (lobby.readyplayers <= 4 && stagingLobby.users.Length == 4) {
+            //     ReadyButton.gameObject.SetActive(true);
+            //     ReadyButton.interactable = true;
+            // }
+            // if (lobby.readyplayers == 4) {
+            //     OnReadyRequestSuccess(lobby);
+            //     break;
+            // }
             Debug.Log(lobby.readyplayers);
             yield return new WaitForSeconds(0.25f);
         }
