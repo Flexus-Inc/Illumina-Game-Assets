@@ -6,6 +6,13 @@ using UnityEngine.UI;
 public enum Notification {
     Success = 1, Info = 2, Warning, Danger, Primary, Secondary, Dark, Light
 }
+
+public struct NotificationObject {
+    public Notification type;
+    public string message;
+    public bool show_at_top;
+
+}
 public class UIManager : MonoBehaviour {
     // Start is called before the first frame update
     public Animator[] UIPanels;

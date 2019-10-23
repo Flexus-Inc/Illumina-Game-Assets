@@ -162,6 +162,7 @@ namespace Illumina.Controller {
 
         public static void OnLeaveRoomRequestSuccess(object source) {
             //send a message to startmanager;
+            UIManager.HideLoading();
             ScenesManager.GoToScene(3);
         }
 

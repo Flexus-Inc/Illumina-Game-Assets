@@ -65,8 +65,9 @@ public class LobbyView : MonoBehaviour {
         return room;
     }
 
-    void LeaveRoom() {
-        
+    public void LeaveRoom() {
+        UIManager.DisplayLoading();
+        LobbyController.LeaveRoom(lobby, GameData.User);
     }
 
     public void OnReadyRequestFailed(Exception err) {
