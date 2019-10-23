@@ -66,6 +66,9 @@ public class LobbyView : MonoBehaviour {
     }
 
     public void LeaveRoom() {
+        StopCoroutine(DisplayPlayers());
+        StopCoroutine(StatusCheck());
+        StopCoroutine(UpdatePlayers());
         StartCoroutine(Leave());
     }
 
