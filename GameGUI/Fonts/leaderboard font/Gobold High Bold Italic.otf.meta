@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 9e749306311484a43b6b1a9ec2ed4d74
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gobold High Bold
+  fontNames:
+  - Gobold High Bold
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 03484b678f4d910479bf2e3b2e86a3b8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
