@@ -35,10 +35,7 @@ namespace Illumina.Controller {
 
         public static void OnRegisterRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
-            while (UIManager.popup_open) {
-                //do nothing
-            }
+            UIManager.Danger("Problem occured. you had been redirected to Main Menu.");
             ScenesManager.GoToScene(3);
         }
 
