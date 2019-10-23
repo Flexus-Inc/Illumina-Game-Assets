@@ -133,8 +133,8 @@ public class LobbyView : MonoBehaviour {
                     yield return new WaitForSeconds(0.75f);
                 }
                 UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = stagingLobby.users[i].name;
-                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "USER: " + lobby.users[i].username;
-                UserContainers[i].transform.GetChild(3).GetComponent<Image>().sprite = GameDataManager.GetProfileAvatar(lobby.users[i].profile);
+                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "USER: " + stagingLobby.users[i].username;
+                UserContainers[i].transform.GetChild(3).GetComponent<Image>().sprite = GameDataManager.GetProfileAvatar(stagingLobby.users[i].profile);
                 UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
                 yield return new WaitForSeconds(0.75f);
             }
