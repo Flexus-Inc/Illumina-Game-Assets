@@ -151,12 +151,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1382565628}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00018311, y: 3.6238}
-  m_SizeDelta: {x: 1995.4, y: 1117.2}
+  m_AnchoredPosition: {x: 276.8, y: 3.606}
+  m_SizeDelta: {x: 1441.8, y: 1117.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123590300
 MonoBehaviour:
@@ -269,7 +269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12, y: -209}
+  m_AnchoredPosition: {x: -11.999939, y: -209}
   m_SizeDelta: {x: -1551.2, y: -1042.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &147446844
@@ -933,7 +933,7 @@ RectTransform:
   - {fileID: 201948706}
   - {fileID: 1255967809}
   m_Father: {fileID: 1382565628}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1049,7 +1049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12, y: -307}
+  m_AnchoredPosition: {x: -11.999939, y: -307}
   m_SizeDelta: {x: -1604.1, y: -1060.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &661365370
@@ -1213,7 +1213,7 @@ RectTransform:
   m_LocalScale: {x: 1.0005078, y: 1.0005078, z: 1.0005078}
   m_Children: []
   m_Father: {fileID: 1382565628}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1436,7 +1436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12, y: -112}
+  m_AnchoredPosition: {x: -11.999939, y: -112}
   m_SizeDelta: {x: -1664.8, y: -1047.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870286273
@@ -2090,10 +2090,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1807401149}
+  - {fileID: 123590299}
   - {fileID: 1459483772}
   - {fileID: 531231227}
   - {fileID: 706850189}
-  - {fileID: 123590299}
   m_Father: {fileID: 1787513456}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2313,6 +2313,11 @@ PrefabInstance:
       propertyPath: MusicSourcesIsLooping.Array.data[9]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2952336864806386450, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0021972656
+      objectReference: {fileID: 0}
     - target: {fileID: 2419026507685046517, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: SoundFXSources.Array.size
@@ -2403,11 +2408,6 @@ PrefabInstance:
       propertyPath: SoundFXSources.Array.data[17]
       value: 
       objectReference: {fileID: 8300000, guid: 81c1c65e08a86fc43b87368174dee69d, type: 3}
-    - target: {fileID: 2952336864806386450, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.0021972656
-      objectReference: {fileID: 0}
     - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2417,6 +2417,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -46.900024
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897554021879026296, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69d89439ea4d7d4bb0632b8658813f3, type: 3}
@@ -2450,7 +2455,7 @@ RectTransform:
   m_LocalScale: {x: 1.000508, y: 1.000508, z: 1.000508}
   m_Children: []
   m_Father: {fileID: 1382565628}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
