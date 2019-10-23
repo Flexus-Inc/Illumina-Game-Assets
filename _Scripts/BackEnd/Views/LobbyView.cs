@@ -66,6 +66,13 @@ public class LobbyView : MonoBehaviour {
     }
 
     public void LeaveRoom() {
+        StartCoroutine(Leave());
+    }
+
+    IEnumerator Leave() {
+        while (playersUpdating) {
+            yield return null;
+        }
         UIManager.DisplayLoading();
         LobbyController.LeaveRoom(lobby, GameData.User);
     }
