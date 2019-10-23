@@ -113,6 +113,7 @@ namespace Illumina.Controller {
             if (user.response_code == "0") {
                 GameData.User = user;
                 Debug.Log("Pass: " + user.password);
+                Debug.Log("Profile " + user.profile);
                 ScenesManager.GoToScene(3);
             } else {
                 UIManager.Warning(user.GetServerMessage());
@@ -193,7 +194,7 @@ namespace Illumina.Controller {
         }
 
         public static void Edit(User user) {
-            
+
             Request editRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/user/editaccount",
                 body = user

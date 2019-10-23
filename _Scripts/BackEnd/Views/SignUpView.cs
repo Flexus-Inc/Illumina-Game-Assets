@@ -24,6 +24,7 @@ public class SignUpView : MonoBehaviour {
     public InputField VerificationCode;
     public Text VerificationCodeMismatch;
     public Animator VerificationPanel;
+    public RectTransform[] Avatars;
     public static Animator VerificationCodePanel;
     string code = "";
     int profile;
@@ -98,6 +99,7 @@ public class SignUpView : MonoBehaviour {
     }
     public void ChangeProfile(int index) {
         profile = index;
+        Avatars[index].localScale = new Vector3(1.3247f, 1.3247f, 1.3247f);
         newUser.profile = index;
     }
 

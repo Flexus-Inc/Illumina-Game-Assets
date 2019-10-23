@@ -7495,17 +7495,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Password Help
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3baa99b21d3c3ac4d879608185b757cb, type: 2}
-  m_sharedMaterial: {fileID: 2715840523138591828, guid: 3baa99b21d3c3ac4d879608185b757cb,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
   m_colorMode: 3
+  m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -7520,12 +7523,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 0
+  m_fontSizeMax: 0
   m_fontStyle: 0
   m_textAlignment: 257
   m_characterSpacing: 0
@@ -7534,19 +7537,19 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
-  m_enableKerning: 1
+  m_enableKerning: 0
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
   m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
+  m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_ignoreRectMaskCulling: 0
   m_ignoreCulling: 1
@@ -7560,15 +7563,15 @@ MonoBehaviour:
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
-    textComponent: {fileID: 1144177502}
-    characterCount: 13
+    textComponent: {fileID: 0}
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
+    lineCount: 0
+    pageCount: 0
+    materialCount: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -7930,11 +7933,6 @@ PrefabInstance:
       propertyPath: MusicSourcesIsLooping.Array.data[4]
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2952336864806386450, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.0021972656
-      objectReference: {fileID: 0}
     - target: {fileID: 2419026507685046517, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: SoundFXSources.Array.size
@@ -8025,10 +8023,10 @@ PrefabInstance:
       propertyPath: SoundFXSources.Array.data[17]
       value: 
       objectReference: {fileID: 8300000, guid: 81c1c65e08a86fc43b87368174dee69d, type: 3}
-    - target: {fileID: 1697556758192354190, guid: e69d89439ea4d7d4bb0632b8658813f3,
+    - target: {fileID: 2952336864806386450, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -35.01245
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0021972656
       objectReference: {fileID: 0}
     - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
@@ -8040,10 +8038,20 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35.599976
       objectReference: {fileID: 0}
+    - target: {fileID: 7897554021879026296, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -104.6001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697556758192354190, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35.01245
       objectReference: {fileID: 0}
     - target: {fileID: 2132537207688700539, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
@@ -8073,11 +8081,6 @@ PrefabInstance:
     - target: {fileID: 3674994166407461249, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7897554021879026296, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9626,6 +9629,12 @@ MonoBehaviour:
   VerificationCode: {fileID: 153490}
   VerificationCodeMismatch: {fileID: 389945387}
   VerificationPanel: {fileID: 1139203804}
+  Avatars:
+  - {fileID: 157083911}
+  - {fileID: 2081419970}
+  - {fileID: 11267220}
+  - {fileID: 962132262}
+  - {fileID: 445574060}
 --- !u!114 &1498363358
 MonoBehaviour:
   m_ObjectHideFlags: 0
