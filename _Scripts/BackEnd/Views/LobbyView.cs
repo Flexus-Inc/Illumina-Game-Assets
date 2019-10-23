@@ -70,9 +70,6 @@ public class LobbyView : MonoBehaviour {
     }
 
     IEnumerator Leave() {
-        while (playersUpdating) {
-            yield return null;
-        }
         UIManager.DisplayLoading();
         LobbyController.LeaveRoom(lobby, GameData.User);
     }
