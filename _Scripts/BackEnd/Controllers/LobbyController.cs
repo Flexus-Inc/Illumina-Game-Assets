@@ -57,6 +57,7 @@ namespace Illumina.Controller {
             var lobby = (LobbyRoom) source;
             LobbyView.stagingLobby = lobby;
             LobbyView.playersUpdating = false;
+            Debug.Log("Updated");
             if (lobby.response_code == "4") {
                 UIManager.Notify(Notification.Light, "Someone left the lobby", false);
             }
