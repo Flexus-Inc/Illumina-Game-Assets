@@ -145,7 +145,7 @@ public class LobbyView : MonoBehaviour {
                 ReadyButton.gameObject.SetActive(false);
                 ReadyButton.interactable = false;
             }
-            if (lobby.readyplayers == 0 && stagingLobby.users.Length == 4) {
+            if (lobby.readyplayers < 4 && stagingLobby.users.Length == 4) {
                 ReadyButton.gameObject.SetActive(true);
                 ReadyButton.interactable = true;
             }
