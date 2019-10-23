@@ -1,27 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class Loading : MonoBehaviour
-{
-    public GameObject loadingpanel;
-    public Text loadingtext;
-    public int sceneIndex;
+public class Loading : MonoBehaviour {
+    public GameObject LoadingPanel;
+    public string[] LoadingTexts;
+    public Text LoadingTextContainer;
 
-    public void LoadScene(int sceneIndex){
-        StartCoroutine(LoadAsynchronously(sceneIndex));
+    public void Start() {
+        StartCoroutine(DisplayTexts());
     }
 
-    IEnumerator LoadAsynchronously(int sceneIndex){
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        loadingpanel.SetActive(true);
-
-        while(!operation.isDone){
-            float progress = Mathf.Clamp01(operation.progress/0.9f);
-            loadingtext.text = progress * 100f + "%";
-            yield return null;
+    IEnumerator DisplayTexts() {
+        foreach (var text in LoadingTexts) {
+            LoadingTextContainer.text = text;
+            yield return new WaitForSeconds(1.5f);
         }
     }
 }

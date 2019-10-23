@@ -6,6 +6,13 @@ using UnityEngine.UI;
 public enum Notification {
     Success = 1, Info = 2, Warning, Danger, Primary, Secondary, Dark, Light
 }
+
+public struct NotificationObject {
+    public Notification type;
+    public string message;
+    public bool show_at_top;
+
+}
 public class UIManager : MonoBehaviour {
     // Start is called before the first frame update
     public Animator[] UIPanels;
@@ -20,6 +27,7 @@ public class UIManager : MonoBehaviour {
     public TextMeshProUGUI BootstrapAlertText;
     public GameObject WarningText;
     public Image WarningBar;
+    public Button WarningCloseButton;
     public Color[] AlertColors;
     public Color[] AlertFontColors;
     public static GameObject ActiveUIPanelButtons;
@@ -61,7 +69,13 @@ public class UIManager : MonoBehaviour {
         var _content = WarningText.transform.GetChild(1);
         _title.GetComponent<TextMeshProUGUI>().text = title;
         _content.GetComponent<TextMeshProUGUI>().text = content;
-
+        if (!enableClosing) {
+            WarningCloseButton.interactable = false;
+            WarningCloseButton.gameObject.SetActive(false);
+        } else {
+            WarningCloseButton.gameObject.SetActive(true);
+            WarningCloseButton.interactable = true;
+        }
         StartCoroutine(Warn());
     }
 

@@ -23,6 +23,8 @@ public class SignUpView : MonoBehaviour {
     public Text VerificationEmail;
     public InputField VerificationCode;
     public Text VerificationCodeMismatch;
+    public Animator VerificationPanel;
+    public static Animator VerificationCodePanel;
     string code = "";
     int profile;
     User newUser;
@@ -37,6 +39,7 @@ public class SignUpView : MonoBehaviour {
         errors.Add("username", true);
         errors.Add("password", true);
         errors.Add("email", true);
+        VerificationCodePanel = VerificationPanel;
     }
 
     public void OnEndEditUsername() {
@@ -120,11 +123,13 @@ public class SignUpView : MonoBehaviour {
 
         if (!errors.ContainsValue(true)) {
             VerificationEmail.text = newUser.email;
+            UIManager.DisplayLoading();
             UserController.VerifyEmail(newUser);
         } else {
             Debug.Log("Fix the errors first");
         }
     }
+
     public void Submit() {
         newUser.password = Password.text;
 

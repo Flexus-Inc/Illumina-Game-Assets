@@ -18,6 +18,7 @@ public class LobbyView : MonoBehaviour {
     public static bool playersUpdating = false;
     public static bool playersChecking = false;
     public static bool decreasedCount = false;
+    public static bool creatingPlayRoom = false;
     void Start() {
         LobbyController.Register(GameData.User);
         StartCoroutine(DisplayPlayers());
@@ -35,10 +36,17 @@ public class LobbyView : MonoBehaviour {
     public void OnReadyRequestSuccess(object source) {
         var _lobby = (LobbyRoom) source;
         stagingLobby = _lobby;
-        if (_lobby.readyplayers == 4) {
-            var room = CreatePlayRoom();
+        if (_lobby.readyplayers == 4 && !creatingPlayRoom) {
+            var ishost = lobby.host == GameData.User.username;
             UIManager.DisplayLoading();
-            LobbyController.CreatePlayRoom(room);
+            creatingPlayRoom = true;
+            if (ishost) {
+                var room = CreatePlayRoom();
+                LobbyController.CreatePlayRoom(room);
+            } else {
+                LobbyController.WaitPlayRoom(_lobby);
+            }
+
         }
     }
 
@@ -46,7 +54,10 @@ public class LobbyView : MonoBehaviour {
         var room = new PlayRoom();
         var players = new List<Player>();
         foreach (var item in lobby.users) {
-            var ishost = lobby.host == GameData.User.username;
+            var ishost = lobby.host == item.username;
+            if (ishost) {
+                room.host = item.username;
+            }
             var player = new Player(item, ishost);
             players.Add(player);
         }
@@ -54,11 +65,17 @@ public class LobbyView : MonoBehaviour {
         return room;
     }
 
+    public void LeaveRoom() {
+        UIManager.DisplayLoading();
+        LobbyController.LeaveRoom(lobby, GameData.User);
+    }
+
     public void OnReadyRequestFailed(Exception err) {
         Debug.Log(err);
-        UIManager.Danger(err.Message);
-        ReadyButton.gameObject.SetActive(true);
-        ReadyButton.interactable = true;
+        UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+        while (UIManager.popup_open) {
+            //do nothing
+        }
     }
 
     IEnumerator DisplayPlayers() {
@@ -83,30 +100,45 @@ public class LobbyView : MonoBehaviour {
             while (playersUpdating) {
                 yield return null;
             }
-            if (stagingLobby.users.Length < 4) {
-                ReadyButton.gameObject.SetActive(false);
-                ReadyButton.interactable = false;
+            var kickout = true;
+            for (int i = 0; i < stagingLobby.users.Length; i++) {
+                if (stagingLobby.users[i].username == GameData.User.username) {
+                    kickout = false;
+                }
             }
-            if (stagingLobby.readyplayers == 0 && stagingLobby.users.Length == 4) {
-                ReadyButton.gameObject.SetActive(true);
-                ReadyButton.interactable = true;
+            if (kickout) {
+                break;
             }
             for (int i = 0; i < lobby.users.Length; i++) {
                 if (stagingLobby.users.Length < lobby.users.Length && i == (lobby.users.Length - 1)) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     break;
                 }
-                if (UserContainers[i].transform.GetChild(1).GetComponent<Text>().text != stagingLobby.users[i].username) {
+                if (UserContainers[i].transform.GetChild(1).GetComponent<Text>().text != stagingLobby.users[i].name) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     yield return new WaitForSeconds(0.75f);
                 }
-                UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = stagingLobby.users[i].username;
-                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = stagingLobby.users[i].email;
+                UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = stagingLobby.users[i].name;
+                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "UN: " + lobby.users[i].username;
                 UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
                 yield return new WaitForSeconds(0.25f);
             }
             lobby = stagingLobby;
+
+            if (lobby.users.Length < 4) {
+                ReadyButton.gameObject.SetActive(false);
+                ReadyButton.interactable = false;
+            }
+            if (lobby.readyplayers == 0 && stagingLobby.users.Length == 4) {
+                ReadyButton.gameObject.SetActive(true);
+                ReadyButton.interactable = true;
+            }
+            if (lobby.readyplayers == 4) {
+                OnReadyRequestSuccess(lobby);
+                break;
+            }
             Debug.Log(lobby.readyplayers);
+            yield return new WaitForSeconds(1);
         }
     }
 
@@ -120,7 +152,7 @@ public class LobbyView : MonoBehaviour {
             while (playersChecking) {
                 yield return null;
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(5);
         }
     }
 

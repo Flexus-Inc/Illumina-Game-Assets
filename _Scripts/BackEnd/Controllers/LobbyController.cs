@@ -35,7 +35,11 @@ namespace Illumina.Controller {
 
         public static void OnRegisterRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+            while (UIManager.popup_open) {
+                //do nothing
+            }
+            ScenesManager.GoToScene(3);
         }
 
         public static void Update(LobbyRoom lobby) {
@@ -60,7 +64,10 @@ namespace Illumina.Controller {
 
         public static void OnUpdateRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+            while (UIManager.popup_open) {
+                //do nothing
+            }
         }
 
         public static void StatusCheck(User user, LobbyRoom lobby) {
@@ -85,7 +92,10 @@ namespace Illumina.Controller {
 
         public static void OnCheckRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+            while (UIManager.popup_open) {
+                //do nothing
+            }
         }
 
         public static void Ready(LobbyRoom lobby, RequestSuccessEventHandler e, RequestFailedEventHandler f) {
@@ -108,18 +118,57 @@ namespace Illumina.Controller {
             createRequest.RequestFailedEvents += OnCreatePlayRoomRequestFailed;
             Store<PlayRoom>(createRequest);
         }
+        public static void WaitPlayRoom(LobbyRoom lobby) {
+            Request createRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/lobby/waitplay",
+                body = lobby
+            };
+            createRequest.RequestSuccessEvents += OnCreatePlayRoomRequestSuccess;
+            createRequest.RequestFailedEvents += OnCreatePlayRoomRequestFailed;
+            Store<PlayRoom>(createRequest);
+        }
 
         public static void OnCreatePlayRoomRequestSuccess(object source) {
+            Debug.Log("created");
             var room = (PlayRoom) source;
             Debug.Log("Play room created ,hosting " + room.hostid);
             GameData.PlayRoom = room;
+            GameData.PlayData = room.data.ToPlayData();
+            UIManager.Notify(Notification.Info, "Battlefield is now ready");
             UIManager.HideLoading();
             ScenesManager.GoToScene(8);
+            UIManager.popup_open = false;
         }
 
         public static void OnCreatePlayRoomRequestFailed(Exception err) {
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
+            LobbyView.creatingPlayRoom = false;
+            while (UIManager.popup_open) {
+                //do nothing
+            }
+            ScenesManager.GoToScene(3);
+        }
+
+        public static void LeaveRoom(LobbyRoom lobby, User user) {
+            var add_uri = "?hostid=" + lobby.hostid + "&leavinguser=" + user.username;
+            Request leaveRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/lobby/leave" + add_uri,
+            };
+            leaveRequest.RequestSuccessEvents += OnLeaveRoomRequestSuccess;
+            leaveRequest.RequestFailedEvents += OnLeaveRoomRequestFailed;
+            Delete(leaveRequest);
+        }
+
+        public static void OnLeaveRoomRequestSuccess(object source) {
+            //send a message to startmanager;
+            UIManager.HideLoading();
+            ScenesManager.GoToScene(3);
+        }
+
+        public static void OnLeaveRoomRequestFailed(Exception err) {
+            Debug.Log(err);
+            UIManager.Notify(Notification.Danger, "Problem occured. try again later");
         }
     }
 }

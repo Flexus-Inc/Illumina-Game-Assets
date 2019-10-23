@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Illumina.Models;
 using Illumina.Networking;
 using Illumina.Security;
@@ -47,19 +48,34 @@ namespace Illumina.Controller {
         }
 
         public static void OnVerifyRequestSuccess(object source) {
+            UIManager.HideLoading();
+            SignUpView.VerificationCodePanel.SetTrigger("Start");
             var user = (User) source;
             Debug.Log("Code is sent to the email : " + user.email);
         }
 
         public static void OnVerifyRequestFailed(Exception err) {
+            UIManager.HideLoading();
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Cannot send email verification right now. try again later");
         }
         public static void OnSignUpRequestSuccess(object source) {
             var user = (User) source;
             if (user.response_code == "0") {
                 user.logged_in = true;
                 user.password = password;
+                var messages = new List<NotificationObject>();
+                messages.Add(new NotificationObject {
+                    type = Notification.Light,
+                        message = "Welcome to Ilumina " + user.name,
+                        show_at_top = true
+                });
+                messages.Add(new NotificationObject {
+                    type = Notification.Primary,
+                        message = "Play Now by clicking 'Enclasp' ",
+                        show_at_top = false
+                });
+                ScenesManager.SceneStartUpMessages.Add(3, messages);
                 Login(user);
                 user.password = null;
                 password = null;
