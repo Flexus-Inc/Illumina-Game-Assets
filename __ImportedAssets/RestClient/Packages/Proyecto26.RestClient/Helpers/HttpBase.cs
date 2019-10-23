@@ -14,7 +14,8 @@ namespace Proyecto26 {
                     var response = request.CreateWebResponse();
                     if (request.IsValidRequest(options)) {
                         DebugLog(options.EnableDebug, string.Format("Url: {0}\nMethod: {1}\nStatus: {2}\nResponse: {3}", options.Uri, options.Method, request.responseCode, options.ParseResponseBody ? response.Text : "body not parsed"), false);
-                        callback(null, response);
+                        Debug.Log(response.Text);
+                        callback(null, response);   
                         break;
                     } else if (!options.IsAborted && retries < options.Retries) {
                         yield return new WaitForSeconds(options.RetrySecondsDelay);
@@ -66,6 +67,7 @@ namespace Proyecto26 {
                 var body = default(TResponse);
                 if (err == null && res.Data != null && options.ParseResponseBody) {
                     try {
+                        Debug.Log(res.Text);
                         body = JsonUtility.FromJson<TResponse>(res.Text);
                     } catch (Exception error) {
                         DebugLog(options.EnableDebug, string.Format("Invalid JSON format\nError: {0}", error.Message), true);
