@@ -102,7 +102,7 @@ public class SignUpView : MonoBehaviour {
     }
 
     public void ConfirmTerms() {
-        if (TermsAndConditions.isOn && !errors.ContainsValue(true)) {
+        if (TermsAndConditions.isOn && !errors.ContainsValue(true) && DisplayName.text != "") {
             SubmitButton.interactable = true;
         } else {
             SubmitButton.interactable = false;

@@ -3840,6 +3840,7 @@ MonoBehaviour:
   BootstrapAlertText: {fileID: 1493208993938240939}
   WarningText: {fileID: 5985567550797879068}
   WarningBar: {fileID: 1493528454296761832}
+  WarningCloseButton: {fileID: 6620164674653434121}
   AlertColors:
   - {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0}
   - {r: 0.83137256, g: 0.92941177, b: 0.85490197, a: 0}

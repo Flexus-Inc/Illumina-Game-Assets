@@ -57,7 +57,7 @@ namespace Illumina.Controller {
         public static void OnVerifyRequestFailed(Exception err) {
             UIManager.HideLoading();
             Debug.Log(err);
-            UIManager.Danger("Cannot send email verification right now. try again later");
+            UIManager.Danger("Cannot send email verification to your email. try again later or check if you input a valid email address");
         }
         public static void OnSignUpRequestSuccess(object source) {
             var user = (User) source;
