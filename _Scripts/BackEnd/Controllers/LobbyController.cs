@@ -23,14 +23,14 @@ namespace Illumina.Controller {
         public static void OnRegisterRequestSuccess(object source) {
             var lobby = (LobbyRoom) source;
             LobbyView.lobby = lobby;
-            LobbyView.registrationDone = true;
+
             if (lobby.response_code == "0") {
                 UIManager.Danger("Your username is not valid");
             }
             if (lobby.response_code == "2") {
                 UIManager.Notify(Notification.Success, "You created a new lobby");
             }
-
+            LobbyView.registrationDone = true;
         }
 
         public static void OnRegisterRequestFailed(Exception err) {

@@ -23,11 +23,14 @@ public class GameDataManager : MonoBehaviour {
 
     public Sprite GetAvatar(int profile) {
         return ProfileAvatars[profile];
-        
+
     }
 
-    public static Sprite GetProfileAvatar() {
-        return GameObject.Find("__GameDataManager").GetComponent<GameDataManager>().GetAvatar(GameData.User.profile);
+    public static Sprite GetProfileAvatar(int profile = -1) {
+        if (profile == -1) {
+            profile = GameData.User.profile;
+        }
+        return GameObject.Find("__GameDataManager").GetComponent<GameDataManager>().GetAvatar(profile);
 
     }
 }

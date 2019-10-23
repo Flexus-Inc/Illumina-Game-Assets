@@ -119,10 +119,16 @@ public class EditAccountView : MonoBehaviour {
     }
 
     void EnableConfirmButton() {
+
         if (!oldpassworderror && !newpassworderror && !emailerror) {
             SaveButton.interactable = true;
             enableedit = true;
         } else {
+            SaveButton.interactable = false;
+            enableedit = false;
+        }
+
+        if (NewPassword.text != null && NewPassword.text != "" && (Password.text == null || Password.text == "")) {
             SaveButton.interactable = false;
             enableedit = false;
         }

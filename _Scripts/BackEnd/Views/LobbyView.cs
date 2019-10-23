@@ -84,7 +84,8 @@ public class LobbyView : MonoBehaviour {
         }
         for (int i = 0; i < lobby.users.Length; i++) {
             UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = lobby.users[i].name;
-            UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "UN: " + lobby.users[i].username;
+            UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "U/N: " + lobby.users[i].username;
+            UserContainers[i].transform.GetChild(3).GetComponent<Image>().sprite = GameDataManager.GetProfileAvatar(lobby.users[i].profile);
             UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
             yield return new WaitForSeconds(0.5f);
         }
@@ -117,9 +118,12 @@ public class LobbyView : MonoBehaviour {
                 if (UserContainers[i].transform.GetChild(1).GetComponent<Text>().text != stagingLobby.users[i].name) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     yield return new WaitForSeconds(0.75f);
+                } else {
+                    break;
                 }
                 UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = stagingLobby.users[i].name;
                 UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "UN: " + lobby.users[i].username;
+                UserContainers[i].transform.GetChild(3).GetComponent<Image>().sprite = GameDataManager.GetProfileAvatar(lobby.users[i].profile);
                 UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
                 yield return new WaitForSeconds(0.25f);
             }
@@ -138,7 +142,7 @@ public class LobbyView : MonoBehaviour {
                 break;
             }
             Debug.Log(lobby.readyplayers);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
