@@ -66,6 +66,14 @@ public class LobbyView : MonoBehaviour {
     }
 
     public void LeaveRoom() {
+        StopCoroutine(DisplayPlayers());
+        StopCoroutine(StatusCheck());
+        StopCoroutine(UpdatePlayers());
+        StartCoroutine(Leave());
+    }
+
+    IEnumerator Leave() {
+        yield return null;
         UIManager.DisplayLoading();
         LobbyController.LeaveRoom(lobby, GameData.User);
     }
@@ -84,7 +92,7 @@ public class LobbyView : MonoBehaviour {
         }
         for (int i = 0; i < lobby.users.Length; i++) {
             UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = lobby.users[i].name;
-            UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "U/N: " + lobby.users[i].username;
+            UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "USER: " + lobby.users[i].username;
             UserContainers[i].transform.GetChild(3).GetComponent<Image>().sprite = GameDataManager.GetProfileAvatar(lobby.users[i].profile);
             UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
             yield return new WaitForSeconds(0.5f);
@@ -108,24 +116,28 @@ public class LobbyView : MonoBehaviour {
                 }
             }
             if (kickout) {
-                break;
+                ScenesManager.GoToScene(3);
             }
-            for (int i = 0; i < lobby.users.Length; i++) {
-                if (stagingLobby.users.Length < lobby.users.Length && i == (lobby.users.Length - 1)) {
+            var count = lobby.users.Length;
+            var othercount = stagingLobby.users.Length;
+            if (othercount > count) {
+                count = stagingLobby.users.Length;
+                othercount = lobby.users.Length;
+            }
+            for (int i = 0; i < count; i++) {
+                if (lobby.users.Length > stagingLobby.users.Length && i == (lobby.users.Length - 1)) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     break;
                 }
                 if (UserContainers[i].transform.GetChild(1).GetComponent<Text>().text != stagingLobby.users[i].name) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     yield return new WaitForSeconds(0.75f);
-                } else {
-                    break;
                 }
                 UserContainers[i].transform.GetChild(1).GetComponent<Text>().text = stagingLobby.users[i].name;
-                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "UN: " + lobby.users[i].username;
-                UserContainers[i].transform.GetChild(3).GetComponent<Image>().sprite = GameDataManager.GetProfileAvatar(lobby.users[i].profile);
+                UserContainers[i].transform.GetChild(2).GetComponent<Text>().text = "USER: " + stagingLobby.users[i].username;
+                UserContainers[i].transform.GetChild(3).GetComponent<Image>().sprite = GameDataManager.GetProfileAvatar(stagingLobby.users[i].profile);
                 UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.75f);
             }
             lobby = stagingLobby;
 
@@ -151,12 +163,13 @@ public class LobbyView : MonoBehaviour {
             while (!registrationDone) {
                 yield return null;
             }
+
             playersChecking = true;
             LobbyController.StatusCheck(GameData.User, lobby);
             while (playersChecking) {
                 yield return null;
             }
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(1);
         }
     }
 

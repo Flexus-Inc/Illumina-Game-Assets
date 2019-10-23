@@ -81,8 +81,7 @@ namespace Illumina.Controller {
                 });
                 ScenesManager.SceneStartUpMessages.Add(3, messages);
                 Login(user);
-                user.password = null;
-                password = null;
+
             } else {
                 UIManager.Warning(user.GetServerMessage());
             }
