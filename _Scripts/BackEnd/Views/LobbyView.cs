@@ -118,11 +118,13 @@ public class LobbyView : MonoBehaviour {
                 ScenesManager.GoToScene(3);
             }
             var count = lobby.users.Length;
-            if (stagingLobby.users.Length > lobby.users.Length) {
+            var othercount = stagingLobby.users.Length;
+            if (othercount > count) {
                 count = stagingLobby.users.Length;
+                othercount = lobby.users.Length;
             }
             for (int i = 0; i < count; i++) {
-                if (stagingLobby.users.Length < lobby.users.Length && i == (lobby.users.Length - 1)) {
+                if (othercount < count && i == (othercount - 1)) {
                     UserContainers[i].GetComponent<Animator>().SetBool("Active", false);
                     break;
                 }
