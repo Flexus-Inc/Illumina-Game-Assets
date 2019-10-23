@@ -155,6 +155,7 @@ namespace Illumina.Controller {
             Request leaveRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/lobby/leave" + add_uri,
             };
+            LobbyView.registrationDone = false;
             leaveRequest.RequestSuccessEvents += OnLeaveRoomRequestSuccess;
             leaveRequest.RequestFailedEvents += OnLeaveRoomRequestFailed;
             Delete(leaveRequest);
