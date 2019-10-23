@@ -84,9 +84,10 @@ public class SignUpView : MonoBehaviour {
             VerifyButton.interactable = true;
         }
     }
+
     void EmailExistsResult(object source) {
         EmailExistText.text = (string) source;
-        if (EmailExistText.text == "Email already exist") {
+        if (EmailExistText.text == "Email already exist" || UserName.text == "") {
             errors["email"] = true;
         } else {
             errors["email"] = false;
@@ -104,11 +105,23 @@ public class SignUpView : MonoBehaviour {
     }
 
     public void ConfirmTerms() {
-        if (TermsAndConditions.isOn && !errors.ContainsValue(true) && DisplayName.text != "") {
-            SubmitButton.interactable = true;
-        } else {
+
+        var error = false;
+        error = error || (UserName.text == "" || UserName.text == null);
+        error = error || (Password.text == "" || Password.text == null);
+        error = error || (ConfirmPassword.text == "" || ConfirmPassword.text == null);
+        error = error || (Email.text == "" || Email.text == null);
+        error = error || (DisplayName.text == "" || DisplayName.text == null);
+        if (error) {
             SubmitButton.interactable = false;
+        } else {
+            if (TermsAndConditions.isOn && !errors.ContainsValue(true) && DisplayName.text != "") {
+                SubmitButton.interactable = true;
+            } else {
+                SubmitButton.interactable = false;
+            }
         }
+
     }
 
     public void Verify() {
