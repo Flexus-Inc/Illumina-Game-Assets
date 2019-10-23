@@ -6,13 +6,13 @@ using Illumina.Models;
 using UnityEngine;
 
 public class GamePlayManager : MonoBehaviour {
-    
+
     public World world;
     public GameObject[] NavigatorButtons = new GameObject[3];
     public static GameObject[] NavButtons;
     public static List<GameObject> Navigators = new List<GameObject>();
     public static string ActiveNavigatorKey;
-    public static int PlayerTurn = 1;
+    public static int PlayerTurn = 0;
     public static bool GamePaused = true;
     public static bool MovementEnabled = true;
     public static int TurnMoves = 0;
@@ -20,11 +20,10 @@ public class GamePlayManager : MonoBehaviour {
     public static bool TrapPlacingEnabled = false;
     public static int TrapSelected = 0;
 
-    void OnEnable() {
-        GameData.PlayDataLoaded = false;
-        PlayDataController.LoadPlayData();
-
-    }
+    // void OnEnable() {
+    //     GameData.PlayDataLoaded = false;
+    //     PlayDataController.LoadPlayData();
+    // }
     void Awake() {
         foreach (var item in NavigatorButtons) {
             item.SetActive(false);
@@ -66,22 +65,30 @@ public class GamePlayManager : MonoBehaviour {
         ActiveNavigatorKey = key;
     }
 
+    // void CreateGameWorld() {
+    //     var collections = this.gameObject.GetComponent<GameAssetsCollection>();
+    //     world = new World(collections.ToWorldCollection());
+    //     if (GameData.PlayData.old) {
+    //         world.players = GameData.PlayData.players;
+    //         world.Map = GameData.PlayData.worldMap;
+    //     }
+    //     if (!GameData.PlayData.old) {
+    //         world.CreateNew();
+    //         var data = new PlayData();
+    //         data.worldMap = this.world.Map;
+    //         data.players = this.world.players;
+    //         PlayDataController.Data = data;
+    //         PlayDataController.SavePlayData();
+    //     }
+
+    //     world.Render();
+    //     PanToBase();
+    // }
     void CreateGameWorld() {
         var collections = this.gameObject.GetComponent<GameAssetsCollection>();
         world = new World(collections.ToWorldCollection());
-        if (GameData.PlayData.old) {
-            world.players = GameData.PlayData.players;
-            world.Map = GameData.PlayData.worldMap;
-        }
-        if (!GameData.PlayData.old) {
-            world.CreateNew();
-            var data = new PlayData();
-            data.worldMap = this.world.Map;
-            data.players = this.world.players;
-            PlayDataController.Data = data;
-            PlayDataController.SavePlayData();
-        }
-
+        world.players = GameData.PlayData.players;
+        world.Map = GameData.PlayData.worldMap;
         world.Render();
         PanToBase();
     }

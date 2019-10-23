@@ -163,4 +163,13 @@ namespace Illumina.Models {
         }
 
     }
+
+    public class PlayRoom {
+        public int status;
+        public int hostid;
+        public int turn;
+        public string host;
+        public Player[] players;
+        public GamePlayData data;
+    }
 }

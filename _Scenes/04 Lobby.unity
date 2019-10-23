@@ -2520,7 +2520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1300143531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3202,6 +3202,26 @@ PrefabInstance:
       propertyPath: SoundFXSources.Array.data[17]
       value: 
       objectReference: {fileID: 8300000, guid: 81c1c65e08a86fc43b87368174dee69d, type: 3}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.5249023
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.900024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.6001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897554021879026296, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69d89439ea4d7d4bb0632b8658813f3, type: 3}
 --- !u!1 &1425505301
@@ -3412,7 +3432,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532042842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 629ad951b31cde1409fb2df60bdef2c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 19cbddf4ce20b4546b45908a3de8ddfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tribepanel:
@@ -3444,17 +3464,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532042842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 409c552fe97895e4a8da0a2374e73e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  earthClip: {fileID: 8300000, guid: e2a669f064693f744831e07d5a9214b5, type: 3}
-  waterClip: {fileID: 8300000, guid: 89ce66c4646bd3746bf08f61ff3b1fac, type: 3}
-  fireClip: {fileID: 8300000, guid: d7103135eccdb634d8bbf78cec1067f8, type: 3}
-  voidClip: {fileID: 8300000, guid: 169420fd79eae604aa6f3e5f7cdb389d, type: 3}
---- !u!1 &1562150814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
@@ -3462,7 +3471,6 @@ GameObject:
   - component: {fileID: 1562150815}
   - component: {fileID: 1562150817}
   - component: {fileID: 1562150816}
-  - component: {fileID: 1562150818}
   m_Layer: 5
   m_Name: User 3
   m_TagString: Untagged
@@ -3489,7 +3497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1348.9999, y: -183.70001}
+  m_AnchoredPosition: {x: -1349, y: -183.70001}
   m_SizeDelta: {x: -1579.5, y: -959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1562150816
@@ -3899,7 +3907,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1348.9999, y: 184.70001}
+  m_AnchoredPosition: {x: -1349, y: 184.70001}
   m_SizeDelta: {x: -1579.5, y: -959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1793917398
@@ -4308,7 +4316,7 @@ RectTransform:
   m_GameObject: {fileID: 1987150499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.03, y: 1.03, z: 1.03}
   m_Children: []
   m_Father: {fileID: 1815537895}
   m_RootOrder: 12
@@ -4392,7 +4400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1348.9999, y: -374}
+  m_AnchoredPosition: {x: -1349, y: -374}
   m_SizeDelta: {x: -1579.5, y: -959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2044578289

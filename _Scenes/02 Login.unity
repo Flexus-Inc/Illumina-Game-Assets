@@ -2153,7 +2153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.449951, y: -316.99994}
+  m_AnchoredPosition: {x: -15.449951, y: -317}
   m_SizeDelta: {x: -2751.3, y: -1572.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &445507337
@@ -2944,6 +2944,7 @@ GameObject:
   - component: {fileID: 560751454}
   - component: {fileID: 560751453}
   - component: {fileID: 560751452}
+  - component: {fileID: 560751455}
   m_Layer: 5
   m_Name: Email input
   m_TagString: Untagged
@@ -3014,19 +3015,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560751453}
   m_TextComponent: {fileID: 361141554}
   m_Placeholder: {fileID: 786941003}
-  m_ContentType: 4
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 5
+  m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498363356}
-        m_MethodName: OnEndEditUsername
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: OnEndEditEmailEmail
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3082,6 +3083,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560751450}
   m_CullTransparentMesh: 0
+--- !u!114 &560751455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560751450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 8
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 702280467}
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Click out of the input filed to verify your email
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &568280734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,19 +3270,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 570830060}
   m_TextComponent: {fileID: 627758336}
   m_Placeholder: {fileID: 1347592213}
-  m_ContentType: 4
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 0
+  m_CharacterLimit: 18
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1498363357}
-        m_MethodName: OnEndEditUsername
+        m_MethodName: OnEndEditPassword
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4535,6 +4564,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: ConfirmForgotPass
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &785850213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5762,19 +5802,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 974942460}
   m_TextComponent: {fileID: 1289811903}
   m_Placeholder: {fileID: 1335665918}
-  m_ContentType: 4
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 0
+  m_CharacterLimit: 18
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1498363357}
-        m_MethodName: OnEndEditUsername
+        m_MethodName: OnEndEditPassword
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6952,11 +6992,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.0021972656
       objectReference: {fileID: 0}
-    - target: {fileID: 1697556758192354190, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -35.01245
-      objectReference: {fileID: 0}
     - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6967,10 +7002,20 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35.599976
       objectReference: {fileID: 0}
+    - target: {fileID: 7897554021879026296, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -104.6001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697556758192354190, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35.01245
       objectReference: {fileID: 0}
     - target: {fileID: 2132537207688700539, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
@@ -8121,6 +8166,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: VerifyIdentity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1441698473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8403,6 +8459,7 @@ GameObject:
   - component: {fileID: 1498363355}
   - component: {fileID: 1498363356}
   - component: {fileID: 1498363357}
+  - component: {fileID: 1498363358}
   m_Layer: 0
   m_Name: _ScriptsContainer
   m_TagString: Untagged
@@ -8466,6 +8523,26 @@ MonoBehaviour:
   VerificationEmail: {fileID: 1802192345}
   VerificationCode: {fileID: 153490}
   VerificationCodeMismatch: {fileID: 389945387}
+  VerificationPanel: {fileID: 1139203804}
+--- !u!114 &1498363358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498363354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5188f22476c5b4f971b5825daea591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Email: {fileID: 560751452}
+  VerificationCode: {fileID: 1585343029}
+  EmailInvalid: {fileID: 702280467}
+  VerificationCodeMismatch: {fileID: 1853810308}
+  Confirm: {fileID: 1441698472}
+  VerifyButton: {fileID: 785850212}
+  EmailValid: 0
 --- !u!1 &1514397124
 GameObject:
   m_ObjectHideFlags: 0
@@ -9085,6 +9162,7 @@ GameObject:
   - component: {fileID: 1585343031}
   - component: {fileID: 1585343030}
   - component: {fileID: 1585343029}
+  - component: {fileID: 1585343032}
   m_Layer: 5
   m_Name: Code input
   m_TagString: Untagged
@@ -9166,8 +9244,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498363356}
-        m_MethodName: OnEndEditUsername
+      - m_Target: {fileID: 1498363358}
+        m_MethodName: OnEditCode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9223,6 +9301,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585343027}
   m_CullTransparentMesh: 0
+--- !u!114 &1585343032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585343027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1853810308}
+          m_MethodName: set_text
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Click outside the input field to verify the code
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1597210338
 GameObject:
   m_ObjectHideFlags: 0
@@ -10326,8 +10432,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 267.7, y: -97.6}
-  m_SizeDelta: {x: 230.9, y: 49.3}
+  m_AnchoredPosition: {x: -114.72, y: -173.6}
+  m_SizeDelta: {x: 844.2, y: 66.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1802192345
 MonoBehaviour:
@@ -10349,12 +10455,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 525a30507899d254eb02ff363e7883ce, type: 3}
-    m_FontSize: 40
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MaxSize: 42
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -11008,19 +11114,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1878640212}
   m_TextComponent: {fileID: 1514397126}
   m_Placeholder: {fileID: 1564218096}
-  m_ContentType: 4
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
-  m_CharacterLimit: 10
+  m_CharacterValidation: 5
+  m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1498363357}
-        m_MethodName: OnEndEditUsername
+        m_MethodName: OnEndEditEmail
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11992,7 +12098,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 18
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []

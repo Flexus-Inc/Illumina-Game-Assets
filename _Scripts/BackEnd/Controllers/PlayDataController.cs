@@ -25,12 +25,27 @@ namespace Illumina.Controller {
             playDataSerializer.Initialize();
             Data.old = true;
             playDataSerializer.SaveData(Data);
-            //TODO : include saving to firebase
-            // RestClient.Put("https://illumina-6a2f2.firebaseio.com/playdatas/" + data.play_key + ".json", data);
+            Request saveRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/play/savedata",
+                body = GameData.PlayRoom
+            };
+            saveRequest.RequestSuccessEvents += OnSaveDataRequestSuccess;
+            saveRequest.RequestFailedEvents += OnSaveDataRequestFailed;
+            Store<PlayRoom>(saveRequest);
         }
 
-        public static void OnVerifyRequestSuccess(Exception e) {
-            Debug.Log(e.Message);
+        public static void OnSaveDataRequestSuccess(object source) {
+            var room = (PlayRoom) source;
+            GameData.PlayDataLoaded = true;
+            GameData.PlayRoom = room;
+            GameData.PlayData = room.data.ToPlayData();
+            ScenesManager.GoToScene(9);
+        }
+
+        public static void OnSaveDataRequestFailed(Exception err) {
+            Debug.Log(err);
+            UIManager.Notify(Notification.Danger, "Problem occured. cannot save data to the server");
+            ScenesManager.GoToScene(4);
         }
 
         public static PlayData LoadPlayData() {
@@ -38,19 +53,19 @@ namespace Illumina.Controller {
             Data = (PlayData) playDataSerializer.LoadData(Data);
             GameData.PlayData = Data;
             GameData.PlayDataLoaded = true;
-
-            //TODO: Include loading data from firebase and add security to firebase
-            // RestClient.Get<GamePlayData>("https://illumina-6a2f2.firebaseio.com/playdatas/bwbGnZe.json").Then(res => {
-            //     Data = res.ToPlayData();
-            //     Data.old = true;
-            //     GameData.PlayData = Data;
-            //     GameData.PlayDataLoaded = true;
-            //     Debug.Log("data loaded");
-            //     Debug.Log(res.players_username[0]);
-
-            // }).Catch(err => { Data.old = false; Debug.Log(err); });
+            Request loadRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/play/loaddata",
+                body = GameData.PlayRoom
+            };
+            loadRequest.RequestSuccessEvents += OnSaveDataRequestSuccess;
+            loadRequest.RequestFailedEvents += OnLoadDataRequestFailed;
+            Store<PlayRoom>(loadRequest);
             return Data;
+        }
 
+        public static void OnLoadDataRequestFailed(Exception err) {
+            Debug.Log(err);
+            UIManager.Notify(Notification.Danger, "Problem occured. cannot load data from the server");
         }
     }
 }

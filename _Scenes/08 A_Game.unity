@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 252617585}
   - component: {fileID: 252617584}
   - component: {fileID: 252617583}
+  - component: {fileID: 252617586}
   m_Layer: 0
   m_Name: _ScriptsContainer
   m_TagString: Untagged
@@ -446,14 +447,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 252617581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 629ad951b31cde1409fb2df60bdef2c8, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  tribepanel:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &252617585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,6 +789,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2419026507386866182, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897554021879026296, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

@@ -76,6 +76,7 @@ public class NavigatorEntityManager : MonoBehaviour {
 
     IEnumerator AnimateNavigatorMovement(Vector3 oldpos, Vector3 newpos, GameObject navigator) {
         yield return null;
+        var orb = navigator.transform.GetChild(1).gameObject;
         float timeStartedLerping = Time.time;
         float timeSinceStarted = Time.time - timeStartedLerping;
         float percentageComplete = timeSinceStarted / 0.75f;
@@ -87,11 +88,13 @@ public class NavigatorEntityManager : MonoBehaviour {
             float currentXValue = Mathf.Lerp(oldpos.x, newpos.x, percentageComplete);
             float currentYValue = Mathf.Lerp(oldpos.y, newpos.y, percentageComplete);
             float currentZValue = Mathf.Lerp(oldpos.z, newpos.z, percentageComplete);
-            Vector3 pos = new Vector3(currentXValue, currentYValue, currentZValue);
+            float orbcurrentXValue = Mathf.Lerp(oldpos.x, newpos.x, percentageComplete * 0.75f);
+            Vector3 pos = new Vector3(currentXValue, currentYValue, currentZValue);     
             navigator.transform.position = pos;
             if (percentageComplete >= 1) break;
             yield return new WaitForEndOfFrame();
         }
+        
         navigator.GetComponent<Animator>().SetTrigger("Idle");
 
     }
