@@ -139,9 +139,6 @@ namespace Illumina.Controller {
             Debug.Log(err);
             UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
             LobbyView.creatingPlayRoom = false;
-            while (UIManager.popup_open) {
-                //do nothing
-            }
             ScenesManager.GoToScene(3);
         }
 

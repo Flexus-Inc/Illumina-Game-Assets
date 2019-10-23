@@ -50,9 +50,9 @@ public class LobbyView : MonoBehaviour {
         }
     }
 
-    PlayRoom CreatePlayRoom(LobbyRoom lobby) {
+    PlayRoom CreatePlayRoom(LobbyRoom _lobby) {
         var room = new PlayRoom();
-        room.hostid = lobby.hostid;
+        room.hostid = _lobby.hostid;
         var players = new List<Player>();
         foreach (var item in lobby.users) {
             var ishost = lobby.host == item.username;
@@ -63,6 +63,7 @@ public class LobbyView : MonoBehaviour {
             players.Add(player);
         }
         room.players = players.ToArray();
+        Debug.Log("Playroom created");
         return room;
     }
 
