@@ -57,6 +57,7 @@ namespace Illumina.Controller {
             var lobby = (LobbyRoom) source;
             LobbyView.stagingLobby = lobby;
             LobbyView.playersUpdating = false;
+            Debug.Log("Updated");
             if (lobby.response_code == "4") {
                 UIManager.Notify(Notification.Light, "Someone left the lobby", false);
             }
@@ -65,9 +66,6 @@ namespace Illumina.Controller {
         public static void OnUpdateRequestFailed(Exception err) {
             Debug.Log(err);
             UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
-            while (UIManager.popup_open) {
-                //do nothing
-            }
         }
 
         public static void StatusCheck(User user, LobbyRoom lobby) {
@@ -155,6 +153,7 @@ namespace Illumina.Controller {
             Request leaveRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/lobby/leave" + add_uri,
             };
+            LobbyView.registrationDone = false;
             leaveRequest.RequestSuccessEvents += OnLeaveRoomRequestSuccess;
             leaveRequest.RequestFailedEvents += OnLeaveRoomRequestFailed;
             Delete(leaveRequest);
@@ -168,6 +167,7 @@ namespace Illumina.Controller {
 
         public static void OnLeaveRoomRequestFailed(Exception err) {
             Debug.Log(err);
+            UIManager.HideLoading();
             UIManager.Notify(Notification.Danger, "Problem occured. try again later");
         }
     }

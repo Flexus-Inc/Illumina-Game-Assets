@@ -1963,13 +1963,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1678838916}
-        m_MethodName: SceneManager_GoToScene
-        m_Mode: 3
+      - m_Target: {fileID: 1532042846}
+        m_MethodName: LeaveRoom
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3159,15 +3159,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -46.900024
       objectReference: {fileID: 0}
-    - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -104.6001
-      objectReference: {fileID: 0}
     - target: {fileID: 7897554021879026296, guid: e69d89439ea4d7d4bb0632b8658813f3,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.6001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69d89439ea4d7d4bb0632b8658813f3, type: 3}
@@ -3180,7 +3180,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1532042843}
-  - component: {fileID: 1532042844}
   - component: {fileID: 1532042845}
   - component: {fileID: 1532042846}
   m_Layer: 0
@@ -3204,21 +3203,6 @@ Transform:
   m_Father: {fileID: 490334287}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1532042844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532042842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e2b167f42908349b7e8cbba3e3726f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timertext: {fileID: 205590677}
-  timer: 60
-  sceneIndex: 3
 --- !u!114 &1532042845
 MonoBehaviour:
   m_ObjectHideFlags: 0
