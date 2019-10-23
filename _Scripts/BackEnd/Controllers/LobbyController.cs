@@ -149,5 +149,25 @@ namespace Illumina.Controller {
             }
             ScenesManager.GoToScene(3);
         }
+
+        public static void LeaveRoom(LobbyRoom lobby, User user) {
+            var add_uri = "?hostid=" + lobby.hostid + "&leavinguser=" + user.username;
+            Request leaveRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/lobby/leave" + add_uri,
+            };
+            leaveRequest.RequestSuccessEvents += OnLeaveRoomRequestSuccess;
+            leaveRequest.RequestFailedEvents += OnLeaveRoomRequestFailed;
+            Delete(leaveRequest);
+        }
+
+        public static void OnLeaveRoomRequestSuccess(object source) {
+            //send a message to startmanager;
+            ScenesManager.GoToScene(3);
+        }
+
+        public static void OnLeaveRoomRequestFailed(Exception err) {
+            Debug.Log(err);
+            UIManager.Notify(Notification.Danger, "Problem occured. try again later");
+        }
     }
 }

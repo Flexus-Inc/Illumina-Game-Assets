@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour {
 
-    public static bool DebugMode = false;
+    public static bool DebugMode = true;
     public static string Laravel_Uri = "";
 
     //TODO: change to https://www.server.ilumina.flexus.online
@@ -24,7 +24,7 @@ public class NetworkManager : MonoBehaviour {
 
     IEnumerator ListenToConnectionChanges() {
         var closed = true;
-        while (true) {
+        while (!DebugMode) {
             if (Application.internetReachability == NetworkReachability.NotReachable && closed) {
                 UIManager.AlertBox(Notification.Warning, "No internet connection. ", false);
                 closed = false;

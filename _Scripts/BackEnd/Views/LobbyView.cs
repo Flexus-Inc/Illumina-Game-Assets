@@ -65,6 +65,10 @@ public class LobbyView : MonoBehaviour {
         return room;
     }
 
+    void LeaveRoom() {
+        
+    }
+
     public void OnReadyRequestFailed(Exception err) {
         Debug.Log(err);
         UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
@@ -94,6 +98,15 @@ public class LobbyView : MonoBehaviour {
             LobbyController.Update(lobby);
             while (playersUpdating) {
                 yield return null;
+            }
+            var kickout = true;
+            for (int i = 0; i < stagingLobby.users.Length; i++) {
+                if (stagingLobby.users[i].username == GameData.User.username) {
+                    kickout = false;
+                }
+            }
+            if (kickout) {
+                break;
             }
             for (int i = 0; i < lobby.users.Length; i++) {
                 if (stagingLobby.users.Length < lobby.users.Length && i == (lobby.users.Length - 1)) {
