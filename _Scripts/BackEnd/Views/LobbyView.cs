@@ -41,7 +41,7 @@ public class LobbyView : MonoBehaviour {
             UIManager.DisplayLoading();
             creatingPlayRoom = true;
             if (ishost) {
-                var room = CreatePlayRoom();
+                var room = CreatePlayRoom(_lobby);
                 LobbyController.CreatePlayRoom(room);
             } else {
                 LobbyController.WaitPlayRoom(_lobby);
@@ -50,8 +50,9 @@ public class LobbyView : MonoBehaviour {
         }
     }
 
-    PlayRoom CreatePlayRoom() {
+    PlayRoom CreatePlayRoom(LobbyRoom lobby) {
         var room = new PlayRoom();
+        room.hostid = lobby.hostid;
         var players = new List<Player>();
         foreach (var item in lobby.users) {
             var ishost = lobby.host == item.username;
