@@ -36,7 +36,7 @@ public class LobbyView : MonoBehaviour {
     public void OnReadyRequestSuccess(object source) {
         var _lobby = (LobbyRoom) source;
         stagingLobby = _lobby;
-        if (_lobby.readyplayers == 4 && !creatingPlayRoom) {
+        if (!creatingPlayRoom) {
             var ishost = lobby.host == GameData.User.username;
             UIManager.DisplayLoading();
             creatingPlayRoom = true;
