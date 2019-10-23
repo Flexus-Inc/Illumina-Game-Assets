@@ -168,6 +168,7 @@ namespace Illumina.Controller {
 
         public static void OnLeaveRoomRequestFailed(Exception err) {
             Debug.Log(err);
+            UIManager.HideLoading();
             UIManager.Notify(Notification.Danger, "Problem occured. try again later");
         }
     }

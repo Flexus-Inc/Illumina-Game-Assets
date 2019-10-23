@@ -136,7 +136,12 @@ namespace Illumina.Networking {
         }
 
         public static void Delete(Request request) {
-            RestClient.Delete(request.uri)
+            RequestHelper delRequest = new RequestHelper {
+                Uri = request.uri,
+                Headers = request.headers
+            };
+            delRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+            RestClient.Delete(delRequest)
                 .Then(res => request.CallSuccessEvents(res.Text))
                 .Catch(err => request.CallFailedEvents(err));
         }
