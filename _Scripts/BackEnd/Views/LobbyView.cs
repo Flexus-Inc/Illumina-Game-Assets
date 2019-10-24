@@ -37,6 +37,9 @@ public class LobbyView : MonoBehaviour {
         var _lobby = (LobbyRoom) source;
         stagingLobby = _lobby;
         if (!creatingPlayRoom) {
+            StopCoroutine(DisplayPlayers());
+            StopCoroutine(StatusCheck());
+            StopCoroutine(UpdatePlayers());
             var ishost = lobby.host == GameData.User.username;
             UIManager.DisplayLoading();
             creatingPlayRoom = true;

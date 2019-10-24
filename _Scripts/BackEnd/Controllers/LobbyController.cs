@@ -128,7 +128,10 @@ namespace Illumina.Controller {
             var room = (PlayRoom) source;
             Debug.Log("Play room created ,hosting " + room.hostid);
             GameData.PlayRoom = room;
-            GameData.PlayData = room.data.ToPlayData();
+            if (room.data != null) {
+                GameData.PlayData = room.data.ToPlayData();
+            }
+
             UIManager.Notify(Notification.Info, "Battlefield is now ready");
             UIManager.HideLoading();
             ScenesManager.GoToScene(8);
