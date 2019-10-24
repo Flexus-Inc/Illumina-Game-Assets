@@ -25,6 +25,7 @@ namespace Illumina.Controller {
             playDataSerializer.Initialize();
             Data.old = true;
             playDataSerializer.SaveData(Data);
+            Debug.Log(GameData.PlayRoom.data.play_key);
             Request saveRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/play/savedata",
                 body = GameData.PlayRoom
@@ -38,6 +39,9 @@ namespace Illumina.Controller {
             var room = (PlayRoom) source;
             GameData.PlayDataLoaded = true;
             GameData.PlayRoom = room;
+            if (room.data == null) {
+                Debug.Log("data is null");
+            }
             GameData.PlayData = room.data.ToPlayData();
             ScenesManager.GoToScene(9);
         }
