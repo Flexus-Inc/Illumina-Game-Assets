@@ -25,10 +25,10 @@ namespace Illumina.Controller {
             playDataSerializer.Initialize();
             Data.old = true;
             playDataSerializer.SaveData(Data);
-            Debug.Log(GameData.PlayRoom.data.play_key);
+            Debug.Log(GameData.PlayData.key);
             Request saveRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/play/savedata",
-                body = GameData.PlayRoom
+                body = GameData.PlayData.ToServerData()
             };
             saveRequest.RequestSuccessEvents += OnSaveDataRequestSuccess;
             saveRequest.RequestFailedEvents += OnSaveDataRequestFailed;
@@ -39,6 +39,7 @@ namespace Illumina.Controller {
             var room = (PlayRoom) source;
             GameData.PlayDataLoaded = true;
             GameData.PlayRoom = room;
+            GameData.PlayData = room.data.ToPlayData();
             if (room.data == null) {
                 Debug.Log("data is null");
             } else {
@@ -60,7 +61,7 @@ namespace Illumina.Controller {
             GameData.PlayDataLoaded = true;
             Request loadRequest = new Request {
                 uri = NetworkManager.Laravel_Uri + "/play/loaddata",
-                body = GameData.PlayRoom
+                body = GameData.PlayData
             };
             loadRequest.RequestSuccessEvents += OnSaveDataRequestSuccess;
             loadRequest.RequestFailedEvents += OnLoadDataRequestFailed;

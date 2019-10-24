@@ -26,7 +26,7 @@ public class GameLoader : MonoBehaviour {
         world.CreateNew();
 
         GameData.PlayData.worldMap = world.Map;
-        GameData.PlayRoom.data = GameData.PlayData.ToServerData();
+        GameData.PlayData.key = GameData.PlayRoom.data.play_key;
         PlayDataController.Data = GameData.PlayData;
         PlayDataController.SavePlayData();
     }
