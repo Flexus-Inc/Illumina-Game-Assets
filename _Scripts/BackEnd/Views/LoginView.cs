@@ -15,9 +15,7 @@ public class LoginView : MonoBehaviour {
 
     User user;
     void Awake() {
-        if (IlluminaWebRequest.CsrfToken == null) {
-            IlluminaWebRequest.GetCsrfToken();
-        }
+    
 
     }
 

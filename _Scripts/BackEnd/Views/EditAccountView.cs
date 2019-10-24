@@ -31,9 +31,7 @@ public class EditAccountView : MonoBehaviour {
     string code = "";
 
     void Awake() {
-        if (IlluminaWebRequest.CsrfToken == null) {
-            IlluminaWebRequest.GetCsrfToken();
-        }
+
         editUser = GameData.User;
         InitializeOldValues();
     }

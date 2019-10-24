@@ -19,7 +19,7 @@ public class NetworkManager : MonoBehaviour {
 
     // Update is called once per frame
     void Start() {
-        StartCoroutine(ListenToConnectionChanges());
+        //StartCoroutine(ListenToConnectionChanges());
     }
 
     IEnumerator ListenToConnectionChanges() {

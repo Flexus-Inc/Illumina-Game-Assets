@@ -32,9 +32,6 @@ public class SignUpView : MonoBehaviour {
     Dictionary<string, bool> errors;
 
     void Awake() {
-        if (IlluminaWebRequest.CsrfToken == null) {
-            IlluminaWebRequest.GetCsrfToken();
-        }
         newUser = new User();
         errors = new Dictionary<string, bool>();
         errors.Add("username", true);
