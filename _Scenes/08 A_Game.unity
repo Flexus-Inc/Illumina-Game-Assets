@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 252617584}
   - component: {fileID: 252617583}
   - component: {fileID: 252617586}
+  - component: {fileID: 252617587}
   m_Layer: 0
   m_Name: _ScriptsContainer
   m_TagString: Untagged
@@ -479,6 +480,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e820d8ac584b0d443b18cef135a4d955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &252617587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252617581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8045bc6874dbdf4ca64aebaa6def77d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Layers:
+  - {fileID: 0}
+  - {fileID: 0}
+  GroundTiles:
+  - {fileID: 11400000, guid: da5d5153f946d554195e8f2e667f9f5b, type: 2}
+  - {fileID: 11400000, guid: 675c605940e3b5c48a2fcce8475b11dd, type: 2}
+  - {fileID: 11400000, guid: a1f7f1213f4c9e045b67287a24707e4f, type: 2}
+  - {fileID: 11400000, guid: 103e4df26f4e4bf4a8fee7649e76d9a4, type: 2}
+  Outline: {fileID: 11400000, guid: 20318bcf2d7ecb74f8b7eb6097a35fb1, type: 2}
+  TrapMagic: {fileID: 11400000, guid: 928f0ddc3eded2943826400851ce78ea, type: 2}
+  EntitiesParent:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  GeneralPrefabs:
+  - {fileID: 3788067767606705248, guid: 389592b7524563547b01d0351fcafb58, type: 3}
+  - {fileID: 5272314283339294164, guid: 32157d38d53903546bdafd49dfdda740, type: 3}
+  - {fileID: 5614392976826018150, guid: ae0239c006f93d74388861c8634b3d46, type: 3}
+  - {fileID: 8806985718382795388, guid: 88883614ccade814fa0b855d9de258cf, type: 3}
+  NavigatorPrefabs:
+  - {fileID: 7403000649142830144, guid: 1c6578ad08d6b474d834ed8a6c23e228, type: 3}
+  - {fileID: 5362321992623351333, guid: 07f09647346be63428d47ec0ea712094, type: 3}
+  - {fileID: 6059478078968540592, guid: 4836b4998201c4440b9cee3fdd6687ba, type: 3}
+  - {fileID: 8465641450444015712, guid: f447c5ac44f58da4e85e5d5f82a852ef, type: 3}
+  BasePrefabs:
+  - {fileID: 4725268493193179528, guid: 398a53e2b93a1024cbcf6c7fb9249ec5, type: 3}
+  - {fileID: 6774373201581385287, guid: 17d82b1fe520b264fbbccd4621fe1aaf, type: 3}
+  - {fileID: 1270102089723712914, guid: 55e0c44e2064ecc47812ccb3688a0d2e, type: 3}
+  - {fileID: 5555799784140326758, guid: a0fa90dab528bae42b93e607f7fb3e96, type: 3}
 --- !u!1 &414539650
 GameObject:
   m_ObjectHideFlags: 0
