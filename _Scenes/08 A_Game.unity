@@ -435,9 +435,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de14c25fe00aca24b830dddf92695a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingpanel: {fileID: 1078676687}
-  loadingtext: {fileID: 455159519}
-  sceneIndex: 0
+  LoadingPanel: {fileID: 1078676687}
+  LoadingTexts:
+  - blah
+  - bleh
+  LoadingTextContainer: {fileID: 1262721609}
 --- !u!114 &252617584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +467,18 @@ MonoBehaviour:
   timertext: {fileID: 0}
   timer: 60
   sceneIndex: 0
+--- !u!114 &252617586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252617581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e820d8ac584b0d443b18cef135a4d955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &414539650
 GameObject:
   m_ObjectHideFlags: 0
