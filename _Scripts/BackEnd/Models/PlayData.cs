@@ -170,6 +170,6 @@ namespace Illumina.Models {
         public int turn;
         public string host;
         public Player[] players;
-        public GamePlayData data;
+        public GamePlayData data = null;
     }
 }

@@ -36,12 +36,15 @@ public class LobbyView : MonoBehaviour {
     public void OnReadyRequestSuccess(object source) {
         var _lobby = (LobbyRoom) source;
         stagingLobby = _lobby;
-        if (_lobby.readyplayers == 4 && !creatingPlayRoom) {
+        if (!creatingPlayRoom) {
+            StopCoroutine(DisplayPlayers());
+            StopCoroutine(StatusCheck());
+            StopCoroutine(UpdatePlayers());
             var ishost = lobby.host == GameData.User.username;
             UIManager.DisplayLoading();
             creatingPlayRoom = true;
             if (ishost) {
-                var room = CreatePlayRoom();
+                var room = CreatePlayRoom(_lobby);
                 LobbyController.CreatePlayRoom(room);
             } else {
                 LobbyController.WaitPlayRoom(_lobby);
@@ -50,8 +53,9 @@ public class LobbyView : MonoBehaviour {
         }
     }
 
-    PlayRoom CreatePlayRoom() {
+    PlayRoom CreatePlayRoom(LobbyRoom _lobby) {
         var room = new PlayRoom();
+        room.hostid = _lobby.hostid;
         var players = new List<Player>();
         foreach (var item in lobby.users) {
             var ishost = lobby.host == item.username;
@@ -62,6 +66,7 @@ public class LobbyView : MonoBehaviour {
             players.Add(player);
         }
         room.players = players.ToArray();
+        Debug.Log("Playroom created");
         return room;
     }
 
@@ -96,6 +101,10 @@ public class LobbyView : MonoBehaviour {
             UserContainers[i].transform.GetChild(3).GetComponent<Image>().sprite = GameDataManager.GetProfileAvatar(lobby.users[i].profile);
             UserContainers[i].GetComponent<Animator>().SetBool("Active", true);
             yield return new WaitForSeconds(0.5f);
+        }
+        if (lobby.users.Length == 4) {
+            ReadyButton.gameObject.SetActive(true);
+            ReadyButton.interactable = true;
         }
     }
 
@@ -142,17 +151,20 @@ public class LobbyView : MonoBehaviour {
             lobby = stagingLobby;
 
             if (lobby.users.Length < 4) {
-                ReadyButton.gameObject.SetActive(false);
                 ReadyButton.interactable = false;
-            }
-            if (lobby.readyplayers < 4 && stagingLobby.users.Length == 4) {
+                ReadyButton.gameObject.SetActive(false);
+            } else {
                 ReadyButton.gameObject.SetActive(true);
                 ReadyButton.interactable = true;
             }
-            if (lobby.readyplayers == 4) {
-                OnReadyRequestSuccess(lobby);
-                break;
-            }
+            // if (lobby.readyplayers <= 4 && stagingLobby.users.Length == 4) {
+            //     ReadyButton.gameObject.SetActive(true);
+            //     ReadyButton.interactable = true;
+            // }
+            // if (lobby.readyplayers == 4) {
+            //     OnReadyRequestSuccess(lobby);
+            //     break;
+            // }
             Debug.Log(lobby.readyplayers);
             yield return new WaitForSeconds(0.25f);
         }
