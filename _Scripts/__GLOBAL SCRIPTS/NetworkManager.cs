@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class NetworkManager : MonoBehaviour {
 
     public static bool DebugMode = false;
-    public static string Laravel_Uri = "169.254.28.186";
+    public static string Laravel_Uri = "192.168.137.1";
 
     //TODO: change to https://www.server.ilumina.flexus.online
     //TODO: change to https://server.ilumina.flexus.online
