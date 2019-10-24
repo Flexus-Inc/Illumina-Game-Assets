@@ -136,6 +136,7 @@ namespace Illumina.Controller {
         }
 
         public static void OnCreatePlayRoomRequestFailed(Exception err) {
+            UIManager.HideLoading();
             Debug.Log(err);
             UIManager.Danger("Problem occured. you will be redirected to Main Menu.");
             LobbyView.creatingPlayRoom = false;
