@@ -41,8 +41,9 @@ namespace Illumina.Controller {
             GameData.PlayRoom = room;
             if (room.data == null) {
                 Debug.Log("data is null");
+            } else {
+                GameData.PlayData = room.data.ToPlayData();
             }
-            GameData.PlayData = room.data.ToPlayData();
             ScenesManager.GoToScene(9);
         }
 
