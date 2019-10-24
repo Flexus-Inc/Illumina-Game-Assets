@@ -28,6 +28,9 @@ public class LobbyView : MonoBehaviour {
     }
 
     public void Ready() {
+        StopCoroutine(DisplayPlayers());
+        StopCoroutine(StatusCheck());
+        StopCoroutine(UpdatePlayers());
         ReadyButton.interactable = false;
         ReadyButton.gameObject.SetActive(false);
         LobbyController.Ready(lobby, OnReadyRequestSuccess, OnReadyRequestFailed);
