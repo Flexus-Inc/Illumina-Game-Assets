@@ -12,22 +12,24 @@ namespace Illumina {
         public Player owner;
         public CoordInt GridPosition;
         public string key;
-        public WorldEntity(Player owner, Vector3Int pos) {
+        public WorldEntityType type;
+        public WorldEntity(Player owner, Vector3Int pos, WorldEntityType type) {
             this.owner = owner;
             this.GridPosition = IlluminaConverter.ToCoordInt(pos);
-            this.key = Keys.RandomKey(7);
+            this.key = (new Key()).GenerateRandom(7);
+            this.type = type;
         }
     }
 
     [System.Serializable]
     public class Floor : WorldEntity {
         //
-        public Floor(Player owner, Vector3Int pos) : base(owner, pos) { }
+        public Floor(Player owner, Vector3Int pos) : base(owner, pos, WorldEntityType.Floor) { }
     }
 
     [System.Serializable]
     public class Base : WorldEntity {
-        public Base(Player owner, Vector3Int pos) : base(owner, pos) {
+        public Base(Player owner, Vector3Int pos) : base(owner, pos, WorldEntityType.Base) {
             //will not do anything;
         }
 
@@ -37,7 +39,7 @@ namespace Illumina {
     public class Navigator : WorldEntity {
         //
         public bool flipX = false;
-        public Navigator(Player owner, Vector3Int pos, bool flipX = false) : base(owner, pos) {
+        public Navigator(Player owner, Vector3Int pos, bool flipX = false) : base(owner, pos, WorldEntityType.Navigator) {
             owner.navigators.Add(this.key, this);
             this.flipX = flipX;
         }
@@ -47,7 +49,7 @@ namespace Illumina {
     public class General : WorldEntity {
         //
 
-        public General(Player owner, Vector3Int pos) : base(owner, pos) {
+        public General(Player owner, Vector3Int pos) : base(owner, pos, WorldEntityType.General) {
 
         }
     }
@@ -55,7 +57,7 @@ namespace Illumina {
     [System.Serializable]
     public class Trap : WorldEntity {
         //
-        public Trap(Player owner, Vector3Int pos) : base(owner, pos) {
+        public Trap(Player owner, Vector3Int pos) : base(owner, pos, WorldEntityType.Trap) {
             owner.traps.Add(this.key, this);
         }
     }

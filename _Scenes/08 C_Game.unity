@@ -868,7 +868,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 270
+  orthographic size: 200
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -953,7 +953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.5999756, y: 0.024963379}
+  m_AnchoredPosition: {x: 4.6000977, y: 0.025024414}
   m_SizeDelta: {x: 45.2, y: 0.050048828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299102905
@@ -1003,7 +1003,6 @@ GameObject:
   - component: {fileID: 312993388}
   - component: {fileID: 312993390}
   - component: {fileID: 312993389}
-  - component: {fileID: 312993391}
   m_Layer: 5
   m_Name: Timer text
   m_TagString: Untagged
@@ -1070,21 +1069,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312993387}
   m_CullTransparentMesh: 0
---- !u!114 &312993391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312993387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e2b167f42908349b7e8cbba3e3726f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timertext: {fileID: 0}
-  timer: 45
-  sceneIndex: 0
 --- !u!1 &315524356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6393,7 +6377,40 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 506954713}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1498363357}
+        m_MethodName: GoToNavigatorPosition
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1605760083}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 749581963}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &506954713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6512,7 +6529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.5999756, y: 20}
+  m_AnchoredPosition: {x: 4.6000977, y: 20}
   m_SizeDelta: {x: 45.2, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510120541
@@ -6709,7 +6726,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 393100356}
-          m_MethodName: Pause
+          m_MethodName: Stop
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -16497,7 +16514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -11.075012}
+  m_AnchoredPosition: {x: 0, y: -11.075073}
   m_SizeDelta: {x: 0, y: 22.150047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665959287
@@ -22907,7 +22924,40 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 749581964}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1498363357}
+        m_MethodName: GoToNavigatorPosition
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1605760083}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 506954712}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &749581964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36024,6 +36074,9 @@ GameObject:
   - component: {fileID: 1498363355}
   - component: {fileID: 1498363356}
   - component: {fileID: 1498363357}
+  - component: {fileID: 1498363358}
+  - component: {fileID: 1498363359}
+  - component: {fileID: 1498363360}
   m_Layer: 0
   m_Name: _ScriptsContainer
   m_TagString: ScriptsContainer
@@ -36099,6 +36152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   world:
+    players: []
     Collection:
       Layers: []
       GroundTiles: []
@@ -36109,8 +36163,63 @@ MonoBehaviour:
       NavigatorPrefabs: []
       BasePrefabs: []
     Map: {}
-  TurnNumber: 1
-  PlayersTurnNumber: 1
+  NavigatorButtons:
+  - {fileID: 1605760080}
+  - {fileID: 749581960}
+  - {fileID: 506954710}
+--- !u!114 &1498363358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498363354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dbfc2cabd7aae44f864c00235838e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Timer: {fileID: 312993389}
+--- !u!114 &1498363359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498363354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5d9ee403d62204a928f32dd0dcfded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blanktile: {fileID: 0}
+--- !u!114 &1498363360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498363354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786c37dd3e02df74cb7d984bb92646cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.05
+  repetitions: 25
+  diceCollider: {fileID: 2128979357}
+  animator:
+  - {fileID: 2128979355}
+  - {fileID: 1178790861}
+  - {fileID: 337763895}
+  renderHex:
+  - {fileID: 1050047145}
+  - {fileID: 1045939618}
+  - {fileID: 1194633918}
+  - {fileID: 1332840074}
+  - {fileID: 976792581}
+  - {fileID: 402886087}
+  - {fileID: 1678061272}
 --- !u!1 &1505697243
 GameObject:
   m_ObjectHideFlags: 0
@@ -51198,7 +51307,40 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1605760084}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1498363357}
+        m_MethodName: GoToNavigatorPosition
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 749581963}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 506954712}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1605760084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52762,7 +52904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4, y: 15.856995}
+  m_AnchoredPosition: {x: -4, y: 15.857056}
   m_SizeDelta: {x: 8, y: -31.714}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856045178
@@ -54936,7 +55078,6 @@ GameObject:
   - component: {fileID: 2128979354}
   - component: {fileID: 2128979358}
   - component: {fileID: 2128979357}
-  - component: {fileID: 2128979356}
   - component: {fileID: 2128979355}
   - component: {fileID: 2128979359}
   m_Layer: 5
@@ -54992,33 +55133,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2128979356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128979353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 786c37dd3e02df74cb7d984bb92646cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0.05
-  repetitions: 25
-  diceCollider: {fileID: 2128979357}
-  animator:
-  - {fileID: 2128979355}
-  - {fileID: 1178790861}
-  - {fileID: 337763895}
-  renderHex:
-  - {fileID: 1050047145}
-  - {fileID: 1045939618}
-  - {fileID: 1194633918}
-  - {fileID: 1332840074}
-  - {fileID: 976792581}
-  - {fileID: 402886087}
-  - {fileID: 1678061272}
 --- !u!58 &2128979357
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -55324,5 +55438,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a1f7f1213f4c9e045b67287a24707e4f,
         type: 2}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.5249023
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017133704759378767, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.900024
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845485975504656199, guid: e69d89439ea4d7d4bb0632b8658813f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.6001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69d89439ea4d7d4bb0632b8658813f3, type: 3}

@@ -19,6 +19,7 @@ public class ScenesManager : MonoBehaviour {
     public float[] LoadingTransitionsTime;
     public static Animator SceneTransition;
     public static Animator LoadingTransition;
+    public static Dictionary<int, List<NotificationObject>> SceneStartUpMessages = new Dictionary<int, List<NotificationObject>>();
     public static int ActiveTransitionIndex = 0;
     public static int ActiveLoadingTransitionIndex = 0;
 
@@ -40,21 +41,37 @@ public class ScenesManager : MonoBehaviour {
         LoadingTransition.gameObject.SetActive(activated);
     }
 
-    public void ChangeScene(int buildIndex) {
-        transition_status = 1;
-        StartCoroutine(LoadAsyncScene(buildIndex));
-        StartCoroutine(ShowLoading());
+    IEnumerator ShowStartUpMessages() {
+        var activeScene = SceneManager.GetActiveScene().buildIndex;
+        if (SceneStartUpMessages.ContainsKey(activeScene)) {
+            foreach (var notification in SceneStartUpMessages[activeScene]) {
+                UIManager.Notify(notification.type, notification.message, notification.show_at_top);
+                while (UIManager.notif_open) {
+                    yield return null;
+                }
+                yield return new WaitForSeconds(0.5f);
+            }
+            SceneStartUpMessages.Remove(activeScene);
+        }
     }
 
-    public static void GoToScene(int buildIndex) {
-        GameObject.Find("__ScenesManager").GetComponent<ScenesManager>().ChangeScene(buildIndex);
+    public void ChangeScene(int buildIndex, bool hidden) {
+        transition_status = 1;
+        StartCoroutine(LoadAsyncScene(buildIndex, hidden));
+        StartCoroutine(ShowLoading(hidden));
+    }
+
+    public static void GoToScene(int buildIndex, bool hidden = false) {
+        GameObject.Find("__ScenesManager").GetComponent<ScenesManager>().ChangeScene(buildIndex, hidden);
     }
 
     //Coroutines
-    IEnumerator LoadAsyncScene(int sceneBuildIndex) {
-        Activate();
+    IEnumerator LoadAsyncScene(int sceneBuildIndex, bool hidden) {
+        Activate(!hidden);
+        if (!hidden) {
+            SceneTransition.SetTrigger("Start");
+        }
 
-        SceneTransition.SetTrigger("Start");
         yield return new WaitForSeconds(SceneTransitionsTime[ActiveTransitionIndex] / 2);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneBuildIndex);
 
@@ -66,25 +83,34 @@ public class ScenesManager : MonoBehaviour {
         if (loading_status == 1) {
             yield return new WaitForSeconds(LoadingTransitionsTime[ActiveLoadingTransitionIndex]);
         }
-        SceneTransition.SetTrigger("End");
+        if (!hidden) {
+            SceneTransition.SetTrigger("End");
+        }
+
         var waitTime = SceneTransitionsTime[ActiveTransitionIndex] / 2;
         waitTime += LoadingTransitionsTime[ActiveLoadingTransitionIndex];
         yield return new WaitForSeconds(waitTime);
         Activate(false);
-
+        StartCoroutine(ShowStartUpMessages());
     }
 
-    IEnumerator ShowLoading() {
+    IEnumerator ShowLoading(bool hidden) {
         yield return new WaitForSeconds(SceneTransitionsTime[ActiveTransitionIndex]);
         loading_status = 1;
         if (transition_status == 1) {
-            LoadingTransition.SetTrigger("Start");
+            if (!hidden) {
+                LoadingTransition.SetTrigger("Start");
+            }
+
         }
 
         while (transition_status != 0) {
             yield return null;
         }
-        LoadingTransition.SetTrigger("End");
+        if (!hidden) {
+            LoadingTransition.SetTrigger("End");
+        }
+
         loading_status = 0;
     }
 }

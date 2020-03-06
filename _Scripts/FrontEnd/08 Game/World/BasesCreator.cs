@@ -62,7 +62,7 @@ namespace Illumina {
                 Outline _outline = new Outline(world.Collection.Layers[0], world.Collection.GroundTiles[1]);
                 var positions = _outline.GetSurroundingPos(BasesPos[i]);
                 var pos_index = Random.Range(0, 7);
-                while (pos_index == 3 || pos_index == 0) {
+                while (pos_index == 3 || pos_index == 0 || pos_index == 6) {
                     pos_index = Random.Range(0, 7);
                 }
                 var position = positions[pos_index];

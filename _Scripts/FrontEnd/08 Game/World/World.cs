@@ -8,7 +8,7 @@ namespace Illumina {
 
     [System.Serializable]
     public class World {
-        List<Player> players = new List<Player>();
+        public List<Player> players = new List<Player>();
         public WorldCollection Collection;
         public WorldMap Map;
 
@@ -35,7 +35,9 @@ namespace Illumina {
                 var baseObject = Object.Instantiate(baseStructure, worldPos, Quaternion.identity, basesParent);
                 var p = baseObject.transform.position;
                 baseObject.GetComponent<BaseEntityManager>().GridPosition = pos;
+                baseObject.GetComponent<BaseEntityManager>().TribeIdentity = item.Value.owner.tribe;
                 baseObject.GetComponent<BaseEntityManager>().BasePosition = baseObject.transform.position;
+                baseObject.GetComponent<BaseEntityManager>().key = item.Value.key;
             }
         }
 
@@ -50,10 +52,67 @@ namespace Illumina {
                 var navigator = new Navigator(owner, pos, flipX);
                 Map.PlaceNavigator(pos, navigator);
                 PlaceNavigator(navigator, flipX);
-                PlayDataController.SavePlayData();
+
+                CreateMove();
             }
         }
 
+        public void MoveNavigator(Vector3Int newPos, GameObject navigator, bool flipX) {
+            Vector3Int oldPos = navigator.GetComponent<NavigatorEntityManager>().GridPosition;
+            Vector3 oldpos = navigator.GetComponent<NavigatorEntityManager>().BasePosition;
+            Vector3 newpos = Collection.Layers[0].CellToWorld(newPos);
+            navigator.GetComponent<NavigatorEntityManager>().GridPosition = newPos;
+            navigator.GetComponent<NavigatorEntityManager>().BasePosition = newpos;
+            var flip = navigator.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX;
+            if (flipX) {
+                flip = !flip;
+            }
+            navigator.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = flip;
+            navigator.GetComponent<NavigatorEntityManager>().MoveNavigatorEntity(oldpos, newpos, navigator);
+
+        }
+
+        public static void CreateMove() {
+            DiceRoll.RemoveHexPos();
+            GamePlayManager.TurnMoves++;
+            if (GamePlayManager.TurnMoves == GamePlayManager.TurnMaxMoves) {
+                GamePlayManager.MovementEnabled = false;
+            }
+            PlayDataController.SavePlayData();
+        }
+
+        public void UpdateNavigatorPosition(Vector3Int oldPos, Vector3Int newPos, GameObject navigator) {
+            var flipX = false;
+            var flip = navigator.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX;
+            if (flip && oldPos.y > newPos.y) {
+                flipX = false;
+            } else if (!flip && oldPos.y > newPos.y) {
+                flipX = true;
+            } else if (flip && oldPos.y < newPos.y) {
+                flipX = true;
+            } else {
+                flipX = false;
+            }
+
+            if (Map.ChangeNavigatorPosition(oldPos, newPos, flipX) == DestinationEntity.None) {
+                MoveNavigator(newPos, navigator, flipX);
+            } else {
+                switch (Map.ChangeNavigatorPosition(oldPos, newPos, flipX)) {
+                    case DestinationEntity.General:
+                        Debug.Log("General fight");
+                        break;
+                    case DestinationEntity.Navigator:
+                        Debug.Log("Navigator fight");
+                        break;
+                    case DestinationEntity.Trap:
+                        Debug.Log("Trap activated");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            CreateMove();
+        }
         public void PlaceNavigator(Navigator navigator, bool flipX = false) {
 
             var tribeIndex = (int) navigator.owner.tribe;
@@ -67,12 +126,32 @@ namespace Illumina {
                 flip = !flip;
             }
             navigatorObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = flip;
-            Debug.Log(navigator.GridPosition.ToVector3Int());
+
+            var p = navigatorObject.transform.position;
+            navigatorObject.GetComponent<NavigatorEntityManager>().GridPosition = pos;
+            navigatorObject.GetComponent<NavigatorEntityManager>().TribeIdentity = navigator.owner.tribe;
+            navigatorObject.GetComponent<NavigatorEntityManager>().BasePosition = navigatorObject.transform.position;
+            navigatorObject.GetComponent<NavigatorEntityManager>().key = navigator.key;
+            if (navigator.owner.tribe == (Tribe) GamePlayManager.PlayerTurn) {
+                GamePlayManager.Navigators.Add(navigatorObject);
+                GamePlayManager.EnableNavButton(GamePlayManager.Navigators.Count - 1);
+            }
+        }
+
+        public void PlaceTrap(Player owner, Vector3Int pos) {
+            var trap = new Trap(owner, pos);
+            if (Map.PlaceTrap(pos, trap) == DestinationEntity.None) {
+                Debug.Log("Trap placed at " + pos + ", Owned by " + owner.tribe);
+                GamePlayManager.TrapPlacingEnabled = false;
+                Collection.Layers[0].SetTile(pos, Collection.GroundTiles[0]);
+                CreateMove();
+            }
         }
         public void PlaceNavigators() {
             foreach (var item in Map.Maps.NavigatorsMap) {
                 PlaceNavigator(item.Value, item.Value.flipX);
             }
+
         }
 
         public void PlaceBaseGenerals() {
@@ -88,13 +167,16 @@ namespace Illumina {
         }
 
         public void CreateNew() {
-            Test(); // TODO: remove this if player creation is created;
             var baseCreator = new BasesCreator(this);
-            baseCreator.PlaceBases(this.players);
+            baseCreator.PlaceBases(CreatePlayerList(GameData.PlayRoom.players));
         }
 
-        public void Create() {
-            //do refreshing of the map
+        public List<Player> CreatePlayerList(Player[] playersarray) {
+            var players = new List<Player>();
+            foreach (var item in playersarray) {
+                players.Add(item);
+            }
+            return players;
         }
 
         public void Render() {
@@ -108,11 +190,14 @@ namespace Illumina {
             for (int i = 0; i < 4; i++) {
                 var host = i == 0 ? true : false;
                 var user = new User();
-                user.name = Keys.RandomKey(7);
+                user.name = (new Key()).GenerateRandom(7);
+                user.username = (new Key()).GenerateRandom(5);
                 var player = new Player(user, host);
                 player.tribe = (Tribe) i;
                 this.players.Add(player);
             }
         }
+
+        //Coroutines
     }
 }

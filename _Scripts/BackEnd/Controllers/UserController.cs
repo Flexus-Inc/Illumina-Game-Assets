@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Illumina.Models;
 using Illumina.Networking;
 using Illumina.Security;
@@ -12,7 +13,7 @@ namespace Illumina.Controller {
 
         public static void UserExists(string identifier, string value, RequestSuccessEventHandler e, RequestFailedEventHandler f) {
             var tokenQuery = IlluminaHash.GetUniqueDateTimeHash();
-            var uri = NetworkManager.App_Url + "/user/exists/" + tokenQuery;
+            var uri = NetworkManager.Laravel_Uri + "/user/exists/" + tokenQuery;
             uri += "?" + identifier + "=" + value;
             Request userExistRequest = new Request {
                 uri = uri,
@@ -23,9 +24,9 @@ namespace Illumina.Controller {
         }
 
         public static void VerifyEmail(User user) {
-            user.password = IlluminaHash.GetHash(user.password);
+
             Request verifyRequest = new Request {
-                uri = NetworkManager.App_Url + "/user/verifyemail/" + IlluminaHash.GetUniqueDateTimeHash(),
+                uri = NetworkManager.Laravel_Uri + "/user/verifyemail/" + IlluminaHash.GetUniqueDateTimeHash(),
                 body = user
             };
 
@@ -38,7 +39,7 @@ namespace Illumina.Controller {
             password = user.password;
             user.password = IlluminaHash.GetHash(user.password);
             Request signupRequest = new Request {
-                uri = NetworkManager.App_Url + "/user",
+                uri = NetworkManager.Laravel_Uri + "/user",
                 body = user
             };
             signupRequest.RequestSuccessEvents += OnSignUpRequestSuccess;
@@ -47,20 +48,41 @@ namespace Illumina.Controller {
         }
 
         public static void OnVerifyRequestSuccess(object source) {
+            UIManager.HideLoading();
+            SignUpView.VerificationCodePanel.SetTrigger("Start");
             var user = (User) source;
             Debug.Log("Code is sent to the email : " + user.email);
         }
 
         public static void OnVerifyRequestFailed(Exception err) {
+            UIManager.HideLoading();
             Debug.Log(err);
-            UIManager.Danger(err.Message);
+            UIManager.Danger("Cannot send email verification right now. try again later");
         }
         public static void OnSignUpRequestSuccess(object source) {
             var user = (User) source;
-            user.logged_in = true;
-            user.password = password;
-            Login(user);
-            user.password = null;
+            if (user.response_code == "0") {
+                user.logged_in = true;
+                user.password = password;
+                var messages = new List<NotificationObject>();
+                messages.Add(new NotificationObject {
+                    type = Notification.Light,
+                        message = "Welcome to Ilumina " + user.name,
+                        show_at_top = true
+                });
+                messages.Add(new NotificationObject {
+                    type = Notification.Primary,
+                        message = "Play Now by clicking 'Enclasp' ",
+                        show_at_top = false
+                });
+                ScenesManager.SceneStartUpMessages.Add(3, messages);
+                Login(user);
+                user.password = null;
+                password = null;
+            } else {
+                UIManager.Warning(user.GetServerMessage());
+            }
+
         }
 
         public static void OnSignUpRequestFailed(Exception err) {
@@ -72,7 +94,7 @@ namespace Illumina.Controller {
             user.password = IlluminaHash.GetHash(user.password);
             //user.username = IlluminaCipher.Encipher(user.username);
             Request loginRequest = new Request {
-                uri = NetworkManager.App_Url + "/user/login",
+                uri = NetworkManager.Laravel_Uri + "/user/login",
                 body = user
             };
             loginRequest.RequestSuccessEvents += OnLoginRequestSuccess;
@@ -81,10 +103,16 @@ namespace Illumina.Controller {
         }
 
         public static void OnLoginRequestSuccess(object source) {
-            GameData.User = (User) source;
-            Debug.Log(GameData.User.GetServerMessage());
+            var user = (User) source;
+            Debug.Log(user.GetServerMessage());
             UIManager.HideLoading();
-            ScenesManager.GoToScene(3);
+            if (user.response_code == "0") {
+                GameData.User = user;
+                ScenesManager.GoToScene(3);
+            } else {
+                UIManager.Warning(user.GetServerMessage());
+            }
+
         }
 
         public static void OnLoginRequestFailed(Exception err) {
@@ -95,7 +123,7 @@ namespace Illumina.Controller {
 
         public static void Logout(User user) {
             Request logoutRequest = new Request {
-                uri = NetworkManager.App_Url + "/user/logout",
+                uri = NetworkManager.Laravel_Uri + "/user/logout",
                 body = user
             };
 
@@ -124,22 +152,50 @@ namespace Illumina.Controller {
             UIManager.Danger(err.Message);
         }
 
-        public static void ResetPass(User user) {
-            Request forgotPassRequest = new Request {
-                uri = NetworkManager.App_Url + "/user/forgotpass",
-                body = user
+        public static void ResetPass(string email) {
+            User findUser = new User {
+                email = email
             };
-
+            Request forgotPassRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/user/forgotPass",
+                body = findUser
+            };
             forgotPassRequest.RequestSuccessEvents += OnForgotPassRequestSuccess;
-            forgotPassRequest.RequestFailedEvents += OnForgotPassRequestFailed;
             Update<User>(forgotPassRequest);
         }
 
         public static void OnForgotPassRequestSuccess(object source) {
             UIManager.HideLoading();
+            ScenesManager.GoToScene(2);
         }
         public static void OnForgotPassRequestFailed(Exception err) {
             Debug.Log(err);
+            UIManager.HideLoading();
+            UIManager.Danger(err.Message);
+        }
+
+        public static void Edit(User user) {
+            user.password = IlluminaHash.GetHash(user.password);
+            password = user.password;
+            Request editRequest = new Request {
+                uri = NetworkManager.Laravel_Uri + "/user/editaccount",
+                body = user
+            };
+            editRequest.RequestSuccessEvents += OnEditRequestSuccess;
+            editRequest.RequestFailedEvents += OnEditRequestFailed;
+            Store<User>(editRequest);
+        }
+
+        public static void OnEditRequestSuccess(object source) {
+            var user = (User) source;
+            user.password = password;
+            GameData.User = user;
+            password = null;
+            Debug.Log(user.response_message);
+            UIManager.HideLoading();
+            ScenesManager.GoToScene(3);
+        }
+        public static void OnEditRequestFailed(Exception err) {
             UIManager.HideLoading();
             UIManager.Danger(err.Message);
         }

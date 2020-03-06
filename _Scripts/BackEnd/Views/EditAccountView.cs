@@ -1,14 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using Illumina.Controller;
 using Illumina.Models;
 using Illumina.Networking;
 using Illumina.Security;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class EditAccountView : MonoBehaviour
-{
+public class EditAccountView : MonoBehaviour {
     public InputField DisplayName;
     public InputField Password;
     public InputField NewPassword;
@@ -17,42 +17,59 @@ public class EditAccountView : MonoBehaviour
     public Text ConfirmPasswordNotMatchText;
     public Text OldPasswordIncorrectText;
     User editUser;
-    public bool password = true;
-    
-    void Awake(){
-        if (IlluminaWebRequest.CsrfToken == null){
+    public bool oldpassworderror = false;
+    public bool newpassworderror = false;
+
+    void Awake() {
+        if (IlluminaWebRequest.CsrfToken == null) {
             IlluminaWebRequest.GetCsrfToken();
         }
-        editUser = new User();
+        editUser = GameData.User;
+        InitializeOldValues();
     }
 
-    public void OnEndEditPassword(){
+    void InitializeOldValues() {
+        DisplayName.text = editUser.name;
+        //insert also email here
+    }
+
+    public void OnEndEditOldPassword() {
+        var pass = IlluminaHash.GetHash(Password.text);
+        if (IlluminaHash.CompareHash(pass, GameData.User.password) && Password.text != null) {
+            OldPasswordIncorrectText.text = "";
+        } else {
+            OldPasswordIncorrectText.text = "Old Password incorrect";
+        }
+    }
+
+    public void OnEndEditPassword() {
         if (NewPassword.text != ConfirmNewPassword.text && ConfirmNewPassword.text != "") {
             ConfirmPasswordNotMatchText.text = "Confirm password does not match";
-            password = true;
-            SaveButton.interactable = false;
+            newpassworderror = true;
         } else {
             ConfirmPasswordNotMatchText.text = "";
-            password = false;
+            newpassworderror = false;
+        }
+        EnableConfirmButton();
+    }
+
+    void EnableConfirmButton() {
+        if (!oldpassworderror && !newpassworderror) {
             SaveButton.interactable = true;
+        } else {
+            SaveButton.interactable = false;
         }
     }
     public void ChangeProfile(int index) {
         editUser.profile = index;
     }
-    
-    public void Edit(){
-        editUser = new User(){
-            name = DisplayName.text,
-            password = NewPassword.text
-        };
-        if(password == true){
-            SaveButton.interactable = true;
-            //UserController.Edit(editUser);
-        }
-        else{
-            Debug.Log("Fix the errors first");
-        }
+
+    public void Edit() {
+        editUser.name = DisplayName.text;
+        editUser.password = NewPassword.text;
+        editUser.logged_in = true;
+        UIManager.DisplayLoading();
+        UserController.Edit(editUser);
     }
 
 }

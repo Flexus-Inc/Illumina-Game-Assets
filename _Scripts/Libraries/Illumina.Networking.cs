@@ -23,6 +23,7 @@ namespace Illumina.Networking {
         public Dictionary<string, string> headers;
         public string uri = null;
         public object body = null;
+        public WWWForm form = null;
         public void SetHeader(string key, string value) {
             headers.Add(key, value);
         }
@@ -52,7 +53,7 @@ namespace Illumina.Networking {
 
         public static void GetCsrfToken() {
             var tokenQuery = IlluminaHash.GetUniqueDateTimeHash();
-            var uri = NetworkManager.App_Url + "/" + tokenQuery + "/token";
+            var uri = NetworkManager.Laravel_Uri + "/" + tokenQuery + "/token";
             Request csrfRequest = new Request {
                 uri = uri,
             };
@@ -63,11 +64,12 @@ namespace Illumina.Networking {
 
         private static void SetCsrfToken(object source) {
             csrf_token = (string) source;
+            Debug.Log(csrf_token);
         }
 
         private static void DisplayAlert(Exception err) {
             if (Application.internetReachability == NetworkReachability.NotReachable) {
-                UIManager.AlertBox(Notification.Danger, "No internet connection");
+                //do nothing
             } else {
                 UIManager.Danger("CONNECTION ERROR : " + err.Message);
             }
@@ -94,6 +96,19 @@ namespace Illumina.Networking {
             };
             postRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
             RestClient.Post<T>(postRequest)
+                .Then(res => request.CallSuccessEvents(res))
+                .Catch(err => request.CallFailedEvents(err));
+        }
+
+        public static void PostForm(Request request) {
+            RequestHelper postRequest = new RequestHelper {
+                Uri = request.uri,
+                Body = request.body,
+                Headers = request.headers,
+                FormData = request.form
+            };
+            postRequest.Headers.Add("X-CSRF-TOKEN", csrf_token);
+            RestClient.Post(postRequest)
                 .Then(res => request.CallSuccessEvents(res))
                 .Catch(err => request.CallFailedEvents(err));
         }

@@ -23,7 +23,10 @@ public class SignUpView : MonoBehaviour {
     public Text VerificationEmail;
     public InputField VerificationCode;
     public Text VerificationCodeMismatch;
-    string code;
+    public Animator VerificationPanel;
+    public static Animator VerificationCodePanel;
+    string code = "";
+    int profile;
     User newUser;
     Dictionary<string, bool> errors;
 
@@ -36,6 +39,7 @@ public class SignUpView : MonoBehaviour {
         errors.Add("username", true);
         errors.Add("password", true);
         errors.Add("email", true);
+        VerificationCodePanel = VerificationPanel;
     }
 
     public void OnEndEditUsername() {
@@ -93,6 +97,7 @@ public class SignUpView : MonoBehaviour {
         EmailExistText.text = "Cannot verify";
     }
     public void ChangeProfile(int index) {
+        profile = index;
         newUser.profile = index;
     }
 
@@ -105,23 +110,26 @@ public class SignUpView : MonoBehaviour {
     }
 
     public void Verify() {
-        this.code = Keys.RandomKey(6);
-
+        this.code = (new Key()).GenerateRandom(6);
+        Debug.Log(this.code);
         newUser = new User {
             username = UserName.text,
             password = Password.text,
             email = Email.text,
             name = DisplayName.text,
+            profile = profile,
             code = this.code
         };
 
         if (!errors.ContainsValue(true)) {
             VerificationEmail.text = newUser.email;
+            UIManager.DisplayLoading();
             UserController.VerifyEmail(newUser);
         } else {
             Debug.Log("Fix the errors first");
         }
     }
+
     public void Submit() {
         newUser.password = Password.text;
 
